@@ -1,3 +1,5 @@
+## Use case 04: Building real-time Medallion Architecture in KQL using update policy
+
 **Introduction**
 
 A medallion architecture (also coined by Databricks) is a data design
@@ -84,16 +86,20 @@ reports.
 
 3.  In the **Create a workspace** pane that appears on the right side,
     enter the following details, and click on the **Apply** button.
+    |  |   |
+    |----|---| 
+    |Name	|+++RTI-MedallionXX+++|
+    |Advanced|	Select Fabric Capacity|
+    |Default storage format	|Small dataset storage format|
 
-[TABLE]
 
-> ![A screenshot of a computer Description automatically
-> generated](./media/image5.png)
->
-> ![](./media/image6.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image7.png)
+    > ![A screenshot of a computer Description automatically
+    > generated](./media/image5.png)
+    >
+    > ![](./media/image6.png)
+    >
+    > ![A screenshot of a computer AI-generated content may be
+    > incorrect.](./media/image7.png)
 
 ## Task 2: Create a new Eventhouse
 
@@ -220,11 +226,7 @@ string.
 Personal browser window for the Notebook session to connect & run
 successfully.
 
-7.  
-
-![](./media/image30.png)
-
-8.  To start the notebook, run the the 1^(st) cell.
+7.  To start the notebook, run the the 1^(st) cell.
 
 > ![](./media/image31.png)
 >
@@ -284,7 +286,13 @@ incorrect.](./media/image37.png)
 5.  Provide the following values in the pane **Filter** on the left
     side. Then click on **Save**.
 
-[TABLE]
+    |Field|	Value|
+    |----|----|
+    |Operation name|	+++ClickEventsFilter+++|
+    |Select a field to filter on	|eventType|
+    |Keep events when the value|	equals|
+    |value|	+++CLICK+++|
+
 
 > ![](./media/image41.png)
 
@@ -324,7 +332,16 @@ coming out of the filter. We will fix this in the next step.
     the following values in the pane **Eventhouse**. Click the
     button **Save** after you entered all the values.
 
-[TABLE]
+    |Field	|Value|
+    |-----|-----|
+    |Event processing before ingestion	|Ensure that this option is selected.|
+    |Destionation name	|+++ClickEventStore+++|
+    |Workspace|	Select RTI Tutorial. If you attend the Precon at dataMinds Connectrope please select the Workspace Name that was provided to you.|
+    |Eventhouse	|Select the Eventhouse WebEvents_EH|
+    |KQL Database	|Select the KQL Database WebEvents_EH|
+    |Destination table	|Click on Create new and enter +++BronzeClicks+++ as name for the new table and click on Done.|
+    |Input data format	|Ensure that the option Json is selected.|
+
 
 ![](./media/image48.png)
 
@@ -353,7 +370,12 @@ coming out of the filter. We will fix this in the next step.
     mode. Provide the following values in the pane **Filter** on the
     left side. Then click on **Save**.
 
-[TABLE]
+    |Field	|Value|
+    |----|----|
+    |Operation name	|+++ImpressionEventsFilter+++|
+    |Select a field to filter on|	eventType|
+    |Keep events when the value	|equals|
+    |value|	+++IMPRESSION+++|
 
 > ![](./media/image54.png)
 >
@@ -386,7 +408,16 @@ coming out of the filter. We will fix this in the next step.
 20. Click the pencil in node **Eventhouse1** to enter edit mode. Provide
     the following values in the pane **Eventhouse**.
 
-[TABLE]
+    |Field	|Value|
+    |-----|---|
+    |Event processing before ingestion|	Ensure that this option is selected.|
+    |Destionation name|	+++ImpressionEventStore+++|
+    |Workspace	|Select RTI-Medallion. If you attend the Precon at dataMinds Connectrope please select the Workspace Name that was provided to you.|
+    |Eventhouse|	Select the Eventhouse WebEvents_EH|
+    |KQL Database	|Select the KQL Database WebEvents_EH|
+    |Destination table|	Click on Create new and enter +++BronzeImpressions+++ as name for the new table and click on Done.|
+    |Input data format|	Ensure that the option Json is selected.|
+
 
 21. After providing these values click on the button **Save**.
 
@@ -633,240 +664,120 @@ the data is **NOT** being copied into our KQL Database.
     replace the text in the tab **WebEvents_EH** by the contents of the
     file createAll.kql. Then click on the Button **Run**
 
-> .execute database script \<|
->
-> //SILVER LAYER
->
-> .create table SilverClicks (
->
-> eventType:string,
->
-> eventID:string,
->
-> eventDate:datetime,
->
-> productId:long,
->
-> userAgent:dynamic,
->
-> device:string,
->
-> ip_address:string,
->
-> referer:dynamic,
->
-> page_loading_seconds:real,
->
-> clickType:string,
->
-> clickPathTitle:string,
->
-> clickPathUrl:string
->
-> )
->
-> //
->
-> .create table SilverImpressions (
->
-> eventType:string,
->
-> eventID:string,
->
-> eventDate:datetime,
->
-> productId:long,
->
-> userAgent:dynamic,
->
-> device:string,
->
-> ip_address:string,
->
-> page_loading_seconds:real,
->
-> relatedProductCategory:string,
->
-> relatedProductId:string,
->
-> relatedProductName:string
->
-> )
->
-> // use update policies to transform data during Ingestion
->
-> .create-or-alter function with (folder="Bronze to Silver
-> Transformations") expandClickpath()
->
-> {
->
-> BronzeClicks
->
-> | mv-expand extraPayload
->
-> | evaluate bag_unpack(extraPayload)
->
-> | project
->
-> eventType,
->
-> eventID,
->
-> todatetime(eventDate),
->
-> productId,
->
-> userAgent,
->
-> device,
->
-> ip_address,
->
-> referer,
->
-> toreal(page_loading_seconds),
->
-> clickType = clickType,
->
-> clickPathTitle = \['title'\],
->
-> clickPathUrl = url
->
-> }
->
-> //
->
-> .alter table SilverClicks policy update @'\[{"Source": "BronzeClicks",
-> "Query": "expandClickpath", "IsEnabled" : true, "IsTransactional":
-> false }\]'
->
-> //
->
-> .create-or-alter function with (folder="Bronze to Silver
-> Transformations") expandRelatedProducts()
->
-> {
->
-> BronzeImpressions
->
-> | mv-expand extraPayload
->
-> | evaluate bag_unpack(extraPayload)
->
-> | project
->
-> eventType,
->
-> eventID,
->
-> todatetime(eventDate),
->
-> productId,
->
-> userAgent,
->
-> device,
->
-> ip_address,
->
-> toreal(page_loading_seconds),
->
-> relatedProductCategory,
->
-> relatedProductId,
->
-> relatedProductName
->
-> }
->
-> //
->
-> .alter table SilverImpressions policy update @'\[{"Source":
-> "BronzeImpressions", "Query": "expandRelatedProducts", "IsEnabled" :
-> true, "IsTransactional": false }\]'
->
-> //
->
-> .create-or-alter function with (docstring = "Social Media Campaign
-> Clickstream", folder = "Gold Views") SocialMediaCampaignClickstream()
->
-> {
->
-> SilverClicks
->
-> | extend CampaignType = tostring(referer.campaignType)
->
-> | extend Platform = tostring(userAgent.platform)
->
-> | extend Browser = tostring(userAgent.browser)
->
-> | extend RefererUrl = tostring(referer.url)
->
-> | extend AdTitle = tostring(referer.adTitle)
->
-> | where CampaignType in ("facebook", "twitter", "instagram",
-> "pinterest")
->
-> | project-away userAgent, referer
->
-> | project-reorder CampaignType
->
-> }
->
-> //
->
-> .create-or-alter function with (docstring = "Search Media Campaign
-> Clickstream", folder = "Gold Views") SearchMediaCampaignClickstream()
->
-> {
->
-> SilverClicks
->
-> | extend CampaignType = tostring(referer.campaignType)
->
-> | extend Platform = tostring(userAgent.platform)
->
-> | extend Browser = tostring(userAgent.browser)
->
-> | extend RefererUrl = tostring(referer.url)
->
-> | extend AdTitle = tostring(referer.adTitle)
->
-> | where CampaignType in ("google", "bing")
->
-> | project-away userAgent, referer
->
-> | project-reorder CampaignType
->
-> }
->
-> //
->
-> .create-or-alter function with (docstring = "Email Campaign
-> Clickstream", folder = "Gold Views") EmailCampaignClickstream()
->
-> {
->
-> SilverClicks
->
-> | extend CampaignType = tostring(referer.campaignType)
->
-> | extend Platform = tostring(userAgent.platform)
->
-> | extend Browser = tostring(userAgent.browser)
->
-> | extend RefererUrl = tostring(referer.url)
->
-> | extend EmailId = tostring(referer.emailId)
->
-> | where CampaignType in ("email")
->
-> | project-away userAgent, referer
->
-> | project-reorder CampaignType
->
-> }
->
+    ```
+    .execute database script <|
+    //SILVER LAYER
+    .create table SilverClicks (
+        eventType:string, 
+        eventID:string, 
+        eventDate:datetime, 
+        productId:long, 
+        userAgent:dynamic, 
+        device:string, 
+        ip_address:string, 
+        referer:dynamic, 
+        page_loading_seconds:real, 
+        clickType:string, 
+        clickPathTitle:string, 
+        clickPathUrl:string
+    )
+    //
+    .create table SilverImpressions (
+        eventType:string, 
+        eventID:string, 
+        eventDate:datetime, 
+        productId:long, 
+        userAgent:dynamic, 
+        device:string, 
+        ip_address:string, 
+        page_loading_seconds:real, 
+        relatedProductCategory:string, 
+        relatedProductId:string, 
+        relatedProductName:string
+    )
+    // use update policies to transform data during Ingestion
+    .create-or-alter function with (folder="Bronze to Silver Transformations") expandClickpath()
+    {
+    BronzeClicks
+    | mv-expand extraPayload
+    | evaluate bag_unpack(extraPayload)
+    | project 
+        eventType, 
+        eventID, 
+        todatetime(eventDate), 
+        productId, 
+        userAgent, 
+        device, 
+        ip_address, 
+        referer, 
+        toreal(page_loading_seconds), 
+        clickType = clickType, 
+        clickPathTitle = ['title'], 
+        clickPathUrl = url
+    }
+    //
+    .alter table SilverClicks policy update @'[{"Source": "BronzeClicks", "Query": "expandClickpath", "IsEnabled" : true, "IsTransactional": false }]'
+    //
+    .create-or-alter function with (folder="Bronze to Silver Transformations") expandRelatedProducts()
+    {
+    BronzeImpressions
+    | mv-expand extraPayload
+    | evaluate bag_unpack(extraPayload)
+    | project 
+        eventType, 
+        eventID, 
+        todatetime(eventDate), 
+        productId, 
+        userAgent, 
+        device, 
+        ip_address, 
+        toreal(page_loading_seconds), 
+        relatedProductCategory, 
+        relatedProductId, 
+        relatedProductName
+    }
+    //
+    .alter table SilverImpressions policy update @'[{"Source": "BronzeImpressions", "Query": "expandRelatedProducts", "IsEnabled" : true, "IsTransactional": false }]'
+    //
+    .create-or-alter function with (docstring = "Social Media Campaign Clickstream", folder = "Gold Views") SocialMediaCampaignClickstream()
+    {
+    SilverClicks
+    | extend CampaignType = tostring(referer.campaignType)
+    | extend Platform = tostring(userAgent.platform)
+    | extend Browser = tostring(userAgent.browser)
+    | extend RefererUrl = tostring(referer.url)
+    | extend AdTitle = tostring(referer.adTitle)
+    | where CampaignType in ("facebook", "twitter", "instagram", "pinterest")
+    | project-away userAgent, referer
+    | project-reorder CampaignType
+    }
+    //
+    .create-or-alter function with (docstring = "Search Media Campaign Clickstream", folder = "Gold Views") SearchMediaCampaignClickstream()
+    {
+    SilverClicks
+    | extend CampaignType = tostring(referer.campaignType)
+    | extend Platform = tostring(userAgent.platform)
+    | extend Browser = tostring(userAgent.browser)
+    | extend RefererUrl = tostring(referer.url)
+    | extend AdTitle = tostring(referer.adTitle)
+    | where CampaignType in ("google", "bing")
+    | project-away userAgent, referer
+    | project-reorder CampaignType
+    }
+    //
+    .create-or-alter function with (docstring = "Email Campaign Clickstream", folder = "Gold Views") EmailCampaignClickstream()
+    {
+    SilverClicks
+    | extend CampaignType = tostring(referer.campaignType)
+    | extend Platform = tostring(userAgent.platform)
+    | extend Browser = tostring(userAgent.browser)
+    | extend RefererUrl = tostring(referer.url)
+    | extend EmailId = tostring(referer.emailId)
+    | where CampaignType in ("email")
+    | project-away userAgent, referer
+    | project-reorder CampaignType
+    }
+    ```
 > ![](./media/image102.png)
 
 10. The status of the execution of the commands from the file  can be
@@ -917,7 +828,7 @@ incorrect.](./media/image108.png)
 
 > ![](./media/image109.png)
 
-3.  Enter the name +++**Web Events Dashboard+++** in the field **New
+3.  Enter the name **+++Web Events Dashboard+++** in the field **New
     Real-Time Dashboard**. Then click on **Create**.
 
 > ![](./media/image110.png)
@@ -949,19 +860,14 @@ incorrect.](./media/image108.png)
     fields \_startTime and \_endTime.
 
 9.  Copy the following query and click **Run**.
-
-> //Clicks by hour
->
-> SilverClicks
->
-> | where eventDate between (\_startTime..\_endTime)
->
-> | summarize date_count = count() by bin(eventDate, 1h)
->
-> | render timechart
->
-> | top 30 by date_count
-
+    ```
+    //Clicks by hour
+    SilverClicks
+    | where eventDate between (_startTime.._endTime)
+    | summarize date_count = count() by bin(eventDate, 1h)
+    | render timechart
+    | top 30 by date_count
+    ```
 Note: All queries are available in this script
 file [dashboard-RTA.kql](https://github.com/microsoft/FabricRTIWorkshop/blob/main/dashboards/RTA%20dashboard/dashboard-RTA.kql)
 is available in Labfiles folder
@@ -1004,22 +910,22 @@ is available in Labfiles folder
 17. In the query editor, **paste** the following code, then click on
     **Run** to execute the query.
 
-**Impressions by hour **
-
-- Visual type: **Area chart**.
-
-//Impressions by hour
-
-SilverImpressions
-
-| where eventDate between (\_startTime..\_endTime)
-
-| summarize date_count = count() by bin(eventDate, 1h)
-
-| render timechart
-
-| top 30 by date_count
-
+    **Impressions by hour **
+    ```
+    - Visual type: **Area chart**.
+    
+    //Impressions by hour
+    
+    SilverImpressions
+    
+    | where eventDate between (\_startTime..\_endTime)
+    
+    | summarize date_count = count() by bin(eventDate, 1h)
+    
+    | render timechart
+    
+    | top 30 by date_count
+    ```
 > ![A screenshot of a computer AI-generated content may be
 > incorrect.](./media/image123.png)
 
@@ -1052,18 +958,14 @@ generated](./media/image127.png)
 
 //Impressions by location
 
-SilverImpressions
-
-| where eventDate between (\_startTime..\_endTime)
-
-| join external_table('products') on $left.productId == $right.ProductID
-
-| project lon = toreal(geo_info_from_ip_address(ip_address).longitude),
-lat = toreal(geo_info_from_ip_address(ip_address).latitude), Name
-
-| render scatterchart with (kind = map) //, xcolumn=lon, ycolumns=lat)
-
-![](./media/image128.png)
+    ```
+    SilverImpressions
+    | where eventDate  between (_startTime.._endTime)
+    | join external_table('products') on $left.productId == $right.ProductID
+    | project lon = toreal(geo_info_from_ip_address(ip_address).longitude), lat = toreal(geo_info_from_ip_address(ip_address).latitude), Name
+    | render scatterchart with (kind = map) //, xcolumn=lon, ycolumns=lat)
+    ```
+  ![](./media/image128.png)
 
 22. Select **+Add visual**
 
@@ -1087,22 +989,15 @@ lat = toreal(geo_info_from_ip_address(ip_address).latitude), Name
 
 - Visual type: **Timechart**.
 
-//Average Page Load time
-
-SilverImpressions
-
-| where eventDate between (\_startTime..\_endTime)
-
-//| summarize average_loadtime = avg(page_loading_seconds) by
-bin(eventDate, 1h)
-
-| make-series average_loadtime = avg(page_loading_seconds) on eventDate
-from \_startTime to \_endTime+4h step 1h
-
-| extend forecast = series_decompose_forecast(average_loadtime, 4)
-
-| render timechart
-
+      //Average Page Load time
+      ```
+      SilverImpressions
+      | where eventDate   between (_startTime.._endTime)
+      //| summarize average_loadtime = avg(page_loading_seconds) by bin(eventDate, 1h)
+      | make-series average_loadtime = avg(page_loading_seconds) on eventDate from _startTime to _endTime+4h step 1h
+      | extend forecast = series_decompose_forecast(average_loadtime, 4)
+      | render timechart
+      ```
 ![](./media/image132.png)
 
 26. Select **+Add visual**
@@ -1123,34 +1018,21 @@ from \_startTime to \_endTime+4h step 1h
 
 29. In the query editor, **paste** the following code, then click on
     **Run** to execute the query.
-
-> Impressions, Clicks & CTR 
->
-> //Clicks, Impressions, CTR
->
-> let imp = SilverImpressions
->
-> | where eventDate between (\_startTime..\_endTime)
->
-> | extend dateOnly = substring(todatetime(eventDate).tostring(), 0, 10)
->
-> | summarize imp_count = count() by dateOnly;
->
-> let clck = SilverClicks
->
-> | where eventDate between (\_startTime..\_endTime)
->
-> | extend dateOnly = substring(todatetime(eventDate).tostring(), 0, 10)
->
-> | summarize clck_count = count() by dateOnly;
->
-> imp
->
-> | join clck on $left.dateOnly == $right.dateOnly
->
-> | project selected_date = dateOnly , impressions = imp_count , clicks
-> = clck_count, CTR = clck_count \* 100 / imp_count
->
+    ```
+    Impressions, Clicks & CTR 
+    //Clicks, Impressions, CTR
+    let imp =  SilverImpressions
+    | where eventDate  between (_startTime.._endTime)
+    | extend dateOnly = substring(todatetime(eventDate).tostring(), 0, 10)
+    | summarize imp_count = count() by dateOnly;
+    let clck = SilverClicks
+    | where eventDate  between (_startTime.._endTime)
+    | extend dateOnly = substring(todatetime(eventDate).tostring(), 0, 10)
+    | summarize clck_count = count() by dateOnly;
+    imp
+    | join clck on $left.dateOnly == $right.dateOnly
+    | project selected_date = dateOnly , impressions = imp_count , clicks = clck_count, CTR = clck_count * 100 / imp_count
+    ```
 > ![](./media/image136.png)
 
 30. Enter +++**Impressions**+++ in the field **Tile name**.
@@ -1193,22 +1075,14 @@ generated](./media/image144.png)
     **Run** to execute the query
 
 **Average Page Load Time Anomalies **[\#](javascript:void(0))
-
-> Visual type: **Timechart**
->
-> //Avg Page Load Time Anomalies
->
-> SilverImpressions
->
-> | where eventDate between (\_startTime..\_endTime)
->
-> | make-series average_loadtime = avg(page_loading_seconds) on
-> eventDate from \_startTime to \_endTime+4h step 1h
->
-> | extend anomalies = series_decompose_anomalies(average_loadtime)
->
-> | render anomalychart
->
+    ```
+    //Avg Page Load Time Anomalies
+    SilverImpressions
+    | where eventDate   between (_startTime.._endTime)
+    | make-series average_loadtime = avg(page_loading_seconds) on eventDate from _startTime to _endTime+4h step 1h
+    | extend anomalies = series_decompose_anomalies(average_loadtime)
+    | render anomalychart
+    ```
 > ![A screenshot of a computer Description automatically
 > generated](./media/image145.png)
 
@@ -1234,22 +1108,16 @@ generated](./media/image149.png)
 
 **Strong Anomalies **[\#](javascript:void(0))
 
-//Strong Anomalies
-
-SilverImpressions
-
-| where eventDate between (\_startTime..\_endTime)
-
-| make-series average_loadtime = avg(page_loading_seconds) on eventDate
-from \_startTime to \_endTime+4h step 1h
-
-| extend anomalies = series_decompose_anomalies(average_loadtime,2.5)
-
-| mv-expand eventDate, average_loadtime, anomalies
-
-| where anomalies \<\> 0
-
-| project-away anomalies
+  //Strong Anomalies
+  ```
+  SilverImpressions
+  | where eventDate between (_startTime.._endTime)
+  | make-series average_loadtime = avg(page_loading_seconds) on eventDate from _startTime to _endTime+4h step 1h
+  | extend anomalies = series_decompose_anomalies(average_loadtime,2.5)
+  | mv-expand eventDate, average_loadtime, anomalies
+  | where anomalies <> 0
+  | project-away anomalies
+  ```
 
 > ![A screenshot of a computer AI-generated content may be
 > incorrect.](./media/image150.png)
@@ -1326,7 +1194,14 @@ Message when a value meets a certain threshold.
 2.  In the pane **Set alert** set the values as stated in the following
     table
 
-[TABLE]
+    |Field	|Value|
+    |----|----|
+    |Check|	On each event grouped by|
+    |Grouping field	|event_date|
+    |When	|date_count|
+    |Condition|	Becomes greater than|
+    |Value	|250|
+
 
 > ![A screenshot of a computer Description automatically
 > generated](./media/image161.png)
