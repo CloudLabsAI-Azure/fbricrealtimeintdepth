@@ -45,7 +45,7 @@ dataflows, Data Factory pipelines, the notebooks, Power BI datasets, and
 reports.
 
 1.  Open your browser, navigate to the address bar, and type or paste
-    the following URL: +++https://app.fabric.microsoft.com/+++then press
+    the following URL: +++https://app.fabric.microsoft.com/+++ then press
     the **Enter** button and sign in with your credentials
 
 2.  In the Workspaces pane, click on **+New workspace** tile
