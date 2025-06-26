@@ -141,7 +141,7 @@ dataflows, Data Factory pipelines, the notebooks, Power BI datasets, and
 reports.
 
 1.  Open your browser, navigate to the address bar, and type or paste
-    the following URL: https://app.fabric.microsoft.com/ then press the
+    the following URL: +++https://app.fabric.microsoft.com/+++ then press the
     **Enter** button.
 
 2.  In the **Home** page click on **+ New Workspaces** as shown in the
@@ -152,17 +152,18 @@ reports.
 
 3.  In the **Create a workspace** pane that appears on the right side,
     enter the following details, and click on the **Apply** button.
+    |   |   |
+    |---|---|
+    |Name	|+++RealTimeWorkspaceXXX+++ (XXX can be a unique number, you can add more numbers)|
+    |Advanced	|Select Fabric capacity|
+    |Default |storage format	Small dataset storage format|
 
-[TABLE]
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image3.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image4.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image5.png)
+  ![A screenshot of a computer AI-generated content may be incorrect.](./media/image3.png)
+ 
+  ![A screenshot of a computer AI-generated content may be incorrect.](./media/image4.png)
+ 
+ ![A screenshot of a computer AI-generated content may be incorrect.](./media/image5.png)
 
 ## **Task 2: Deploy the app via Azure Container Instance**
 
@@ -176,48 +177,44 @@ To auto-deploy the resources, use these steps below.
 1.  Open a new address bar and enter the following URL. If prompted to
     Sign in, then use your tenant credentials.
 
-> [https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Ffabricrealtimelab%2Fmain%2Fresources%2Fmodule00%2Ffabricworkshop_arm_managedid.json](https://portal.azure.com/%23create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Ffabricrealtimelab%2Fmain%2Fresources%2Fmodule00%2Ffabricworkshop_arm_managedid.json)
++++https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2Ffabricrealtimelab%2Fmain%2Fresources%2Fmodule00%2Ffabricworkshop_arm_managedid.json+++
 
 2.  In the **Custom deployment** window, under the **Basics** tab, enter
     the following details and click on the **Review+create** button.
+    |  |  |
+    |----|----|
+    |Subscription|	Select the assigned subscription|
+    |Resource group|	Select the assigned Resource group |
 
-[TABLE]
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image6.png)
+  ![A screenshot of a computer AI-generated content may be incorrect.](./media/image6.png)
 
 3.  Once the validation has passed, click **Create**.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image7.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image8.png)
+     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image7.png)
+    
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image8.png)
 
 4.  After the deployment is completed, click on the **Go to resource**
     button.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image9.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image9.png)
 
-4.  After the deployment has completed, open the resource group and
+5.  After the deployment has completed, open the resource group and
     verify the **Event Hub Namespace and Azure Container
     Instance (ACI)** is deployed
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image10.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image10.png)
 
 5.  Open the **Event Hub** **namespace**, which will have a name similar
     to** *ehns-123456-fabricworkshop***.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image11.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image11.png)
 
 6.  In **Event Hub** **namespace** page from the left menu select
     **Shared access policies** under the **Settings.**
 
-> ![A screenshot of a web page AI-generated content may be
-> incorrect.](./media/image12.png)
+    ![A screenshot of a web page AI-generated content may be incorrect.](./media/image12.png)
 
 7.   In the ***Shared access policies*** page, click
     the ***stockeventhub_sas*** .On the SAS key tab copy the **primary
@@ -225,96 +222,89 @@ To auto-deploy the resources, use these steps below.
     as *ehns-123456-fabricworkshop*) to your notepad as this will be
     needed shortly. In short, you'll need the following:
 
-> ![](./media/image13.png)
+     ![](./media/image13.png)
 
-![A screenshot of a computer Description automatically
-generated](./media/image14.png)
+    ![A screenshot of a computer Description automatically generated](./media/image14.png)
 
 ## **Task 3: Get data with Eventstream**
 
 1.  Create a new Eventhouse by clicking on the **+New item** button in
     the navigation bar. select **Eventstream**
 
-> ![](./media/image15.png)
+    ![](./media/image15.png)
 
 2.  Name the Eventstream +++**StockEventStream**+++, click on
     the **Create** button.
 
-![](./media/image16.png)
+    ![](./media/image16.png)
 
 3.  On the Eventstream, select **Connect data sources**
 
-![](./media/image17.png)
+    ![](./media/image17.png)
 
 4.  On the Add source, select **Azure *Event* Hubs** and click on
     **Connect** button.
 
-> ![](./media/image18.png)
+    ![](./media/image18.png)
 
 5.  On the **Azure Event Hubs** configuration page, enter the below
     details and click on **Add** button.
 
-&nbsp;
+    &nbsp;
+    
+    1.  Cloud connection: Click on the **Create new** and enter the below
+        details then click on **Create** button.
+    
+    &nbsp;
+    
+    1.  In Event Hub namespace-Enter Event Hub name (the values that you
+        have saved in your notepad in the **Task 2)**
+    
+    2.  Event Hub : **+++StockEventHub+++**
+    
+    3.  Shared Access Key Name:+++**stockeventhub_sas+++**
+    
+    4.  Shared Access Key- Enter Primary Key (the value that you have saved
+        in your notepad in the **Task 2)**
+    
+    &nbsp;
+    
+    2.  Consumer group: ***$Default*** 
+    
+    3.  Data format: **JSON**
 
-1.  Cloud connection: Click on the **Create new** and enter the below
-    details then click on **Create** button.
-
-&nbsp;
-
-1.  In Event Hub namespace-Enter Event Hub name (the values that you
-    have saved in your notepad in the **Task 2)**
-
-2.  Event Hub : **+++StockEventHub+++**
-
-3.  Shared Access Key Name:+++**stockeventhub_sas+++**
-
-4.  Shared Access Key- Enter Primary Key (the value that you have saved
-    in your notepad in the **Task 2)**
-
-&nbsp;
-
-2.  Consumer group: ***$Default*** 
-
-3.  Data format: **JSON**
-
-![](./media/image19.png)
-
-![](./media/image20.png)
-
-![](./media/image21.png)
-
-![](./media/image22.png)
-
-> ![](./media/image23.png)
+    ![](./media/image19.png)
+    
+    ![](./media/image20.png)
+    
+    ![](./media/image21.png)
+    
+    ![](./media/image22.png)
+    
+    > ![](./media/image23.png)
 
 8.  You will see a notification stating **Successfully added The source
     “StockEventHub,Azure Event Hubs”** was added.
 
-> ![A screenshot of a computer Description automatically
-> generated](./media/image24.png)
+   ![A screenshot of a computer Description automatically generated](./media/image24.png)
 
 9.  With the Event Hub configured, click on ***Data preview***. You
     should see events including the stock symbol, price, and timestamp.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image25.png)
+  ![A screenshot of a computer AI-generated content may be incorrect.](./media/image25.png)
 
 10. On the Eventstream, select **Publish.**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image26.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image27.png)
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image26.png)
+
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image27.png)
 
 11. On the Eventstream, select **new-source** and click on **Refresh**
     button.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image28.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image29.png)
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image28.png)
+ 
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image29.png)
 
 # Exercise 2: KQL Database Configuration and Ingestion
 
@@ -336,34 +326,33 @@ the Eventstream into the KQL DB.
 1.  In the left-sided navigation menu, navigate and click on **RealTime
     workspaceXXX**, as shown in the below image.
 
-> ![](./media/image30.png)
+     ![](./media/image30.png)
 
 2.  In the **Real-Time Intelligence** page, navigate to +**New item**
     section and select **Eventhouse** to create Eventhouse.
 
-> ![](./media/image31.png)
+     ![](./media/image31.png)
 
 3.  In the **New Eventhouse** dialog box, enter +++**StockDB+++**in
     the **Name** field, click on the **Create** button and open the new
     Eventhouse.
 
-> ![](./media/image32.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image33.png)
+    ![](./media/image32.png)
+   
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image33.png)
 
 4.  From the **System overview** page, select the **StockDB** database
     you created in the previous task.
 
-> ![](./media/image34.png)
+     ![](./media/image34.png)
 
 5.  Select **StockDB**, click on the **OneLake availability** as shown
     in the below image to change the setting and, then click on the
     **Turn on** Toggle the button enable OneLake access.
 
-> ![](./media/image35.png)
->
-> ![](./media/image36.png)
+     ![](./media/image35.png)
+     
+      ![](./media/image36.png)
 
 ## Task 2: Send data from the Eventstream to the KQL database
 
@@ -371,20 +360,18 @@ the Eventstream into the KQL DB.
     **StockEventStream** created in the previous task, as shown in the
     below image.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image37.png)
+     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image37.png)
 
 2.  On the Eventstream, click on the **Edit** button.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image38.png)
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image38.png)
 
 3.  Our data should be arriving into our Eventstream, and we'll now
     configure the data to be ingested into the KQL database we created
     in the above task. On the Eventstream, click on **Transform events
     or add destination***,* then navigate and click on **Eventhouse**.
 
-> ![](./media/image39.png)
+     ![](./media/image39.png)
 
 4.  On the KQL settings, select **Direct ingestion**. While we have the
     opportunity to process event data at this stage, for our purposes,
@@ -393,53 +380,45 @@ the Eventstream into the KQL DB.
     Eventhouse** and KQL database created in the above task, then click
     on **Save** button.
 
-> ![](./media/image40.png)
->
-> ![](./media/image41.png)
+    ![](./media/image40.png)
+   
+    ![](./media/image41.png)
 
 5.  On the Eventstream, select **Publish.**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image42.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
 
 6.  On the Eventstream pane, select **configure** in the **KQL**
     destination.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image43.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image43.png)
 
 7.  On the first settings page, select **+New table** and enter the
     name +++***StockPrice+++*** for the table to hold the data in
     StockDB. Click on the **Next** button.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image44.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image45.png)
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image44.png)
+
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image45.png)
 
 8.  The next page allows us to inspect and configure the schema. Be sure
     to change the format from TXT to **JSON**, if necessary. The default
     columns of *symbol*, *price*, and *timestamp* should be formatted as
     shown in the below image; then click on the **Finish** button.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image46.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image46.png)
 
-2.  On the **Summary** page, if there are no errors, you’ll see a
+9.  On the **Summary** page, if there are no errors, you’ll see a
     **green checkmark** as shown in the below image, then click on the
     **Close** button to complete the configuration.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image47.png)
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image47.png)
 
-9.  Select the **KQL** destination and click on the **Refresh** button
+10.  Select the **KQL** destination and click on the **Refresh** button
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image48.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image49.png)
+     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image48.png)
+   
+     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image49.png)
 
 # Exercise 3: Exploring the Data
 
@@ -450,103 +429,87 @@ complexity to support different business uses.
 
 1.  Click on **RealTimeWorkspace** on the left-sided navigation pane.
 
-![](./media/image50.png)
+     ![](./media/image50.png)
 
 2.  From your workspace, click on ***+** **New item \> KQL Queryset** as
-    shown in the below image. In the **New KQL Queryset** dialog box,*
-    enter +++***StockQueryset**+++*, then click on the **Create**
+    shown in the below image. In the **New KQL Queryset** dialog box,
+    enter +++**StockQueryset**+++, then click on the **Create**
     button.
 
-> ![](./media/image51.png)
->
-> ![A screenshot of a computer Description automatically
-> generated](./media/image52.png)
+    ![](./media/image51.png)
+ 
+   ![A screenshot of a computer Description automatically generated](./media/image52.png)
 
 3.  In StockQueryset page select **Eventhouse/KQL Database**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image53.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image53.png)
 
 4.  Select the ***StockDB*** and click on the **Connect** button.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image54.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image54.png)
 
 5.  The KQL query window will open, allowing you to query the data.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image55.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image55.png)
 
 6.  The default query code will look like the code shown in the below
     image; it contains 3 distinct KQL queries. You may
     see *YOUR_TABLE_HERE* instead of the ***StockPrice*** table. Select
     and delete them.
 
-> ![](./media/image55.png)
+    ![](./media/image55.png)
 
 7.  In the query editor, copy and paste the following code. Select the
     entire text and click on *the **Run*** button to execute the query.
     After the query is executed, you will see the results.
 
-> **Copy**
->
-> // Use "take" to view a sample number of records in the table and
-> check the data.
->
-> StockPrice
->
-> | take 100;
->
-> // See how many records are in the table.
->
-> StockPrice
->
-> | count;
->
-> // This query returns the number of ingestions per hour in the given
-> table.
->
-> StockPrice
->
-> | summarize IngestionCount = count() by bin(ingestion_time(), 1h);
+    ```
+    // Use "take" to view a sample number of records in the table and check the data.
+    StockPrice
+    | take 100;
+    
+    // See how many records are in the table.
+    StockPrice
+    | count;
+    
+    // This query returns the number of ingestions per hour in the given table.
+    StockPrice
+    | summarize IngestionCount = count() by bin(ingestion_time(), 1h);
+    ```
 
-***Note:** To run a single query when there are multiple queries in the
-editor, you can highlight the query text or place your cursor so the
-cursor is in the context of the query (for example, at the beginning or
-end of the query) -- the current query should highlight in blue. To run
-the query, click Run in the toolbar. If you'd like to run all 3 to
-display the results in 3 different tables, each query will need to have
-a semicolon (;) after the statement, as shown below.*
+    ***Note:** To run a single query when there are multiple queries in the
+    editor, you can highlight the query text or place your cursor so the
+    cursor is in the context of the query (for example, at the beginning or
+    end of the query) -- the current query should highlight in blue. To run
+    the query, click Run in the toolbar. If you'd like to run all 3 to
+    display the results in 3 different tables, each query will need to have
+    a semicolon (;) after the statement, as shown below.*
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image56.png)
+  ![A screenshot of a computer AI-generated content may be incorrect.](./media/image56.png)
 
 8.  The results will be displayed in 3 different tables as shown in the
     below image. Click on each table tab to review the data.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image57.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image58.png)
->
-> ![A screenshot of a chat AI-generated content may be
-> incorrect.](./media/image59.png)
+  > ![A screenshot of a computer AI-generated content may be
+  > incorrect.](./media/image57.png)
+  >
+  > ![A screenshot of a computer AI-generated content may be
+  > incorrect.](./media/image58.png)
+  >
+  > ![A screenshot of a chat AI-generated content may be
+  > incorrect.](./media/image59.png)
 
 ## **Task 2: New Query of StockByTime**
 
 1.  Create a new tab within the queryset by clicking on the ***+* icon**
     as shown in the below image. Rename this tab as
-    +++***StockByTime***+++
+    +++**StockByTime**+++
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image60.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image61.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image62.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image60.png)
+  
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image61.png)
+  
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image62.png)
 
 2.  We can begin to add our own calculations, such as calculating the
     change over time. For example,
@@ -560,39 +523,23 @@ a semicolon (;) after the statement, as shown below.*
 3.  In the query editor, copy and paste the following code. Click on
     the **Run** button to execute the query. After the query is
     executed, you will see the results.
-
-> Copy
->
-> StockPrice
->
-> | where timestamp \> ago(75m)
->
-> | project symbol, price, timestamp
->
-> | partition by symbol
->
-> (
->
-> order by timestamp asc
->
-> | extend prev_price = prev(price, 1)
->
-> | extend prev_price_10min = prev(price, 600)
->
-> )
->
-> | where timestamp \> ago(60m)
->
-> | order by timestamp asc, symbol asc
->
-> | extend pricedifference_10min = round(price - prev_price_10min, 2)
->
-> | extend percentdifference_10min = round(round(price -
-> prev_price_10min, 2) / prev_price_10min, 4)
->
-> | order by timestamp asc, symbol asc
->
-> ![](./media/image63.png)
+    ```
+    StockPrice
+    | where timestamp > ago(75m)
+    | project symbol, price, timestamp
+    | partition by symbol
+    (
+        order by timestamp asc
+        | extend prev_price = prev(price, 1)
+        | extend prev_price_10min = prev(price, 600)
+    )
+    | where timestamp > ago(60m)
+    | order by timestamp asc, symbol asc
+    | extend pricedifference_10min = round(price - prev_price_10min, 2)
+    | extend percentdifference_10min = round(round(price - prev_price_10min, 2) / prev_price_10min, 4)
+    | order by timestamp asc, symbol asc
+    ```
+    ![](./media/image63.png)
 
 4.  In this KQL query, the results are first limited to the most recent
     75 minutes. While we ultimately limit the rows to the last 60
@@ -609,12 +556,11 @@ a semicolon (;) after the statement, as shown below.*
 
 1.  Create another new tab within the queryset by clicking on
     the ***+* icon** as shown in the below image. Rename this tab as
-    **+++*StockAggregate*+++**
+    **+++StockAggregate+++**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image64.png)
->
-> ![](./media/image65.png)
+     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image64.png)
+ 
+     ![](./media/image65.png)
 
 2.  This query will find the biggest price gains over a 10-minute period
     for each stock, and the time it occurred. This query uses
@@ -627,38 +573,24 @@ a semicolon (;) after the statement, as shown below.*
 3.  In the query editor, copy and paste the following code. Click on
     the **Run** button to execute the query. After the query is
     executed, you will see the results.
-
-> **Copy**
->
-> StockPrice
->
-> | project symbol, price, timestamp
->
-> | partition by symbol
->
-> (
->
-> order by timestamp asc
->
-> | extend prev_price = prev(price, 1)
->
-> | extend prev_price_10min = prev(price, 600)
->
-> )
->
-> | order by timestamp asc, symbol asc
->
-> | extend pricedifference_10min = round(price - prev_price_10min, 2)
->
-> | extend percentdifference_10min = round(round(price -
-> prev_price_10min, 2) / prev_price_10min, 4)
->
-> | order by timestamp asc, symbol asc
->
-> | summarize arg_max(pricedifference_10min, \*) by symbol
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image66.png)
+    ```
+    StockPrice
+    | project symbol, price, timestamp
+    | partition by symbol
+    (
+        order by timestamp asc
+        | extend prev_price = prev(price, 1)
+        | extend prev_price_10min = prev(price, 600)
+    )
+    | order by timestamp asc, symbol asc
+    | extend pricedifference_10min = round(price - prev_price_10min, 2)
+    | extend percentdifference_10min = round(round(price - prev_price_10min, 2) / prev_price_10min, 4)
+    | order by timestamp asc, symbol asc
+    | summarize arg_max(pricedifference_10min, *) by symbol
+    
+    ```
+  > ![A screenshot of a computer AI-generated content may be
+  > incorrect.](./media/image66.png)
 
 ## Task 4: StockBinned
 
@@ -666,10 +598,9 @@ a semicolon (;) after the statement, as shown below.*
     the ***+* icon** as shown in the below image. Rename this tab as
     +++**StockBinned*+++***
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image67.png)
->
-> ![](./media/image68.png)
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image67.png)
+
+   ![](./media/image68.png)
 
 2.  KQL also has a [bin()
     function](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/bin-function),
@@ -681,17 +612,12 @@ a semicolon (;) after the statement, as shown below.*
 3.  In the query editor, copy and paste the following code. Click on
     the **Run** button to execute the query. After the query is
     executed, you will see the results.
-
-> **Copy**
->
-> StockPrice
->
-> | summarize avg(price), min(price), max(price) by bin(timestamp, 1h),
-> symbol
->
-> | sort by timestamp asc, symbol asc
->
-> ![](./media/image69.png)
+    ```
+    StockPrice
+    | summarize avg(price), min(price), max(price) by bin(timestamp, 1h), symbol
+    | sort by timestamp asc, symbol asc
+    ```
+    ![](./media/image69.png)
 
 4.  This is particularly useful when creating reports that aggregate
     real-time data over a longer time period.
@@ -699,14 +625,13 @@ a semicolon (;) after the statement, as shown below.*
 ## Task 5: Visualizations
 
 1.  Create a final new tab within the queryset by clicking on
-    the ***+* icon** as shown in the below image. Rename this tab as
-    +++**Visualizations*+++*.** We'll use this tab to explore
+    the  **+ icon** as shown in the below image. Rename this tab as
+    **+++Visualizations+++**. We'll use this tab to explore
     visualizing data.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image70.png)
->
-> ![](./media/image71.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image70.png)
+ 
+    ![](./media/image71.png)
 
 2.  KQL supports a large number of visualizations by using
     the *render* operator. Run the below query, which is the same as the
@@ -715,47 +640,28 @@ a semicolon (;) after the statement, as shown below.*
 3.  In the query editor, copy and paste the following code. Click on
     the **Run** button to execute the query. After the query is
     executed, you will see the results.
-
-> Copy
->
-> StockPrice
->
-> | where timestamp \> ago(75m)
->
-> | project symbol, price, timestamp
->
-> | partition by symbol
->
-> (
->
-> order by timestamp asc
->
-> | extend prev_price = prev(price, 1)
->
-> | extend prev_price_10min = prev(price, 600)
->
-> )
->
-> | where timestamp \> ago(60m)
->
-> | order by timestamp asc, symbol asc
->
-> | extend pricedifference_10min = round(price - prev_price_10min, 2)
->
-> | extend percentdifference_10min = round(round(price -
-> prev_price_10min, 2) / prev_price_10min, 4)
->
-> | order by timestamp asc, symbol asc
->
-> | render linechart with (series=symbol, xcolumn=timestamp,
-> ycolumns=price)
->
-> ![](./media/image72.png)
+    ```
+    StockPrice
+    | where timestamp > ago(75m)
+    | project symbol, price, timestamp
+    | partition by symbol
+    (
+        order by timestamp asc
+        | extend prev_price = prev(price, 1)
+        | extend prev_price_10min = prev(price, 600)
+    )
+    | where timestamp > ago(60m)
+    | order by timestamp asc, symbol asc
+    | extend pricedifference_10min = round(price - prev_price_10min, 2)
+    | extend percentdifference_10min = round(round(price - prev_price_10min, 2) / prev_price_10min, 4)
+    | order by timestamp asc, symbol asc
+    | render linechart with (series=symbol, xcolumn=timestamp, ycolumns=price)
+    ```
+    ![](./media/image72.png)
 
 4.  This will render a line chart as shown in the below image.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image73.png)
+     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image73.png)
 
 # Exercise 4: Optimizing Power BI Reporting Efficiency
 
@@ -772,14 +678,13 @@ updating.
     **Fabric portal**. Navigate to Governance and insights section, then
     click on **Admin portal**.
 
-> ![](./media/image75.png)
+     ![](./media/image75.png)
 
 2.  Select ***Capacity settings*** on the left, and select the **Fabric
     Capacity** that matches your current environment. Select **Fabric
     capacity** name
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image76.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image76.png)
 
 3.  On the following screen, scroll down to the ***Power BI
     workloads*** section, and under ***Semantic Models*** (recently
@@ -787,92 +692,80 @@ updating.
     refresh*** to ***On***, with a **minimum refresh interval** of **1**
     second. Click ***Apply*.**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image77.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image78.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image77.png)
+ 
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image78.png)
 
 4.  In caseUpdate your capacity workloads dialog box appears, then click
     on the **Yes** button.
 
-> ![A white background with black text Description automatically
-> generated](./media/image79.png)
+    ![A white background with black text Description automatically generated](./media/image79.png)
 
 ## Task 2: Creating a basic Power BI report
 
 1.  In the **Microsoft Fabric** page menu bar on the left side, select
     **StockQueryset**.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image80.png)
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image80.png)
 
 2.  From the ***StockQueryset*** queryset used in the previous module,
     select the ***StockByTime*** query tab.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image81.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image81.png)
 
 3.  Select the query and run to view the results. Click** **on *the
     **Create Power BI report*** button in the command bar to bring this
     query into Power BI.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image82.png)
->
-> ![A screenshot of a computer Description automatically
-> generated](./media/image83.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image82.png)
+   
+    ![A screenshot of a computer Description automatically generated](./media/image83.png)
 
 4.  On the report preview page, we can configure our initial chart,
     select a **line chart** to the design surface, and configure the
     report as follows. See the image below as a reference.
 
-- Legend: **symbol**
-
-- X-axis: **timestamp**
-
-- Y-axis**: price**
-
-![](./media/image84.png)
+      - Legend: **symbol**
+      
+      - X-axis: **timestamp**
+      
+      - Y-axis**: price**
+      
+      ![](./media/image84.png)
 
 5.  In the Power BI (preview) page, from the ribbon, click on
     **File** and select **Save**.
 
-> ![A screenshot of a graph Description automatically
-> generated](./media/image85.png)
+>  ![A screenshot of a graph Description automatically generated](./media/image85.png)
 
 6.  On **Just a few details first** dialog box, in **Name your file in
     Power BI** field, enter +++**RealTimeStocks***+++*. In **Save it to
     a workspace** field, click on the dropdown and select
     ***RealTimeWorkspace***. Then, click on the **Continue** button**.**
 
-> ![A screenshot of a computer Description automatically
-> generated](./media/image86.png)
+>  ![A screenshot of a computer Description automatically generated](./media/image86.png)
 
 7.  In the Power BI (preview) page, click on **Open the file in Power BI
     to view, edit and get a shareable link.**
 
-![](./media/image87.png)
+    ![](./media/image87.png)
 
 8.  On the **RealTimeStock** page, click on the **Edit** button in the
     command bar to open the report editor.
 
-> ![A graph of different colored lines Description automatically
-> generated](./media/image88.png)
+  ![A graph of different colored lines Description automatically generated](./media/image88.png)
 
 9.  Select the line chart on the report. Configure a **Filter**
-    for ***timestamp*** to display data for the last 5 minutes using
+    for **timestamp** to display data for the last 5 minutes using
     these settings:
 
-- Filter type: Relative time
+    - Filter type: Relative time
+    
+    - Show items when the value: is in the last 5 minutes
 
-- Show items when the value: is in the last 5 minutes
+    Click on ***Apply filter*** to enable the filter. You will see a similar type of output as shown in the below image.
 
-> Click on ***Apply filter*** to enable the filter. You will see a
-> similar type of output as shown in the below image.
-
-![A screenshot of a computer Description automatically
-generated](./media/image89.png)
+   ![A screenshot of a computer Description automatically generated](./media/image89.png)
 
 ## Task 3: Creating a second visual for percent change
 
@@ -880,38 +773,37 @@ generated](./media/image89.png)
     chart**.
 
 2.  Instead of plotting the current stock price, select
-    the ***percentdifference_10min*** value, which is a positive or
+    the  **percentdifference_10min**  value, which is a positive or
     negative value based off the difference between the current price
     and the value of the price from 10 minutes ago. Use these values for
     the chart:
 
-- Legend: **symbol**
-
-- X-axis: **timestamp**
-
-- Y-axis: **average of percentdifference_10min**
-
-![](./media/image90.png)
-
-![A screenshot of a computer Description automatically
-generated](./media/image91.png)
+    - Legend: **symbol**
+    
+    - X-axis: **timestamp**
+    
+    - Y-axis: **average of percentdifference_10min**
+    
+    ![](./media/image90.png)
+    
+    ![A screenshot of a computer Description automatically generated](./media/image91.png)
 
 3.  Under the **Visualization,** select the **Analytics** represented by
     a magnifier-like icon as shown in the below image, then click on
     **Y-Axis Constant Line(1).** In the **Apply settings to**
     section**,** click on **+Add line,** then enter **Value 0.**
 
-![](./media/image92.png)
+    ![](./media/image92.png)
 
 4.  Select the line chart on the report. Configure a **Filter**
     for ***timestamp*** to display data for the last 5 minutes using
     these settings:
 
-- Filter type: Relative time
-
-- Show items when the value: is in the last 5 minutes
-
-![](./media/image93.png)
+    - Filter type: Relative time
+    
+    - Show items when the value: is in the last 5 minutes
+    
+    ![](./media/image93.png)
 
 ## Task 4: Configuring the report to auto-refresh
 
@@ -925,12 +817,12 @@ generated](./media/image91.png)
     **Page refresh**. Turn on the toggle. Set the Auto page refresh
     value as **2 Seconds** as shown in the below image.
 
-![](./media/image94.png)
+    ![](./media/image94.png)
 
 3.  In the Power BI (preview) page, from the ribbon, click on
     **File** and select **Save**.
-
-![](./media/image95.png)
+  
+    ![](./media/image95.png)
 
 # Exercise 5: Setting up the Lakehouse
 
@@ -946,26 +838,25 @@ across all modules.*
 1.  Fabric home page, select **+New workspace** tile and click on
     ***Lakehouse* **tile.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image96.png)
+  ![A screenshot of a computer AI-generated content may be incorrect.](./media/image96.png)
 
 2.  In the **New lakehouse** dialog box, enter +++**StocksLakehouse**+++
     in the **Name** field, then click on the **Create** button. A
     **StocksLakehouse** page will appear.
 
-> ![](./media/image97.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image98.png)
+  > ![](./media/image97.png)
+  >
+  > ![A screenshot of a computer AI-generated content may be
+  > incorrect.](./media/image98.png)
 
 3.  You will see a notification stating - **Successfully created SQL
     endpoint**.
 
-> **Note**: In case, you did not see the Notifications, then wait for
-> few minutes.
->
-> ![A screenshot of a computer Description automatically
-> generated](./media/image99.png)
+  > **Note**: In case, you did not see the Notifications, then wait for
+  > few minutes.
+  >
+  > ![A screenshot of a computer Description automatically
+  > generated](./media/image99.png)
 
 ## **Task 2. Add Lakehouse to the Eventstream**
 
@@ -979,10 +870,10 @@ resemble the following:
 1.  Now, click on **RealTimeWorkspace** on the left-sided navigation
     pane and select **StockEventStream** as shown in the below image.
 
-![](./media/image100.png)
+     ![](./media/image100.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image101.png)
+  > ![A screenshot of a computer AI-generated content may be
+  > incorrect.](./media/image101.png)
 
 2.  In addition to adding Lakehouse to the Eventstream, we'll do some
     cleanup of the data using some of the functions available in the
@@ -990,8 +881,8 @@ resemble the following:
 
 3.  On the **StockEventStream** page, select **Edit**
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image102.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image102.png)
 
 4.  On the **StockEventStream** page, click on the **Add destination**
     on the output of the Eventstream to add a new destination.
@@ -1001,55 +892,61 @@ incorrect.](./media/image102.png)
 
 5.  In the Lakehouse pane that appears on the right side, enter the
     following details and click on **Save.**
+    |  |   |
+    |----------|-----------|
+    |Destination name	|+++Lakehouse+++|
+    |Workspace|	RealTimeWorkspace|
+    |Lakehouse|	StockLakehouse|
+    |Delta table	|Click on Create new> enter +++raw_stock_data+++|
+    |Input data format	|Json|
 
-[TABLE]
 
-> ![A screenshot of a computer Description automatically
-> generated](./media/image104.png)
-
-![A screenshot of a computer Description automatically
-generated](./media/image105.png)
+    > ![A screenshot of a computer Description automatically
+    > generated](./media/image104.png)
+    
+    ![A screenshot of a computer Description automatically
+    generated](./media/image105.png)
 
 6.  Connect **StockEventStream** and **Lakehouse**
 
-> ![A screenshot of a chat AI-generated content may be
-> incorrect.](./media/image106.png)
->
-> ![](./media/image107.png)
->
-> ![A screenshot of a chat AI-generated content may be
-> incorrect.](./media/image108.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image109.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image110.png)
+    > ![A screenshot of a chat AI-generated content may be
+    > incorrect.](./media/image106.png)
+    >
+    > ![](./media/image107.png)
+    >
+    > ![A screenshot of a chat AI-generated content may be
+    > incorrect.](./media/image108.png)
+    >
+    > ![A screenshot of a computer AI-generated content may be
+    > incorrect.](./media/image109.png)
+    >
+    > ![A screenshot of a computer AI-generated content may be
+    > incorrect.](./media/image110.png)
 
 7.  Select the Lakehouse and click on **Refresh** button
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image111.png)
+    > ![A screenshot of a computer AI-generated content may be
+    > incorrect.](./media/image111.png)
 
 8.  After clicking *Open event processor*, various processing can be
     added that perform aggregations, filtering, and changing datatypes.
 
-> ![](./media/image112.png)
+      ![](./media/image112.png)
 
 9.  On the **StockEventStream** page, select **Edit**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image113.png)
+  > ![A screenshot of a computer AI-generated content may be
+  > incorrect.](./media/image113.png)
 
 9.  On the **StockEventStream** page, select **stockEventStream**, and
     click the **Insert a node** icon to add a **Mange field**. Then,
     select **Mange field.**
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image114.png)
->
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image115.png)
+    > ![A screenshot of a computer AI-generated content may be
+    > incorrect.](./media/image114.png)
+    >
+    > ![A screenshot of a computer AI-generated content may be
+    > incorrect.](./media/image115.png)
 
 10. In the eventstreem pane select **Managefields** pencil icon.
 
@@ -1062,20 +959,20 @@ incorrect.](./media/image116.png)
     **EventEnqueuedUtcTime** by clicking the **ellipsis (...)** to the
     right of the field name, and click ***Remove***
 
-![A screenshot of a computer Description automatically
-generated](./media/image117.png)
-
-![A screenshot of a computer Description automatically
-generated](./media/image118.png)
-
-> ![A screenshot of a computer Description automatically
-> generated](./media/image119.png)
->
-> ![A screenshot of a computer Description automatically
-> generated](./media/image120.png)
->
-> ![A screenshot of a computer Description automatically
-> generated](./media/image121.png)
+    ![A screenshot of a computer Description automatically
+    generated](./media/image117.png)
+    
+    ![A screenshot of a computer Description automatically
+    generated](./media/image118.png)
+    
+    > ![A screenshot of a computer Description automatically
+    > generated](./media/image119.png)
+    >
+    > ![A screenshot of a computer Description automatically
+    > generated](./media/image120.png)
+    >
+    > ![A screenshot of a computer Description automatically
+    > generated](./media/image121.png)
 
 12. Now change the ***timestamp*** column to a ***DateTime* **as it is
     likely classified as a string. Click the **three ellipsis (...)** to
@@ -1084,20 +981,20 @@ generated](./media/image118.png)
     select ***DateTime*,** as shown in the below image. Click on
     **Done**
 
-> ![A screenshot of a computer Description automatically
-> generated](./media/image122.png)
->
-> ![](./media/image123.png)
+    > ![A screenshot of a computer Description automatically
+    > generated](./media/image122.png)
+    >
+    > ![](./media/image123.png)
 
 12. Now, click on the **Publish** button to close the event processor
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image124.png)
+  > ![A screenshot of a computer AI-generated content may be
+  > incorrect.](./media/image124.png)
 
 13. Once it is completed, the Lakehouse will receive the symbol, price,
     and timestamp.
 
-> ![](./media/image125.png)
+  ![](./media/image125.png)
 
 Our KQL (hot path) and Lakehouse (cold path) is now configured. It may
 take a minute or two for data to be visible in the Lakehouse.
@@ -1312,9 +1209,9 @@ Lakehouse if it is not already added.
 
 7.  Add data wrangler, select **9^(th)** cell, navigate dropdown **Data
     Wrangler**. Navigate and click on **anomaly_df** to load the
-    dataframe in data wrangler**.**
+    dataframe in data wrangler
 
-8.  We'll use the *anomaly_df* because it was intentionally created with
+8.  We'll use the **anomaly_df** because it was intentionally created with
     a few invalid rows that can be tested. 
 
 > ![](./media/image161.png)
@@ -1510,17 +1407,12 @@ the notebook to help fix any issues after.
 
 9.  The code generated should look similar to:
 
-> \# Derive column 'minute' from column: 'timestamp'
->
-> \# Transform based on the following examples:
->
-> \#    timestamp                Output
->
-> \# 1: "2025-05-20 06:37:00" =\> "37"
->
-> pandas_df_stocks_clean.insert(3, "minute",
-> pandas_df_stocks_clean\["timestamp"\].str.split(":").str\[1\])
->
+    # Derive column 'minute' from column: 'timestamp'
+    # Transform based on the following examples:
+    #    timestamp                Output
+    # 1: "2025-05-20 06:37:00" => "37"
+    pandas_df_stocks_clean.insert(3, "minute", pandas_df_stocks_clean["timestamp"].str.split(":").str[1])
+
 > ![A screenshot of a computer AI-generated content may be
 > incorrect.](./media/image187.png)
 
@@ -1597,27 +1489,21 @@ generated](./media/image195.png)
     named ***df_stocks_clean_1***. Rename
     this ***df_stocks_agg_minute***, and change the name of the function
     to ***aggregate_data_minute*,** as shown below.
-
-> **\# old:**
->
-> def clean_data(df_stocks_clean):
->
-> ...
->
-> df_stocks_clean_1 = clean_data(df_stocks_clean)
->
-> display(df_stocks_clean_1)
->
-> **\# new:**
->
-> def aggregate_data_minute(df_stocks_clean):
->
-> ...
->
-> df_stocks_agg_minute = aggregate_data_minute(df_stocks_clean)
->
-> display(df_stocks_agg_minute)
->
+    ```    
+    # old:
+    def clean_data(df_stocks_clean):
+      ...
+    
+    df_stocks_clean_1 = clean_data(df_stocks_clean)
+    display(df_stocks_clean_1)
+    
+    # new:
+    def aggregate_data_minute(df_stocks_clean):
+      ...
+    
+    df_stocks_agg_minute = aggregate_data_minute(df_stocks_clean)
+    display(df_stocks_agg_minute)
+    ```
 > ![A screenshot of a computer program AI-generated content may be
 > incorrect.](./media/image200.png)
 
@@ -1724,38 +1610,26 @@ generated](./media/image210.png)
     of the function **display(df_stocks_agg_minute_clean)**
     to *aggregate_data_minute*, as shown below. 
 
-Reference Code:
-
-\# Code generated by Data Wrangler for PySpark DataFrame
-
-from pyspark.sql import functions as F
-
-def aggregate_data_hour(df_stocks_agg_minute):
-
-\# Performed 3 aggregations grouped on columns: 'symbol', 'datestamp',
-'hour'
-
-df_stocks_agg_minute = df_stocks_agg_minute.groupBy('symbol',
-'datestamp', 'hour').agg(
-
-F.max('price_max').alias('price_max'),
-
-F.min('price_min').alias('price_min'),
-
-F.last('price_last').alias('price_last'))
-
-df_stocks_agg_minute = df_stocks_agg_minute.dropna()
-
-df_stocks_agg_minute =
-df_stocks_agg_minute.sort(df_stocks_agg_minute\['symbol'\].asc(),
-df_stocks_agg_minute\['datestamp'\].asc(),
-df_stocks_agg_minute\['hour'\].asc())
-
-return df_stocks_agg_minute
-
-df_stocks_agg_hour = aggregate_data_hour(df_stocks_agg_minute)
-
-display(df_stocks_agg_hour)
+    Reference Code: 
+    ```
+    # Code generated by Data Wrangler for PySpark DataFrame
+    
+    from pyspark.sql import functions as F
+    
+    def aggregate_data_hour(df_stocks_agg_minute):
+        # Performed 3 aggregations grouped on columns: 'symbol', 'datestamp', 'hour'
+        df_stocks_agg_minute = df_stocks_agg_minute.groupBy('symbol', 'datestamp', 'hour').agg(
+            F.max('price_max').alias('price_max'), 
+            F.min('price_min').alias('price_min'), 
+            F.last('price_last').alias('price_last'))
+        df_stocks_agg_minute = df_stocks_agg_minute.dropna()
+        df_stocks_agg_minute = df_stocks_agg_minute.sort(df_stocks_agg_minute['symbol'].asc(), df_stocks_agg_minute['datestamp'].asc(), df_stocks_agg_minute['hour'].asc())
+        return df_stocks_agg_minute
+    
+    df_stocks_agg_hour = aggregate_data_hour(df_stocks_agg_minute)
+    display(df_stocks_agg_hour)
+    
+    ```
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image211.png)
@@ -1819,7 +1693,8 @@ be overwritten.
 > incorrect.](./media/image218.png)
 
 3.  Under the Explorer, Select **Add data items** and select **Existing
-    data sources** ![A screenshot of a computer AI-generated content may
+    data sources**
+     ![A screenshot of a computer AI-generated content may
     be incorrect.](./media/image219.png)
 
 4.  On the OneLake data hub window, select ***StockLakehouse***  and
@@ -2682,7 +2557,7 @@ and enrichments like measures to make developing reports easier
 ## Task 2: Build the report in Power BI Desktop
 
 1.  Open your browser, navigate to the address bar, and type or paste
-    the following URL: <https://powerbi.microsoft.com/en-us/desktop/> ,
+    the following URL: +++https://powerbi.microsoft.com/en-us/desktop/+++ ,
     then press the **Enter** button.
 
 2.  Click on the **Download free** button.
