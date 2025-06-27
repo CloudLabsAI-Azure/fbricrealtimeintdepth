@@ -188,8 +188,7 @@ trial enabled.
 6.  Name the table **+++stops_data+++**. Leave the other default
     settings and select **Load**.
 
-    > ![A screenshot of a computer AI-generated content may be
-    > incorrect.](./media/image30.png)
+    > ![A screenshot of a computer AI-generated content may be incorrect.](./media/image30.png)
     >
     > ![A screenshot of a computer AI-generated content may be
     > incorrect.](./media/image31.png)
@@ -493,15 +492,12 @@ To run the transformation queries, follow these steps.
     ```
 
 
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image70.png)
-
-  **Tip:** You can also enable OneLake availability for the new table
-  through the UI instead of using code. Select the table and toggle
-  on **OneLake availability**.
-
-    ![Screenshot of enabling OneLake availability in the
-    UI.](./media/image71.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image70.png)
+  
+    **Tip:** You can also enable OneLake availability for the new table
+    through the UI instead of using code. Select the table and toggle
+    on **OneLake availability**.
+    ![Screenshot of enabling OneLake availability in the UI.](./media/image71.png)
 
   With the UI option, the default latency is 15 minutes to several hours,
   depending on the volume of data. To reduce the latency to five minutes,
