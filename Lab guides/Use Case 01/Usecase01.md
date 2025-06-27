@@ -1352,11 +1352,9 @@ database.
 
 9.  Rename the tab as **+++xplore functions+++**
 
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image198.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image198.png)
     
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image199.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image199.png)
 
 Now write other KQL queries using these user-defined functions to access
 data from digital twin builder (preview) ontology. In the next tutorial
