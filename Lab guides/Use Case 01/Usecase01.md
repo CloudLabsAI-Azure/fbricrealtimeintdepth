@@ -489,6 +489,7 @@ To run the transformation queries, follow these steps.
     ```
     // Enable OneLake availability
     .alter-merge table bus_data_processed policy mirroring dataformat=parquet with (IsEnabled=true, TargetLatencyInMinutes=5)
+    
     ```
 
 
@@ -501,14 +502,12 @@ To run the transformation queries, follow these steps.
 
   With the UI option, the default latency is 15 minutes to several hours,
   depending on the volume of data. To reduce the latency to five minutes,
-  use the [**.alter-merge
-  table**](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/event-house-onelake-availability#adaptive-behavior) command
+  use the **.alter-merge table** command
   as shown in the previous code block.
 
 6. Go the items view of the database again, select **Tutorial** .
 
-  > ![A screenshot of a computer AI-generated content may be
-  > incorrect.](./media/image72.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image72.png)
 
 7.  A new table is created in your database
     called **bus_data_processed**. After a short wait, it begins to
@@ -574,7 +573,7 @@ relationships between the entities to further contextualize the data.
 
      ![](./media/image82.png)
 
-3.  Enter +++**BusModel+++ **as the name for your item and
+3.  Enter **+++BusModel+++**as the name for your item and
     select **Create**.
 
      ![](./media/image83.png)
@@ -627,7 +626,7 @@ First, create a new entity for the bus.
 > ![A screenshot of a computer AI-generated content may be
 > incorrect.](./media/image86.png)
 
-3.  The **Bus **entity is created and becomes visible on the canvas.
+3.  The **Bus** entity is created and becomes visible on the canvas.
 
 > ![A screenshot of a computer AI-generated content may be
 > incorrect.](./media/image87.png)
