@@ -369,7 +369,6 @@ Use this (case-sensitive) name as the data source for your query.
     |Tile name|	+++Recent bikes by Timepoint+++|
     |Open dashboard after creation	|Selected|
 
-
      ![](./media/image56.png)
 
 10. The new dashboard, **TutorialDashboard**, opens with the **Recent
@@ -532,6 +531,7 @@ BI report.
 
    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image88.png)
 
+[Alert]Note: If the workspace is not visible, try refreshing the browser and wait for a few moments. It may take some time to load.
 ## Exercise 6: Set an alert on your event stream
 
 In this part of the tutorial, you learn how to set an alert on your
