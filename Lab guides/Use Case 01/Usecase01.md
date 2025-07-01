@@ -471,17 +471,17 @@ To run the transformation queries, follow these steps.
 4.  Select the cell, replace the code, and click the **Run** icon
     KustoCopy.
     ```
-      //Load data into table
-      .alter table bus_data_processed policy update
-      ```
-      [{
-          "IsEnabled": true,
-          "Source": "bus_data_raw",
-          "Query": "extractBusData",
-          "IsTransactional": false,
-          "PropagateIngestionProperties": true
-      }]
-      ```
+    //Load data into table
+    .alter table bus_data_processed policy update
+    ```
+    [{
+        "IsEnabled": true,
+        "Source": "bus_data_raw",
+        "Query": "extractBusData",
+        "IsTransactional": false,
+        "PropagateIngestionProperties": true
+    }]
+    ```
     ```
     ![](./media/image69.png)
 
@@ -1020,7 +1020,7 @@ Next, create a relationship to represent that a Bus **goesTo** a Stop.
   
   &nbsp;
   
-  - **Relationship name**: Enter +++**goesTo***+++*
+  - **Relationship name**: Enter +++**goesTo**+++
   
   &nbsp;
   
@@ -1086,7 +1086,7 @@ lakehouse as external tables in the KQL database. Later, you run sample
 notebook code to set up an Eventhouse projection that runs on and
 organizes this data.
 
-1.  Now, click on **Tutorial **KQL database on the left-sided navigation
+1.  Now, click on **Tutorial** KQL database on the left-sided navigation
     pane
 
    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image148.png)
@@ -1116,14 +1116,14 @@ organizes this data.
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image153.png)
 
 7.  If you see a dialog box – **Shortcut creation completed**, then
-    click on **Close**
+    click on **Close**.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image154.png)
 
 8.  Repeat the shortcut creation steps twice more, so that all tables
     are added as shortcuts.
 
-  ![](./media/image155.png)
+   ![](./media/image155.png)
  
   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image156.png)
  
@@ -1196,7 +1196,7 @@ the Eventhouse projection.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image175.png)
 
-8.  Select the ***BusModeldtdm*** lakehouse and select **Connect**.
+8.  Select the **BusModeldtdm** lakehouse and select **Connect**.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image176.png)
  
@@ -1226,8 +1226,8 @@ your lakehouse and install it in the notebook.
 
    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image180.png)
 
-3.  Browse to C:\LabFiles on your VM, then select
-    dtb_samples-0.1-py3-none-any.whl file and click on Open button.
+3.  Browse to **C:\LabFiles** on your VM, then select
+    **dtb_samples-0.1-py3-none-any.whl** file and click on Open button.
 
     ![](./media/image181.png)
 
@@ -1262,7 +1262,7 @@ their properties.
 
 1.  In the second code block, there are variables
     for **dtb_item**_name and **kql_db_name**. Fill their values
-    with **BusModel** and ***Tutorial* **(case-sensitive). Run the
+    with **BusModel** and **Tutorial**(case-sensitive). Run the
     code block. The notebook confirms the successful run status with a
     checkmark underneath the code.
 
@@ -1291,7 +1291,7 @@ their properties.
        for each entity and property type).
       ![](./media/image189.png)
 
-    Note: If you see a **ModuleNotFoundError**, rerun the first code block
+    Note: If you see a **ModuleNotFoundError** , rerun the first code block
     with the package installation. Then, rerun this code block.
 
 4.  **Run** the last code block. This code runs a **Python** snippet
@@ -1363,13 +1363,13 @@ Dashboard.
 
 1.  Using the **+** above the query pane, create the following new
     queries.
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image200.png)
+    ![](./media/image200.png)
 
-3.  This query calculates the delay of each bus trip, by comparing the
+2.  This query calculates the delay of each bus trip, by comparing the
     current time and the time to the next station with the scheduled
     arrival time.
 
-4.  In the query editor, copy and paste the following code. Click on
+3.  In the query editor, copy and paste the following code. Click on
     the **Run** button to execute the query. After the query is
     executed, you will see the results. 
     ```
@@ -1401,7 +1401,7 @@ Dashboard.
    
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image202.png)
 
-9.  Rename the tab as **+++Delay status+++**
+4.  Rename the tab as **+++Delay status+++**
 
    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image203.png)
  
