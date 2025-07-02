@@ -1,4 +1,4 @@
-## Use case 01: Digital Twin Builder for Contoso Energy: Contextualizing Data and Visualizing Insights
+# Use case 01: Digital Twin Builder for Contoso Energy: Contextualizing Data and Visualizing Insights
 
 **Introduction**
 
