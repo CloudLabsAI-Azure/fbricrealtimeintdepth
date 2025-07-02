@@ -74,15 +74,12 @@ dataflows, Data Factory pipelines, the notebooks, Power BI datasets, and
 reports.
 
 1.  Open your browser, navigate to the address bar, and type or paste
-    the following URL: +++<https://app.fabric.microsoft.com/>+++ then
+    the following URL: +++https://app.fabric.microsoft.com/+++ then
     press the **Enter** button. In the **Microsoft Fabric Home** page.
 
 2.  In the Workspaces pane, click on **+** **New workspace** button
 
-![](./media/image3.png)
-
-> ![A screenshot of a computer Description automatically
-> generated](./media/image4.png)
+     ![](./media/image3.png)
 
 3.  In the **Create a workspace** pane that appears on the right side,
     enter the following details, and click on the **Apply** button.
@@ -149,8 +146,7 @@ eventstream and consumed by our Eventhouse KQL Database.
 
 > ![](./media/image16.png)
 
-2.  From your workspace, click on ***+** New
-    **item \> *****Eventstream** as shown in the below image. Enter
+2.  From your workspace, click on **+ Newitem** \>**Eventstream** as shown in the below image. Enter
     **Eventstream** as +++**WebEventsStream_ES**+++
 
 ![](./media/image17.png)
@@ -181,7 +177,7 @@ incorrect.](./media/image21.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-7.  On the **Eventstream** pane**,** select the **keys** under the
+7.  On the **Eventstream** pane, select the **keys** under the
     **Details**, select **SAS key Authentication ,** copy the **Event
     hub name**, **connection strings-primarykey** and paste them on a
     notepad, as you need them in the upcoming task
