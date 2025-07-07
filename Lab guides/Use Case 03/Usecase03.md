@@ -145,11 +145,9 @@ reports.
 
 > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image3.png)
 
-```
 >! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image4.png)
 
 >! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image5.png)
-```
 
 ## **Task 2: Deploy the app via Azure Container Instance**
 
@@ -174,7 +172,7 @@ To auto-deploy the resources, use these steps below.
     | Region | Select **@lab.CloudResourceGroup(ResourceGroup1).Location** |
 
 
-> ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image6.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image6.png)
 
 3. Once the validation has passed, click **Create**.
 
@@ -198,9 +196,7 @@ To auto-deploy the resources, use these steps below.
 7. In the **Shared access policies** page, select
     **stockeventhub_sas** to open the SAS Policy.
 
-```
->! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image13.png)
-```
+    >! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image13.png)
 
 1. On the SAS key tab copy the **primarykey** and **Event Hub namespace** (such
     as *ehns-123456-fabricworkshop*) to your notepad as this will be
@@ -237,9 +233,8 @@ To auto-deploy the resources, use these steps below.
         in your notepad in **Task 2**
 
 
-2\. Consumer group: ***$Default***
+2. Consumer group: ***$Default***
 
-```
 3.  Data format: **JSON**
 
     >! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image19.png)
@@ -251,7 +246,6 @@ To auto-deploy the resources, use these steps below.
     >! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image22.png)
     
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image23.png)
-```
 
 8. You will see a notification stating **Successfully added The source"StockEventHub,Azure Event Hubs"** was added.
 
@@ -270,7 +264,7 @@ To auto-deploy the resources, use these steps below.
 
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image28.png)
 
-! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image29.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image29.png)
 
 # Exercise 2: KQL Database Configuration and Ingestion
 
@@ -291,29 +285,29 @@ the Eventstream into the KQL DB.
 
 1. In the left-sided navigation menu, navigate and click on **RealTimeworkspace@lab.LabInstance.Id**, as shown in the image below.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image30.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image30.png)
 2. In the **Real-Time Intelligence** page, navigate to **+ New item**
     section filter for, and select, **+++Eventhouse+++** to create Eventhouse.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image31.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image31.png)
 3. In the **New Eventhouse** dialog box, enter **+++StockDB+++** in
     the **Name** field, click on the **Create** button and open the new
     Eventhouse.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image32.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image32.png)
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image33.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image33.png)
 4. From the **System overview** page, select the **StockDB** database
     you created in the previous task.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image34.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image34.png)
 5. Select **StockDB**, click on the **OneLake availability** as shown
     in the image below to change the setting and, then click on the
     **Turn on** Toggle the button enable OneLake access.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image35.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image35.png)
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image36.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image36.png)
 
 ## Task 2: Send data from the Eventstream to the KQL database
 
@@ -321,57 +315,57 @@ the Eventstream into the KQL DB.
     **StockEventStream** created in the previous task, as shown in the
     image below.
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image37.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image37.png)
 2. On the Eventstream, click on the **Edit** button.
 
-! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image38.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image38.png)
 
 3. Our data should be arriving into our Eventstream, and we'll now
     configure the data to be ingested into the KQL database we created
     in the above task. On the Eventstream, click on **Transform eventsor add destination**, then navigate and click on **Eventhouse**.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image39.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image39.png)
 4. On the KQL settings, select **Direct ingestion**. While we have the
     opportunity to process event data at this stage, for our purposes,
     we will ingest the data directly into the KQL database. Set the
     destination name to +++***KQL+++***, then select your **workspace,Eventhouse** and **KQL database** created in the above task, then click
     on **Save** button.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image40.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image40.png)
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image41.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image41.png)
 5. On the Eventstream, select **Publish.**
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image42.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image42.png)
 6. On the Eventstream pane, select **configure** in the **KQL**
     destination.
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image43.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image43.png)
 7. On the first settings page, select **+ New table** and enter the
     name **+++StockPrice+++** for the table to hold the data in
     StockDB. Click on the **Next** button.
 
-! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image44.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image44.png)
 
-! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image45.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image45.png)
 
 8. The next page allows us to inspect and configure the schema. Be sure
     to change the format from TXT to **JSON**, if necessary. The default
     columns of *symbol*, *price*, and *timestamp* should be formatted as
     shown in the image below; then click on the **Finish** button.
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image46.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image46.png)
 9. On the **Summary** page, if there are no errors, you'll see a
     **green checkmark** as shown in the image below, then click on the
     **Close** button to complete the configuration.
 
-! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image47.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image47.png)
 
 10. Select the **KQL** destination and click on the **Refresh** button
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image48.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image48.png)
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image49.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image49.png)
 
 # Exercise 3: Exploring the Data
 
@@ -382,32 +376,32 @@ complexity to support different business uses.
 
 1. Click on **RealTimeWorkspace@lab.LabInstance.Id** on the left-sided navigation pane.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image50.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image50.png)
 2. From your workspace, click on **+ New item > +++KQL Queryset+++** as
     shown in the image below.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image51.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image51.png)
 3. In the **New KQL Queryset** dialog box,
     enter +++**StockQueryset**+++, then click on the **Create**
     button.
 
-    ! [A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image52.png)
+    > ! [A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image52.png)
 4. In StockQueryset page select **Eventhouse / KQL Database**
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image53.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image53.png)
 5. Select the **StockDB** and click on the **Connect** button.
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image54.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image54.png)
 
     > The KQL query window will open, allowing you to query the data.
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image55.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image55.png)
 6. The default query code will look like the code shown in the below
     image; it contains 3 distinct KQL queries. You may
     see *YOUR_TABLE_HERE* instead of the ***StockPrice*** table. Select
     and delete them.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image55.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image55.png)
 7. In the query editor, copy and paste the following code. Select the
     entire text and click on *the **Run*** button to execute the query.
     After the query is executed, you will see the results.
@@ -426,7 +420,7 @@ complexity to support different business uses.
     | summarize IngestionCount = count() by bin(ingestion_time(), 1h);
     ```
 
-    ***Note:*** *To run a single query when there are multiple queries in theeditor, you can highlight the query text or place your cursor so thecursor is in the context of the query (for example, at the beginning orend of the query) -- the current query should highlight in blue. To runthe query, click Run in the toolbar. If you'd like to run all 3 todisplay the results in 3 different tables, each query will need to havea semicolon (;) after the statement, as shown below.*
+    >[!note]**Note:** To run a single query when there are multiple queries in theeditor, you can highlight the query text or place your cursor so thecursor is in the context of the query (for example, at the beginning orend of the query) -- the current query should highlight in blue. To runthe query, click Run in the toolbar. If you'd like to run all 3 todisplay the results in 3 different tables, each query will need to havea semicolon (;) after the statement, as shown below.
 
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image56.png)
 8. The results will be displayed in 3 different tables as shown in the
@@ -479,7 +473,7 @@ complexity to support different business uses.
     | order by timestamp asc, symbol asc
     ```
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image63.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image63.png)
 
 In this KQL query, the results are first limited to the most recent
 75 minutes. While we ultimately limit the rows to the last 60
@@ -495,12 +489,12 @@ not 9:59 or 10:01), you'd need to approach this differently.
 ## Task 3: StockAggregate
 
 1. Create another new tab within the queryset by clicking on
-    the ***+* icon** as shown in the image below. Rename this tab as
+    the **+ icon** as shown in the image below. Rename this tab as
     **+++StockAggregate+++**
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image64.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image64.png)
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image65.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image65.png)
 
     > [!note]This query will find the biggest price gains over a 10-minute period
     > for each stock, and the time it occurred. This query uses
@@ -537,18 +531,15 @@ not 9:59 or 10:01), you'd need to approach this differently.
     the **+ icon** as shown in the image below. Rename this tab as
     **+++StockBinned+++**.
 
-! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image67.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image67.png)
 
-! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image68.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image68.png)
 
-```
->[!note]KQL also has a [bin()
-function](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/bin-function),
-which can be used to bucket results based on the bin parameter. In
-this case, by specifying a timestamp of 1 hour, the result is
-aggregated for each hour. The time period can be set to minute,
-hour, day, and so on.
-```
+    >[!note]KQL also has a bin() function (https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/bin-function),
+    which can be used to bucket results based on the bin parameter. In
+    this case, by specifying a timestamp of 1 hour, the result is
+    aggregated for each hour. The time period can be set to minute,
+    hour, day, and so on.
 
 3. In the query editor, copy and paste the following code. Click on
     the **Run** button to execute the query. After the query is
@@ -560,7 +551,7 @@ hour, day, and so on.
     | sort by timestamp asc, symbol asc
     ```
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image69.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image69.png)
 
 This is particularly useful when creating reports that aggregate real-time data over a longer time period.
 
@@ -571,9 +562,9 @@ This is particularly useful when creating reports that aggregate real-time data 
     **+++Visualizations+++**. We'll use this tab to explore
     visualizing data.
 
-    ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image70.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image70.png)
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image71.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image71.png)
 
     > [!note]KQL supports a large number of visualizations by using
     > the *render* operator. Run the below query, which is the same as the
@@ -681,9 +672,9 @@ updating.
     - Filter type: Relative time
     - Show items when the value: is in the last 5 minutes
 
-    Click on ***Apply filter*** to enable the filter. You will see a similar type of output as shown in the image below.
+    >[!note]Click on ***Apply filter*** to enable the filter. You will see a similar type of output as shown in the image below.
 
-! [A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image89.png)
+    > ! [A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image89.png)
 
 ## Task 3: Creating a second visual for percent change
 
@@ -697,22 +688,22 @@ updating.
     - X-axis: **timestamp**
     - Y-axis: **average of percentdifference_10min**
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image90.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image90.png)
 
-    ! [A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image91.png)
+    > ! [A screenshot of a computer Description automatically generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image91.png)
 3. Under the **Visualization,** select the **Analytics** represented by
     a magnifier-like icon as shown in the image below, then click on
     **Y-Axis Constant Line(1)**. In the **Apply settings to**
     section, click on **+Add line,** then enter **Value 0.**
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image92.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image92.png)
 4. Select the line chart on the report. Configure a **Filter**
     for ***timestamp*** to display data for the last 5 minutes using
     these settings:
     - Filter type: Relative time
     - Show items when the value: is in the last 5 minutes
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image93.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image93.png)
 
 ## Task 4: Configuring the report to auto-refresh
 
@@ -725,11 +716,11 @@ updating.
     **Page refresh**. Turn on the toggle. Set the Auto page refresh
     value as **2 Seconds** as shown in the image below.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image94.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image94.png)
 3. In the Power BI (preview) page, from the ribbon, click on
     **File** and select **Save**.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image95.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image95.png)
 
 # Exercise 5: Setting up the Lakehouse
 
@@ -818,7 +809,7 @@ generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdep
 8. After clicking *Open event processor*, various processing can be
     added that perform aggregations, filtering, and changing datatypes.
 
-    ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image112.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image112.png)
 9. On the **StockEventStream** page, select **Edit**
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image113.png)
