@@ -85,9 +85,9 @@ reports.
 
 
 > ! [A screenshot of a computer Description automatically    > generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image5.png)
-> 
+ 
 > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image6.png)
-> 
+ 
 > ! [A screenshot of a computer AI-generated content may be    > incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image7.png)
 
 ## Task 2: Create a new Eventhouse
@@ -1081,7 +1081,7 @@ actions.
 
     > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image169.png)
 
-Summary
+**Summary**
 
 In this use case you learn to set up your Fabric workspace and related
 components, start by creating a workspace that includes essential items
