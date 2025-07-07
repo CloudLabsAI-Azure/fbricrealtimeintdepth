@@ -284,11 +284,9 @@ Follow these steps to add the data transformation.
     | Input data format | Json |
 
 
-\> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image54.png)
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image54.png)
 
-```
-> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image55.png)
-```
+    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image55.png)
 
 3. Ensure that the box **Activate ingestion after adding the datasource** is checked.
 4. Select **Save**.
@@ -710,9 +708,7 @@ contain information about the bus's location and movements.
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image120.png)
 15. Select **Configure** to return to the previous panel.
 
-```
 > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image121.png)
-```
 
 ### Task 5: Add Stop entity
 
@@ -786,7 +782,7 @@ dimensional data.
 10. Switch to the **Scheduling** tab and select **Run now** to apply the
     mapping.
 
-! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image134.png)
+    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image134.png)
 
 7. Check the status of your mapping job in the **Manageoperations** tab. Wait for the status to say **Completed** before
     proceeding to the next task. It will take around 10-15 min to
