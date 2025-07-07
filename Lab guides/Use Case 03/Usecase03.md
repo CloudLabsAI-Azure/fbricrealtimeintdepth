@@ -906,6 +906,19 @@ additional historical data can be imported to supplement the data that
 is already ingested. The notebook works by looking at the oldest data in
 the table, prepending the historical data.
 
+>[!note]**Note**: If you encounter a notification indicating that **Your Compute session was disconnected** you may need to close and re-open the notebook to reconnect your session.
+>
+>**To Close your Notebook**:
+>- Click the X tab on the open notebook to close it.
+>- (Optional) From the Azure ML Studio navigation bar, go to Notebooks > File Browser to confirm it’s closed.
+>
+>**To Reopen your Notebook**:
+>- In Azure Machine Learning Studio, go to Notebooks.
+>- Navigate to your notebook's location.
+>- Click the .ipynb file to reopen it.
+>- If the kernel is not connected, click "Select Kernel" in the top right and choose a compute target (like your compute instance or cluster).
+>- Click "Start session" if prompted.
+
 1. In the **RealTimeWorkspace@lab.LabInstance.Id** page, select the **Lakehouse 1 - Import Data** notebook.
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image132.png)
@@ -936,7 +949,11 @@ the table, prepending the historical data.
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image136.png)
 
     > ! [A screenshot of a computer code AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image137.png)
-6. To download and unzip historical data to the lakehouse unmanaged
+    
+    >[!alert]**Alert**: You may encounter a **TooManyRequestsForCapacity** issue you may need to wait for 5 minutes or so before retrying the cell.
+    > In rare circumstances you may need to increase the Fabric Capacity SKU size as well.
+
+7. To download and unzip historical data to the lakehouse unmanaged
     files, run the 2^(nd) and 4^(th) cells.
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image138.png)
@@ -944,12 +961,12 @@ the table, prepending the historical data.
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image139.png)
 
     > ! [A screenshot of a computer program AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image140.png)
-7. Create the target table if it doesn't exist; find minimum date in
+8. Create the target table if it doesn't exist; find minimum date in
     the table to act as a cut-off point. Select and run the 5^(th)
     cell.
 
     > ! [A screenshot of a computer code AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image141.png)
-8. Run the 6^(th) cell, 7^(th) cell
+9. Run the 6^(th) cell, 7^(th) cell
 
     > ! [A screenshot of a computer code AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image142.png)
 
@@ -960,13 +977,13 @@ the table, prepending the historical data.
     > shown below, restart the kernel and run the cell again.
     > 
     > !IMAGE [image900.png](instructions299460/image900.png)
-9. Loads the data and filters out data outside the timeframe window.
+10. Loads the data and filters out data outside the timeframe window.
     select and run the 8^(h) cell and 9^(th) cell.
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image144.png)
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image145.png)
-10. While similar to 'commenting out' sections of code, freezing cells
+11. While similar to 'commenting out' sections of code, freezing cells
     is powerful in that any output of the cells are also preserved.
 
     > ! [A screenshot of a computer program Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image146.png)
