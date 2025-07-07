@@ -950,7 +950,7 @@ the table, prepending the historical data.
 
     > ! [A screenshot of a computer code AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2003/media/image137.png)
     
-    >[!alert]**Alert**: You may encounter a **TooManyRequestsForCapacity** issue you may need to wait for 5 minutes or so before retrying the cell.
+    >[!alert]**Alert**: If you encounter a **TooManyRequestsForCapacity** issue you may need to wait for 5 minutes or more before retrying the cell.
     > In rare circumstances you may need to increase the Fabric Capacity SKU size as well.
 
 7. To download and unzip historical data to the lakehouse unmanaged
