@@ -129,7 +129,7 @@ trial enabled.
 2. On the Upload files tab, click on the folder under the Files
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image22.png)
-3. Browse to **C:\\LabFiles** on your VM, then
+3. Browse to **C:\LabFiles\LabFiles** on your VM, then
     select **stops_data.csv** file and click on **Open** button.
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image23.png)
