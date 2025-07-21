@@ -81,7 +81,7 @@ trial enabled.
     | Default | storage format Small dataset storage format |
 
     ![](./media/image11.png)
-    ![](./media/image12.png)
+   
 3. Wait for the deployment to complete. It takes 1-2 minutes to complete. When your new workspace opens, it should be empty.
 
 > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image13.png)
