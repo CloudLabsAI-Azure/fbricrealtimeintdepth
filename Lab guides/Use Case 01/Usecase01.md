@@ -39,6 +39,8 @@ experience more frequent delays.
 - To learn best practices for entity mapping, relationship definition,
     and data transformation.
 
+  > [!alert]Important Note: If you encounter a "SKU is not enough" error in this usecase, please stop any currently running kernel or refresh the page, then wait for 2 minutes before trying again. This allows the system to reset and may help resolve the issue.
+
 ## Exercise 1: Create a Microsoft Fabric workspace
 
 ### Task 1: Sign in to Power BI account
