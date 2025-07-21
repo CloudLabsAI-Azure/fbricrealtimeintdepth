@@ -79,11 +79,11 @@ trial enabled.
     | Name | +++Digital twin builder@lab.LabInstance.Id+++ (must be a unique number) |
     | Advanced | Under License mode, select Fabric capacity |
     | Default | storage format Small dataset storage format |
-> !IMAGE [image4b.png](instructions299380/image4b.png)
-> !IMAGE [image12b.png](instructions299380/image12b.png)
+    ![](./media/image11.png)
+    ![](./media/image12.png)
 3. Wait for the deployment to complete. It takes 1-2 minutes to complete. When your new workspace opens, it should be empty.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image13.png)
+> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image13.png)
 
 ### **Task 3: Enable Digital twin builder for your tenant**
 
