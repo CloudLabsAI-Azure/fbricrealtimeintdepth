@@ -79,6 +79,7 @@ trial enabled.
     | Name | +++Digital twin builder@lab.LabInstance.Id+++ (must be a unique number) |
     | Advanced | Under License mode, select Fabric capacity |
     | Default | storage format Small dataset storage format |
+
     ![](./media/image11.png)
     ![](./media/image12.png)
 3. Wait for the deployment to complete. It takes 1-2 minutes to complete. When your new workspace opens, it should be empty.
