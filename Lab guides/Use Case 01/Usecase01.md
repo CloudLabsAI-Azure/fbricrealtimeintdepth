@@ -86,7 +86,7 @@ trial enabled.
    
 3. Wait for the deployment to complete. It takes 1-2 minutes to complete. When your new workspace opens, it should be empty.
 
-> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image13.png)
+> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/img1.png)
 
 ### **Task 3: Enable Digital twin builder for your tenant**
 
@@ -1407,4 +1407,5 @@ your KQL queries from earlier.
     > concludes with dashboard configuration and resource cleanup,
     > showcasing a complete cycle from data ingestion to actionable
     > visualization.
+
 
