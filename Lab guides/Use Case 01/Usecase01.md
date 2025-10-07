@@ -86,7 +86,7 @@ trial enabled.
    
 3. Wait for the deployment to complete. It takes 1-2 minutes to complete. When your new workspace opens, it should be empty.
 
-> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/img1.png)
+ ![](./media/img1.png)
 
 ### **Task 3: Enable Digital twin builder for your tenant**
 
@@ -109,7 +109,7 @@ trial enabled.
 
 1. In the **Digital twin builder@lab.LabInstance.Id** workspaces pane, select **+ New item**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/img1.png)
+   ![](./media/img2.png)
 2. In the **Filter by item type** search box, enter **+++Lakehouse+++**
     and select the lakehouse item.
 
@@ -127,14 +127,14 @@ trial enabled.
 1. In the lakehouse explorer page in Fabric, select **Get data** from
     the menu ribbon and choose **Upload files**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image21.png)
+   ![](./media/img3.png)
 2. On the Upload files tab, click on the folder under the Files
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image22.png)
 3. Browse to **C:\LabFiles\LabFiles** on your VM, then
     select **stops_data.csv** file and click on **Open** button.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image23.png)
+   ![](./media/img4.png)
 4. Now select **Upload**. When the file is finished uploading, close
     the **Upload files** pane.
 
@@ -143,7 +143,7 @@ trial enabled.
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image25.png)
 5. Click and select refresh on the **Files**. The file appear.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image26.png)
+    ![](./media/img5.png)
 6. In the **Explorer** pane on the left, select **Files**. Hover over
     the file name and select the 3 dot elipsis (**...**) that appears. Then
     select **Load to Tables** and **New table**.
@@ -180,9 +180,10 @@ to be in a lakehouse.
 
 1. From the **Tutorial** page, select **Digital twin builder@lab.LabInstance.Id** in the
     left-sided navigation menu to return to the workspace item list.
+    ![](./media/img6.png)
 2. In the Workspaces pane, select **+ New item**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image35.png)
+    ![](./media/img7.png)
 3. In the **Filter by item type** search box,
     enter **+++Eventhouse+++** and select the Eventhouse item.
 
@@ -239,7 +240,7 @@ Follow these steps to add the data transformation.
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image45.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image46.png)
+    ![](./media/img8.png)
 2. Select the edit icon (shaped like a pencil) on
     the **MangeFields** tile, which opens the **Manage fields** pane.
 
@@ -262,16 +263,16 @@ Follow these steps to add the data transformation.
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image51.png)
 
-    > [!note]The **Manage fields** pane closes. The **ManageFields** tile continues to display an error until you connect it to a destination.
+6. The **Manage fields** pane closes. The **ManageFields** tile continues to display an error until you connect it to a destination.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image52.png)
+   ![](./media/img9.png)
 
 ### Task 4: Add destination
 
 1. From the menu ribbon, select **Add destination**, then
     select **Eventhouse**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image53.png)
+    ![](./media/img10.png)
 2. Enter the following information in the **Eventhouse** pane:
 
     | Field | Value |
@@ -316,7 +317,7 @@ Follow these steps to add the data transformation.
     your **Tutorial - KQL Database** and refresh the view. It now contains
     a table called **bus_data_raw** which contains data.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image62.png)
+    ![](./media/img11.png)
 
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image63.png)
 
@@ -361,17 +362,17 @@ To run the transformation queries, follow these steps.
     // Set columns
     .create-or-alter function extractBusData ()
     {
-        bus_data_raw
-        | extend BusState = tostring(todynamic(Properties).BusState)
-            , TimeToNextStation = tostring(todynamic(Properties).TimeToNextStation)
-            , StopCode = toint(10000 + abs(((toint(BusLine) * 100) + toint(StationNumber)) % 750))
-        | project-away Properties
+       bus_data_raw
+       | extend BusState = tostring(todynamic(Properties).BusState)
+           , TimeToNextStation = tostring(todynamic(Properties).TimeToNextStation)
+           , StopCode = toint(10000 + abs(((toint(BusLine) * 100) + toint(StationNumber)) % 750))
+           , BusLine = tostring(BusLine)
+           , StationNumber = tostring(StationNumber)
+       | project-away Properties
     }
     ```
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image66.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image67.png)
+   ![](./media/img12.png)
 3. Select the cell, replace the code, and click the **Run** icon
 
     ```
@@ -419,7 +420,7 @@ To run the transformation queries, follow these steps.
     > command as shown in the previous code block.
 6. Go the items view of the database again, select **Tutorial** .
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image72.png)
+   ![](./media/img13.png)
 7. A new table is created in your database
     called **bus_data_processed**. After a short wait, it begins to
     populate with the processed bus data.
@@ -435,11 +436,11 @@ requires its data source to be a lakehouse.
 
 1. Go to your **Tutorial** lakehouse from the menu ribbon.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image74.png)
+   ![](./media/img15.png)
 2. Dropdown the **Get data** and select **New shortcut** from the top
     navigation menu.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image75.png)
+   ![](./media/img16.png)
 3. Under **Internal sources**, select **Microsoft OneLake**. Then,
     choose the **Tutorial - KQL Database** and click on the **Next**
     button
@@ -457,7 +458,7 @@ requires its data source to be a lakehouse.
 6. The **bus_data_processed** table is now available in your lakehouse.
     Verify that it contains data (this might take a few minutes).
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image80.png)
+  ![](./media/img17.png)
 
 Next, you use this lakehouse data as a source to build an ontology in
 digital twin builder.
@@ -475,7 +476,7 @@ relationships between the entities to further contextualize the data.
 1. Select **Digital twin builder@lab.LabInstance.Id** from the left-sided navigation
     pane.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image81.png)
+   ![](./media/img18.png)
 2. Select **New item**.Search for the **+++Digital Twin Builder(preview)+++** item, and select it.
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image82.png)
@@ -484,10 +485,9 @@ relationships between the entities to further contextualize the data.
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image83.png)
 
-> [!note] Wait for your digital twin builder item to be created. Once your
-> digital twin builder item is ready, it opens to the semantic canvas.
+4.  Wait for your digital twin builder item to be created. Once your digital twin builder item is ready, it opens to the semantic canvas.
 
-> ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image84.png)
+     ![](./media/img19.png)
 
 In the semantic canvas, you can add entities and relationships to define
 an ontology.
@@ -522,7 +522,7 @@ First, create a new entity for the bus.
 1. In the semantic canvas of digital twin builder (preview),
     select **Add entity**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image85.png)
+  ![](./media/img20.png)
 2. Leave the Generic system type selected, and enter **+++Bus+++** for
     the entity name. Select **Add entity**.
 
@@ -567,7 +567,7 @@ static properties that identify a bus and its visit to a certain stop.
 6. Under **Mapped properties**, select the **edit icon** to choose
     which properties from your source data to map to the bus entity.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image95.png)
+   ![](./media/img21.png)
 
     > The **Map properties** page lets you select a column from your source
     > data on the left side, and map it to a new property on your entity on
@@ -601,10 +601,10 @@ static properties that identify a bus and its visit to a certain stop.
 9. Select **Save** the mapping.
 
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image99.png)
-10. Switch to the **Scheduling** tab and select **Run now**, or **Run**, to apply the
+10. Switch to the **Scheduling** tab and select **Run**, to apply the
     mapping.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image100.png)
+    ![](./media/img22.png)
 11. The page confirms that the flow is queued.
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image101.png)
@@ -616,15 +616,14 @@ static properties that identify a bus and its visit to a certain stop.
     > complete once it starts, so you might need to refresh the content a
     > few times).
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image102.png)
-    > 
+    ![](./media/img24.png)
+  
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image103.png)
     > 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image104.png)
-13. Select the **Configure**
+    ![](./media/img25.png)
+13. Select the **Home**
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image105.png)
-
+   ![](./media/img26.png)
 ### Task 4: Map time series bus data
 
 Next, map some time series data to the Bus entity. These properties are
@@ -650,7 +649,7 @@ contain information about the bus's location and movements.
     > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image109.png)
 5. Under **Mapped Properties**, select the **edit icon**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image110.png)
+     ![](./media/img27.png)
 6. The page loads with a **Timestamp** property for the entity, which
     is unmapped to any column in the source data. **Timestamp** requires
     a mapping, so select **ActualTime** from the corresponding dropdown
@@ -680,7 +679,7 @@ contain information about the bus's location and movements.
     contextualization of your entity and time series data.
 10. Under **Link with entity property**, select the **edit** icon.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image113.png)
+     ![](./media/img28.png)
 11. For **Choose entity property,** select **TripId_Static** from the
     dropdown menu. For **Select column from timeseries data...**,
     select **TripId**. Select **Apply**.
@@ -694,22 +693,21 @@ contain information about the bus's location and movements.
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image116.png)
 
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image117.png)
-13. Switch to the **Scheduling** tab and select **Run now** under the
+13. Switch to the **Scheduling** tab and select **Run** under the
     new time series mapping, **Bus_bus_data_processed_TimeSeries**, to apply it.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image118.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image119.png)
+     ![](./media/img29.png)
+      ![](./media/img30.png)
 14. Check the status of your mapping job in the **Manageoperations** tab. Wait for the status to say **Completed** before
     proceeding to the next task. It will take around 10-15 min to
     complete.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image102.png)
+    ![](./media/img31.png)
 
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image120.png)
-15. Select **Configure** to return to the previous panel.
+15. Select **Home** to return to the previous panel.
 
-> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image121.png)
+  ![](./media/img32.png)
 
 ### Task 5: Add Stop entity
 
@@ -1407,5 +1405,6 @@ your KQL queries from earlier.
     > concludes with dashboard configuration and resource cleanup,
     > showcasing a complete cycle from data ingestion to actionable
     > visualization.
+
 
 
