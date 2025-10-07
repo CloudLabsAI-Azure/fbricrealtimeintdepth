@@ -109,7 +109,7 @@ trial enabled.
 
 1. In the **Digital twin builder@lab.LabInstance.Id** workspaces pane, select **+ New item**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image17.png)
+    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/img1.png)
 2. In the **Filter by item type** search box, enter **+++Lakehouse+++**
     and select the lakehouse item.
 
@@ -1407,3 +1407,4 @@ your KQL queries from earlier.
     > concludes with dashboard configuration and resource cleanup,
     > showcasing a complete cycle from data ingestion to actionable
     > visualization.
+
