@@ -98,16 +98,16 @@ reports.
 
 1. From the navigation bar, select **Real-Time**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image13.png)
+     ![](./media/img2.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image14.png)
+     ![](./media/img3.png)
 2. In the **Real-Time hub** page , Select the **+Connect data source**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image15.png)
+     ![](./media/img4.png)
 3. On the **Data sources** page, select **Sample scenarios** category,
     and then select **Connect** on the **Bicycle rentals** tile.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image16.png)
+    ![](./media/img5.png)
 4. In **Connect** tab, under **Sample data** enter the **Sourcename** as +++**TutorialSource**+++
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image17.png)
@@ -169,17 +169,17 @@ reports.
 1. Hover over the right edge of the **TutorialTransform** tile and
     select the **green plus** icon.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image31.png)
+     ![](./media/img6.png)
 2. Select **Destinations** \> **Eventhouse**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image32.png)
+     ![](./media/img7.png)
 
     > [!note]A new tile is created entitled **Eventhouse**
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image33.png)
 3. Select the **pencil icon** on the **Eventhouse** tile.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image34.png)
+    ![](./media/img8.png)
 4. Enter the following information in the **Eventhouse** pane and
     select the **Save** button.
 
@@ -218,13 +218,13 @@ a time chart.
 1. From the navigation bar, select the KQL database you created in
     exercise1 > task3, named **Tutorial**
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image40.png)
+    ![](./media/img9.png)
 2. Verify that the data is flowing into the database by viewing
     the **Size** tile in the database details page. The values in this
     tile should be greater than zero. If the values in the **Size** tile
     are zero, select **Refresh** from the menu ribbon.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image41.png)
+     ![](./media/img10.png)
 3. From the menu ribbon, select **KQL Queryset**.
 
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image42.png)
@@ -244,10 +244,11 @@ Use this (case-sensitive) name as the data source for your query.
 
     **KustoCopy**
 
-    ```
-    tutorialtable
-    | take 10
-    ```
+     ```
+     TutorialTable
+     | take 10
+
+     ```
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image45.png)
 
@@ -263,7 +264,7 @@ Use this (case-sensitive) name as the data source for your query.
     **KustoCopy**
 
     ```
-    tutorialtable
+    TutorialTable
     | where Neighbourhood == "Chelsea"
     | project Timestamp, No_Bikes
     | render timechart
@@ -287,7 +288,7 @@ Use this (case-sensitive) name as the data source for your query.
     **KustoCopy**
 
     ```
-    tutorialtable
+    TutorialTable
     | summarize arg_max(Timestamp, No_Bikes) by BikepointID
     | sort by BikepointID
     | render columnchart with (ycolumns=No_Bikes, xcolumn= BikepointID)
@@ -297,7 +298,7 @@ Use this (case-sensitive) name as the data source for your query.
 3. Now, click on **RealTimeWorkspace@lab.LabInstance.Id** on the left-sided navigation
     pane as shown in the below image.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image48.png)
+    ![](./media/img11.png)
 4. In the **RealTime workspace@lab.LabInstance.Id** page, navigate to **+Newitem** section and then filter on, and select **+++Real-Time Dashboard+++**.
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image49.png)
@@ -307,13 +308,13 @@ Use this (case-sensitive) name as the data source for your query.
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image50.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image51.png)
+    ![](./media/img12.png)
 6. From the left navigation bar, select the **TutorialQueryset**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image52.png)
+    ![](./media/img13.png)
 7. Select **Pin to dashboard**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image53.png)
+   ![](./media/img14.png)
 8. In **Pin query to dashboard**, click on the **Select from OneLakehub**.
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image54.png)
@@ -330,12 +331,12 @@ Use this (case-sensitive) name as the data source for your query.
     | Open dashboard after creation | Selected |
 
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image56.png)
+  ![](./media/img15.png)
 
 >[!note]The new dashboard, **TutorialDashboard**, opens with the **Recent
 bikes by Bikepoint** tile.
 
-> ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image57.png)
+   ![](./media/img16.png)
 
 ### Task 2: Add a new tile to the dashboard
 
@@ -349,7 +350,7 @@ bikes by Bikepoint** tile.
 3. In the query editor, enter the following query:
 
     ```
-    tutorialtable
+    TutorialTable
     | where Neighbourhood == "Chelsea"
     ```
 
@@ -437,7 +438,7 @@ BI report.
     BI report.
 
     ```
-    tutorialtable
+    TutorialTable
     | summarize arg_max(Timestamp, No_Bikes,  No_Empty_Docks, Neighbourhood, Lat=todouble(Latitude), Lon=todouble(Longitude)) by BikepointID
     ```
 
@@ -538,4 +539,5 @@ falls below a certain threshold.
 3. Select **General** and **Remove this workspace.**
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image97.png)
+
 
