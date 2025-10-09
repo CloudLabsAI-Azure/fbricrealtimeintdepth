@@ -101,7 +101,7 @@ reports.
      ![](./media/img2.png)
 
      ![](./media/img3.png)
-2. In the **Real-Time hub** page , Select the **+Connect data source**
+2. In the **Real-Time hub** page , Select the **+Add data**
 
      ![](./media/img4.png)
 3. On the **Data sources** page, select **Sample scenarios** category,
@@ -539,5 +539,6 @@ falls below a certain threshold.
 3. Select **General** and **Remove this workspace.**
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image97.png)
+
 
 
