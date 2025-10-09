@@ -308,20 +308,19 @@ Use this (case-sensitive) name as the data source for your query.
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image50.png)
 
-    ![](./media/img12.png)
-6. From the left navigation bar, select the **TutorialQueryset**.
+6. From the top navigation bar, select the **TutorialQueryset**.
+   ![](./media/img12.png)
 
+8. Select **Save to dashboard**.
     ![](./media/img13.png)
-7. Select **Pin to dashboard**.
+   
+9. In **Pin query to dashboard**, click on the **Select from OneLakehub**.
 
-   ![](./media/img14.png)
-8. In **Pin query to dashboard**, click on the **Select from OneLakehub**.
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image54.png)
-9. In **OneLake data hub** pane, select **TutorialDashboard** and then select the **Add** button.
+    ![](./media/img14.png)
+10. In **OneLake data hub** pane, select **TutorialDashboard** and then select the **Add** button.
 
     > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image55.png)
-10. Enter the following information and then select the **Create** button.
+11. Enter the following information and then select the **Create** button.
 
     | Field | Value |
     | ----- | ----- |
@@ -539,6 +538,7 @@ falls below a certain threshold.
 3. Select **General** and **Remove this workspace.**
 
     > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/media/image97.png)
+
 
 
 
