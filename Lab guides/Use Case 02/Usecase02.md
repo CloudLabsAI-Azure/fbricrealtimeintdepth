@@ -223,15 +223,16 @@ incorrect.](./media/image1.png)
 
 5.  Enter the following information in the **Eventhouse** pane and
     select the **Save** button.
-|  |  |
-|---|---|
-|Field	|Value|
-|Destination name	|Enter +++TutorialDestination+++|
-|Workspace|	Select the workspace in which you created your resources.|
-|Eventhouse|	Tutorial|
-|KQL Database|	Tutorial|
-|KQL Destination table|	Create new - enter +++TutorialTable+++ as table name and click on Done button|
-|Input data format|	JSON|
+
+    |  |  |
+    |---|---|
+    |Field	|Value|
+    |Destination name	|Enter **+++TutorialDestination+++**|
+    |Workspace|	Select the workspace in which you created your resources.|
+    |Eventhouse|	Tutorial|
+    |KQL Database|	Tutorial|
+    |KQL Destination table|	Create new - enter **+++TutorialTable+++** as table name and click on Done button|
+    |Input data format|	JSON|
 
 > ![](./media/image30.png)
 >
@@ -1330,4 +1331,5 @@ individually, or you can delete the entire workspace.
 > ingestion, transformation, monitoring, query, visualization, anomaly
 > detection, and AI-powered insights—enabling you to create robust
 > data-in-motion solutions for real-world business scenarios.
+
 
