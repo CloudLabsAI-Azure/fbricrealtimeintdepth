@@ -14,44 +14,57 @@ business needs. Unstructured and raw data are ingested using scalable
 pipelines to output the highest quality enriched data. It contains 3
 basic layers.
 
-Bronze layer
+Bronze layer 
 
 - Contains raw data, sometimes referenced as the data staging area.
+
 - Not accessible to consumers only to engineers.
+
 - May contain data with PII (personal identifiable information).
 
-Silver layer
+Silver layer 
 
 - Contains deduplicated, enriched data.
+
 - Accessible to all consumers.
-- Contains "anonymized data" (no PII).
+
+- Contains “anonymized data” (no PII).
+
 - Consumers: Data analysts, Data scientists, Engineers.
 
-Gold layer
+Gold layer 
 
 - Contains aggregated data.
+
 - Accessible to all consumers.
+
 - Built for dashboards.
 
-> ! [RTIComponents](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image1.png)
+![RTIComponents](./media/image1.png)
 
 **Objective**
 
 - Build a web traffic analytics solution using Fabric Real-Time
-    Intelligence based on clickstream data.
+  Intelligence based on clickstream data.
+
 - Use Fabric shortcuts to query data without move or copy (with
-    AdventureWorksLT sample data).
+  AdventureWorksLT sample data).
+
 - Stream events into Fabric Eventhouse via Eventstream.
+
 - Create real-time data transformations in Fabric Eventhouse through the
-    power of Kusto Query Language (KQL).
+  power of Kusto Query Language (KQL).
+
 - Leverage OneLake availability to access data via Lakehouse.
+
 - Create real-time visualizations using Real-Time Dashboards.
+
 - Build Data Activator Reflex actions and alerts on the streaming
-    data.
+  data**.**
 
 ### Use case Architecture
 
-> ! [Architectural Diagram](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image2.png)
+![Architectural Diagram](./media/image2.png)
 
 ## **Task 1: Create a Fabric workspace**
 
@@ -60,64 +73,71 @@ the items needed for this lakehouse tutorial, which includes lakehouse,
 dataflows, Data Factory pipelines, the notebooks, Power BI datasets, and
 reports.
 
-1. Open your browser, navigate to the address bar, and type or paste
-    the following URL: +++https://app.fabric.microsoft.com/+++ then
-    press the **Enter** button to open the **Microsoft Fabric Home** page.
-2. In the Microsoft Fabric window, enter your assigned credentials to log in if necessary.
+1.  Open your browser, navigate to the address bar, and type or paste
+    the following URL: +++<https://app.fabric.microsoft.com/>+++ then
+    press the **Enter** button. In the **Microsoft Fabric Home** page.
 
-    |  |  |
-    | --- | --- |
-    | Username | **+++@lab.CloudPortalCredential(User1).Username+++** |
-    | Password | **+++@lab.CloudPortalCredential(User1).Password+++** |
-3. Select **Workspaces** from the left-hand menu, then click on **+ New workspace** button
+2.  In the Workspaces pane, click on **+** **New workspace** button
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image3.png)
+![](./media/image3.png)
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image4.png)
-4. In the **Create a workspace** pane that appears on the right side,
+3.  In the **Create a workspace** pane that appears on the right side,
     enter the following details, and click on the **Apply** button.
 
-    |  |  |
-    | --- | --- |
-    | Name | +++RTI-Medallion@lab.LabInstance.Id+++ |
-    | Advanced | Select Fabric Capacity |
-    | Default storage format | Small dataset storage format |
+	|  |  |
+	|--|---|
+	|Name	|**+++RTI-MedallionXX+++**|
+	|Advanced|	Select Fabric Capacity|
+	|Default| storage format	Small dataset storage format|
 
 
-> ! [A screenshot of a computer Description automatically    > generated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image5.png)
- 
-> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image6.png)
- 
-> ! [A screenshot of a computer AI-generated content may be    > incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image7.png)
+> ![A screenshot of a computer Description automatically
+> generated](./media/image4.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image5.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image6.png)
 
 ## Task 2: Create a new Eventhouse
 
-1. Click the **+ New item** button to create a new Eventhouse.
+1.  Click the "**+New item**" button to create a new Eventhouse.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image8.png)
-2. Filter by, and select **+++Eventhouse+++**, then name the Eventhouse **+++WebEvents_EH+++**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image7.png)
+
+2.  Select **Eventhouse**. Name the Eventhouse +++**WebEvents_EH**+++
     and click on the **Create** button.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image9.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image8.png)
+>
+> ![](./media/image9.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image10.png)
-3. When provisioning is complete, the eventhouse **Systemoverview** page is shown.
+3.  When provisioning is complete, the eventhouse **System
+    overview** page is shown.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image11.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image10.png)
 
 ## Task 3: Turn on OneLake availability
 
-1. From the **Eventhouse overview** page, select the **WebEvents_EH**
+1.  From the **Eventhouse overview** page, select the **WebEvents_EH**
     KQL database you created in the previous task.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image12.png)
-2. In the **Database details** section, click on the **OneLakeavailability** as shown in the image below to change the setting
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image11.png)
+
+2.  In the **Database details** section, click on the **OneLake
+    availability** as shown in the below image to change the setting
     and, then click on the **Turn on** Toggle the button enable OneLake
     access.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image13.png)
-
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image14.png)
+> ![](./media/image12.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image13.png)
 
 ## **Task 4: Create a new Eventstream**
 
@@ -125,99 +145,133 @@ In this section we will be streaming events (impressions and clicks
 events) generated by a notebook. The events will be streamed into an
 eventstream and consumed by our Eventhouse KQL Database.
 
-> ! [alt text](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image15.png)
+![alt text](./media/image14.png)
 
-1. Now, click on **RTI-Medallian@lab.LabInstance.Id** on the left-sided navigation pane.
+1.  Now, click on **RTI-Medallian** on the left-sided navigation pane.
 
-      ![](./media/img1.png)
-2. From your workspace, click on **+ New item**, then filter by and select **+++Eventstream+++** as shown in the image below. Enter
-    **+++WebEventsStream_ES+++** as the name of the new Eventstream.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image15.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image17.png)
+2.  From your workspace, click on ***+* New item* \> *Eventstream** as
+    shown in the below image. Enter **Eventstream** as
+    +++**WebEventsStream_ES**+++
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image18.png)
-3. On the Screen **Design a flow to ingest, transform, and route streaming events** click on **Use custom Endpoint**. This will
+![](./media/image16.png)
+
+> ![](./media/image17.png)
+
+3.  On the Screen **Design a flow to ingest, transform, and route
+    streaming events** click on **Use custom Endpoint**. This will
     create an event hub connected to the Eventstream.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image19.png)
-4. Insert **+++WebEventsCustomSource+++** as the source name and the
-    click on **Add**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image18.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image20.png)
-5. Click on the **Publish** button.
+4.  Insert +++**WebEventsCustomSource**+++ as the source name and the
+    click on **Add**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image21.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image19.png)
 
-    > Now the Eventstream will be published and the Event Hub will be
-    > created.
+5.  Click on the **Publish** button.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image22.png)
-6. On the **Eventstream** pane, select the **keys** under the
-    **Details**, select **SAS key Authentication**, copy the **Eventhub name**, and the **Connection string-primary key** and paste them in
-    notepad, as you will need them in the upcoming task
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image20.png)
 
-> ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image23.png)
+6.  Now the Eventstream will be published and the Event Hub will be
+    created.
 
->[!note]Note: It does not matter if you copy the primary or secondary connection
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image21.png)
+
+7.  On the **Eventstream** pane**,** select the **keys** under the
+    **Details**, select **SAS key Authentication ,** copy the **Event
+    hub name**, **connection strings-primarykey** and paste them on a
+    notepad, as you need them in the upcoming task
+
+![](./media/image22.png)
+
+Note: It does not matter if you copy the primary or secondary connection
 string.
 
 ## Task 5: Import Data Generator Notebook
 
-1. Now, click on **RTI-Medallian@lab.LabInstance.Id** on the left-sided navigation pane.
+1.  Now, click on **RTI-Medallian** on the left-sided navigation pane.
 
-      ![](./media/img2.png)
-2. On the **Real-Time Intelligence** page, from the menu bar, navigate
-    and click on the **->\| Import** button, then select **Notebook** and
-    select **From this computer** as shown in the image below.
+> ![](./media/image15.png)
 
-     ![](./media/img3.png)
-3. Select **Upload** from the **Import status** pane that appears on
+2.  On the **Real-Time Intelligence** page, from the menu bar, navigate
+    and click on **-\>|Import** button, then select **Notebook** and
+    select **From this computer** as shown in the below image.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image23.png)
+
+3.  Select **Upload** from the **Import status** pane that appears on
     the right side of the screen.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image26.png)
-4. Navigate and select **Generate synthetic events** notebooks from
-    **C:\\LabFiles\\Lab Files** and click on the **Open** button.
+> ![](./media/image24.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image27.png)
-5. You will see a notification stating **Imported successfully.**
+4.  Navigate and select **Generate synthetic events** notebooks from
+    **C:\LabFiles**and click on the **Open** button.
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image28.png)
-6. Select the **Generate synthetic web events** notebook from the list.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image25.png)
 
-     ![](./media/img4.png)
+5.  You will see a notification stating **Imported successfully.**
 
-    >[!alert]**Note**: DO NOT use an InPrivate browser window. Recommend using a
-    Personal browser window for the Notebook session to connect & run
-    successfully.
-7. To start the notebook, insert the following into the 1^(st) cell and **Run** it.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image26.png)
 
-    ```
-    !pip install azure-eventhub
-    !pip install faker
-    ```
+6.  Then, select the **Generate_synthetic_web_events** notebook.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image31.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image27.png)
 
-    > [!note]**Note**: It can happen that the notebook will throw some errors in
-    > cell 1. These errors are caused by libaries that already have been
-    > installed in the environment. You can safely ignore these errors. The
-    > notebook will execute successfully regardless of these errors.
+**Note**: DO NOT use an InPrivate browser window. Recommend using a
+Personal browser window for the Notebook session to connect & run
+successfully.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image32.png)
-8. In the **2^(nd)** cell paste the **connection string of your customapp source and eventHunNameevents** (the value that you have saved in
-    your notepad in the **Task 4 > Step 7**), and then select the **Run** icon
+7.  Change the Environment into **Change to workspace default**
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image28.png)
+
+8.  To start the notebook, run the the 1^(st) cell.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image29.png)
+>
+> ![A white rectangular object with black text AI-generated content may
+> be incorrect.](./media/image30.png)
+>
+> **Note:** It can happen that the notebook will throw some errors in
+> cell 1. These errors are caused by libaries that already have been
+> installed in the environment. You can safely ignore these errors. The
+> notebook will execute successfully regardless of these errors.
+>
+> ![](./media/image31.png)
+
+9.  In the **2^(nd)** cell paste the **connection string of your custom
+    app source and eventHunNameevents**(the value that you have saved in
+    your notepad in the **Task 4\>Step 7)**, select the **Run** icon
     that appears on the left side of the cell.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image33.png)
-9. Select and run the 3^(rd) and 4^(th) cells
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image32.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image34.png)
+10. Select and run the 3^(rd) ,4^(th) cells
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image35.png)
+![](./media/image33.png)
 
-1. Run the last code cell. It should begin to print the generated synthetic events in JSON format. If the last code cell is still running continue the next steps.
+![](./media/image34.png)
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image36.png)
+11. The last code cell and it should begin to print the generated
+    synthetic events in JSON format. The last code cell its still
+    running continue the next steps.
+
+![A screenshot of a computer Description automatically
+generated](./media/image35.png)
 
 ## Task 6: Define destination in the Eventstream
 
@@ -225,22 +279,28 @@ Next we have to create the Eventstream topology that will insert the
 streamed data into our KQL Database. To aceive this please follow the
 following steps.
 
-1. Now, click on **WebEventStream_ES** on the left-sided navigation
-    pane.
+1.  Now, click on **WebEventStream_ES** on the top navigation pane.
 
-      ![](./media/img5.png)
-2. In the event stream authoring canvas, select the **Edit** option.
+![](./media/image36.png)
 
-    ![](./media/img6.png)
-3. Click on the node **Transform events or add Destination** and
-    select **Filter** from the menu.
+2.  In the event stream authoring canvas, select the **Edit**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image39.png)
-4. Click on the pencil icon in the node **Filter** to enter edit mode.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image37.png)
 
-      ![](./media/img7.png)
-5. Provide the following values in the pane **Filter** on the left
-    side. Then click on **Save**.
+3.  Click on the node **Transform events or add Destination** and
+    select **Filter** from the menu.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image38.png)
+
+4.  Click on the pencil icon in the node **Filter** to enter edit mode.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image39.png)
+
+5.  Provide the following values in the pane **Filter** on the left
+    side. Then click on **Save**.
 
     | Field | Value |
     | ----- | ----- |
@@ -249,36 +309,46 @@ following steps.
     | Keep events when the value | equals |
     | value | +++CLICK+++ |
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image41.png)
+> ![](./media/image40.png)
 
-    > [!note]**Note**: **CLICK** is in ALL CAPS.
+**Note: **CLICK is in ALL CAPS.
 
-    > [!note]**Note**: It is normal that the node ClickEventsFilter is shown with an
-    > error. The error indicates that there is no target for the datastream
-    > coming out of the filter. We will fix this in the next step.
-6. Click on the **+** icon next to the **ClickEventsFilter** node. and
-    choose **Stream** from the context menu.
+**Note**: It is normal that the node ClickEventsFilter is shown with an
+error. The error indicates that there is no target for the datastream
+coming out of the filter. We will fix this in the next step.
 
-     ![](./media/img8.png)
-7. Coose **Stream** from the context menu.
+6.  Click on **+** icon next to the **ClickEventsFilter** node. and
+    choose **Stream** from the context menu.
 
-     ![](./media/img9.png)
-8. Click on the pencil in node **Stream1** to go to edit mode.
-    Enter **+++ClickEventsStream+++** as name of the Derived Stream in the
-    field **Stream name**. Ensure that the **Input dataformat** is **Json**. Click on the Button **Save**.
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image41.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image44.png)
+7.  Coose **Stream** from the context menu.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image45.png)
-9. Click on **+** icon next to the node **ClickEventsStream**.
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image42.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image46.png)
-10. Select the option **Eventhouse** in the context menu.
+8.  Click on the pencil in node **Stream1** to go to edit mode.
+    Enter +++**ClickEventsStream**+++ as name of the Eventstream in the
+    field **Stream name**. Ensure that the **Input data
+    format** is **Json**. Click on the Button **Save**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image47.png)
-11. Click the pencil in node **Eventhouse** to enter edit mode. Provide
-    the following values in the pane **Eventhouse**. Click the
-    button **Save** after you entered all the values.
+> ![](./media/image43.png)
+>
+> ![](./media/image44.png)
+
+9.  Click on **+** icon next to the node **ClickEventsStream**.
+
+> ![](./media/image45.png)
+
+10. Select the option **Eventhouse** in the context menu.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image46.png)
+
+11. Click the pencil in node **Eventhouse** to enter edit mode. Provide
+    the following values in the pane **Eventhouse**. Click the
+    button **Save** after you entered all the values.
 
     | Field | Value |
     | ----- | ----- |
@@ -290,62 +360,84 @@ following steps.
     | Destination table | Click on Create new and enter +++BronzeClicks+++ as name for the new table and click on **Done**. |
     | Input data format | Ensure that the option **Json** is selected. |
 
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image47.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image48.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image48.png)
+![](./media/image49.png)
 
-    >! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image49.png)
+12. Click on **Insert a node** sign next to the
+    node **WebEventsStream_ES**.
 
-12. Click on **Insert a node** sign next to the
-    node **WebEventsStream_ES**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image50.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image50.png)
-13. Choose the option **Filter** from the context menu.
+13. Choose the option **Filter** from the context menu.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image51.png)
-14. Delete the connection between the new filter node **Filter** and
-    the node **ClickEventsFilter** by clicking on the trash can icon.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image51.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image52.png)
-15. Connect the output of the node **WebEventsStream_ES** to the input
-    of the node **ClickEventsFilter**.
+14. Delete the connection between the new filter node **Filter1** and
+    the node **ClickEventsFilter** by clicking on the trashcan icon.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image53.png)
-16. Click on the pencil icon of the new node **Filter** to enter edit
-    mode. Provide the following values in the pane **Filter** on the
-    left side. Then click on **Save**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image52.png)
+
+15. Connect the output of the node **WebEventsStream_ES** to the input
+    of the node **ClickEventsFilter**.
+
+> ![](./media/image53.png)
+
+16. Click on the pencil icon of the new node **Filter** to enter edit
+    mode. Provide the following values in the pane **Filter** on the
+    left side. Then click on **Save**.
 
     | Field | Value |
     | ----- | ----- |
-    | Operation name | +++ImpressionEventsFilter+++ |
+    | Operation name | **+++ImpressionEventsFilter+++** |
     | Select a field to filter on | eventType |
     | Keep events when the value | equals |
-    | value | +++IMPRESSION+++ |
+    | value | **+++IMPRESSION+++** |
 
-      ![](./media/img10.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image54.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image55.png)
+>
+> **Note: **IMPRESSION is in ALL CAPS.
+>
+> **Note:** It is normal that the node ImpressionEventsFilter is shown
+> with an error. The error indicates that there is no target for the
+> datastream coming out of the filter. We will fix this in the next
+> step.
 
-    > [!note]**Note**: **IMPRESSION** is in ALL CAPS.
+17. Click on **+** sign next to the **ImpressionEventsFilter** node and
+    choose **Stream** from the context menu.
 
-    > [!note]**Note**: It is normal that the node ImpressionEventsFilter is shown
-    > with an error. The error indicates that there is no target for the
-    > datastream coming out of the filter. We will fix this in the next
-    > step.
-17. Click on **+** sign next to the **ImpressionEventsFilter** node and
-    choose **Stream** from the context menu.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image56.png)
 
-    ![](./media/img11.png)
+![](./media/image57.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image56.png)
-18. Click on the pencil icon in the node **DerivedStream** to enter edit mode.
-    Enter **+++ImpressionsEventsStream+++** as name of the Eventstream
-    in the field **Stream name**. Ensure that the **Input dataformat** is **Json**. Click on the Button **Save**.
+18. Click on the pencil icon in the node **Stream1** to enter edit mode.
+    Enter +++**ImpressionsEventsStream+++** as name of the Eventstream
+    in the field **Stream name**. Ensure that the **Input data
+    format** is **Json**. Click on the Button **Save**.
 
-     ![](./media/img12.png)
-19. Click on **+** icon next to the node **ImpressionEventsStream** and
-    select **Eventhouse** from the context menu.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image58.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image58.png)
-20. Click the pencil in node **Eventhouse** to enter edit mode. Provide
-    the following values in the pane **Eventhouse**.
+19. Click on **+** icon next to the node **ImpressionEventsStream** and
+    select **Eventhouse** from the context menu.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image59.png)
+
+20. Click the pencil in node **Eventhouse1** to enter edit mode. Provide
+    the following values in the pane **Eventhouse**.
 
     | Field | Value |
     | ----- | ----- |
@@ -357,216 +449,283 @@ following steps.
     | Destination table | Click on **Create new** and enter **+++BronzeImpressions+++** as name for the new table and click on Done. |
     | Input data format | Ensure that the option **Json** is selected. |
 
+21. After providing these values click on the button **Save**.
 
-21. After providing these values click on the button **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
 
-    >! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image59.png)
+![](./media/image61.png)
 
-    >! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image60.png)
-
-21. Click on the button **Publish** that is located in the toolbar at
+21. Click on the button **Publish** that is located in the toolbar at
     the top of the screen.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image61.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image62.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image63.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image62.png)
+22. After a few minutes, you should see the nodes 
+    **ClickEventStore** and **ImpressionEventStore** change to
+    mode **Streaming**.
 
-    >[!note]After a few minutes, you should see the nodes
-    **ClickEventStore** and **ImpressionEventStore** change to
-    mode **Streaming**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image64.png)
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image63.png)
-
-    >[!note]In the end your Eventstream toplogy should look like the image
+23. In the end your Eventstream toplogy should look like the image
     below.
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image64.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image64.png)
 
-## Task 7: Setting up the Lakehouse
+## Task 7: Setting up the Lakehouse 
 
 In this task we will set up the Lakehouse that will contain additional
 information for our usecase and in which we will also make the data from
 the KQL Database accessible through the lakehouse.
 
-1. To create a Lakehouse we first have to return to the workspace where
+1.  To create a Lakehouse we first have to return to the workspace where
     all other objects are in. To do so click on the
-    icon **RTI-Medallian@lab.LabInstance.Id** in the left toolbar. If you are attending the
+    icon **RTI-Medallian** in the left toolbar. If you are attending the
     dataMinds Connect Europe Precon this is the workspace that was
     provided to you.
 
-    ![](./media/img13.png)
-2. Click on the button **+ New Item** in the toolbar and in the popin
-    window filter for, and select, the tile **+++Lakehouse+++**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image66.png)
-3. In the **New lakehouse** dialog enter +++WebSalesData_LH+++ as the name
-    for the new lakehouse. Ensure that the checkbox **Lakehouse schemas(Public Preview)** is not checked. Then click on the
-    button **Create**.
+2.  Click on the button **+ New Item** in the toolbar and in the popin
+    window click on the tile **Lakehouse**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image67.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image66.png)
 
-## Task 8: Uploading reference data files and creating delta tables in the lakehouse
+3.  In the dialog **New lakehouse** enter +++WebSalesData_LH+++ as name
+    for the new lakehouse. Ensure that the checkbox **Lakehouse schemas
+    (Public Preview)** is not checked. Then click on the
+    button **Create**
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image67.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image68.png)
+
+## Task 8: Uploading reference data files and creating delta tables in the lakehouse 
 
 After our lakehouse has been created the overview page of the lakehouse
 will be displayed. Next task we have to accomplish is to load static
 data into our new lakehouse. To do so please execute the following
 steps.
 
-1. Click on the button **Get data** in the toolbar and select **UploadFiles** from the dropdown menu.
+1.  Click on the button **Get data** in the toolbar and select **Upload
+    Files** from the dropdown menu.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image68.png)
-2. To upload the two files click on the folder symbol under
-    **C:\\Labfiles\\Lab Files**. Select the two
-    files **products.csv** and **productcategory.csv**. Then click on
-    the button **Open**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image69.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image69.png)
+2.  To upload the two files click on the folder symbol under
+    **C:Labfiles/**. Select the two
+    files **products.csv** and **productcategory.csv**. Then click on
+    the button **Open**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image70.png)
+> ![](./media/image70.png)
+>
+> ![](./media/image71.png)
 
-    > [!note]**To select the two files at once you can just hold the key CTRL whileyou click the two files.**
-3. In the popin window **Upload files** click on the button **Upload**.
+**To select the two files at once you can just hold the key CTRL while
+you click the two files.**
+
+3.  In the popin window **Upload files** click on the button **Upload**.
     Now the files will be uploaded.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image71.png)
-4. To check that the files have been uploaded successfully, click on
-    the folder **Files** in the pane **Explorer**. You should see the
-    files in the list **Files** in the right part of the window.
+> ![](./media/image72.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image73.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image72.png)
-5. Next we have to create delta tables in our Lakehouse from the files
+4.  To check that the files have been uploaded successfully, click on
+    the folder **Files** in the pane **Explorer**. You should see the
+    files in the list **Files** in the right part of the window.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image74.png)
+
+5.  Next we have to create delta tables in our Lakehouse from the files
     we uploaded. To do this access the context menu by clicking on the
-    three dots (**...**) elipsis. Select **Load to tables** from the context
+    three dots (**...**). Select **Load to tables** from the context
     menu.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image73.png)
-6. In the submenu click on **New table**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image75.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image74.png)
-7. Retain all default values and click on the button **Load**.
+6.  In the submenu click on **New table**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image75.png)
-8. This steps have to be executed for the file productcategory.csv as
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image76.png)
+
+7.  Retain all default values and click on the button **Load**.
+
+> ![](./media/image77.png)
+
+8.  This steps have to be executed for the file productcategory.csv as
     well as for the file **product.csv.**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image76.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image78.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image79.png)
+>
+> ![](./media/image80.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image77.png)
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image78.png)
-9. Ensure that both
-    files **products.csv** and **productcategory.csv** are available as
+9.  Ensure that both
+    files **products.csv** and **productcategory.csv** are available as
     delta tables in your lakehouse. Your lakehouse should look like
     this:
 
-    ![](./media/img14.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image81.png)
 
-## Task 9: Accessing Eventhouse data from the lakehouse
+## Task 9: Accessing Eventhouse data from the lakehouse  
 
 In this task we will make the Eventhouse tables form the KQL Database
 available in our Lakehouse. This will be accomplished by
-creating *shortcuts*.
+creating *shortcuts*.
 
-1. Click on the button **Get data** in the menu bar at the top.
-    Choose **New shortcut** from the dropdown menu.
+1.  Click on the button **Get data** in the menu bar at the top.
+    Choose **New shortcut** from the dropdown menu.
 
-     ![](./media/img15.png)
+> ![](./media/image82.png)
 
-    > [!note]If your Lakehouse is using Schemas you will see the
-    > schema **dbo** under the folder **Tables**. right-click the
-    > schema **dbo** and select the option **New table shortcut** from the
-    > context menu.
-2. Select **Microsoft OneLake.**
+\*\*If your Lakehouse is using Schemas you will see the
+schema **dbo** under the folder **Tables**. right-click the
+schema **dbo** and select the option \*\*New table shortcut\*\* from the
+context menu.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image81.png)
-3. Select the KQL Database **WebEvents_EH** in the Window **Select adata source type** and click on the button **Next**.
+2.  Select **Microsoft OneLake.**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image82.png)
-4. Expand the folder **Tables** under **WebEvents_EH** in the
-    window **New shortcut** and check both
-    tables **BronzeClicks** and **BronzeImpressions**. Click
-    on **Next**.
+> ![](./media/image83.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image83.png)
+3.  Select the KQL Database **WebEvents_EH** in the Window **Select a
+    data source type** and click on the button **Next**.
 
-    > [!note]**Note:** You may return to this step to create additional shortcuts,
-    > after running the createAll.kql database script which will create
-    > additional tables. For now, you may proceed by selecting just
-    > the BronzeClicks and BronzeImpressions tables.
-5. Click on the button **Create**.
+> ![](./media/image84.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image84.png)
-6. Now you can see the shortcuts to the tables **BronzeClicks** and
+4.  Expand the folder **Tables** under **WebEvents_EH** in the
+    window **New shortcut** and check both
+    tables **BronzeClicks** and **BronzeImpressions**. Click
+    on **Next**.
+
+> ![](./media/image85.png)
+
+**Note:** You may return to this step to create additional shortcuts,
+after running the createAll.kql database script which will create
+additional tables. For now, you may proceed by selecting just
+the BronzeClicks and BronzeImpressions tables.
+
+5.  Click on the button **Create**.
+
+> ![](./media/image86.png)
+
+6.  Now you can see the shortcuts to the tables **BronzeClicks** and
     **BronzeImpressions** under the folder Tables in the lakehouse
     **WebSalesData_LH**.
 
-    ![](./media/img16.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image87.png)
 
-    > [!note]**Note:** Note that the shortcuts have another icon than the regular
-    > delta tables.
+**Note:** Note that the shortcuts have another icon than the regular
+delta tables.
 
-## Task 10: Build the KQL DB schema
+## Task 10: Build the KQL DB schema  
 
 In this section we will create all the silver tables, functions and
 enable update policies and in our Eventhouse KQL Database. Two of the
-tables (product and productCategory) are shortcuts to the lakehouse and
-the data is **NOT** being copied into our KQL Database.
+tables (product and productCategory) are shortcuts to the lakehouse and
+the data is **NOT** being copied into our KQL Database.
 
-> ! [alt text](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image86.png)
+> ![](./media/image88.png)
 
-1. Open the KQL Database **WebEvents_EH** in the Eventhouse of your
+1.  Open the KQL Database **WebEvents_EH** in the Eventhouse of your
     Fabric Workspace. To do so click on the Icon of the Eventhouse in
     the left toolbar.
 
-    ![](./media/img17.png)
-2. Click on the button **+ New** in the top toolbar and
-    choose **OneLake shortcut** from the drop down menu.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image89.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image88.png)
-3. Select **Microsoft OneLake**.
+2.  Click on the button **+ New** in the top toolbar and
+    choose **OneLake shortcut** from the drop down menu.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image89.png)
-4. Select the lakehouse **WebSalesData_LH** and click on the
-    button **Next**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image90.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image90.png)
-5. Expand the folder **Tables**, select the table **products** table
-    and click on the button **Create**. This will create a shortcut to
-    the table **products** in your Lakehouse without copying the data
+3.  Select **Microsoft OneLake**..
+
+> ![](./media/image91.png)
+
+4.  Select the lakehouse **WebSalesData_LH** and click on the
+    button **Next**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image92.png)
+
+5.  Expand the folder **Tables**, select the table **products** table
+    and click on the button **Create**. This will create a shortcut to
+    the table **products** in your Lakehouse without copying the data
     from the Lakehouse to Eventhouse.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image91.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image93.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image94.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image95.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image96.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image92.png)
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image93.png)
-6. Repeat the steps above for the table **productcategory** to create a
+6.  Repeat the steps above for the table **productcategory** to create a
     shortcut for this table as well.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image94.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image97.png)
+>
+> ![](./media/image98.png)
+>
+> ![](./media/image99.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image100.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image101.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image102.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image95.png)
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image96.png)
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image97.png)
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image98.png)
-7. Expand the folder **Shortcuts** in the tree of your
-    Eventhouse **WebEvents_EH** to verify if the 2 shortcuts have been
+7.  Expand the folder **Shortcuts** in the tree of your
+    Eventhouse **WebEvents_EH** to verify if the 2 shortcuts have been
     created correctly.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image99.png)
-8. In the WebEvents_EH page, select **Databse** and select **Query withcode**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image103.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image100.png)
+8.  In the WebEvents_EH page, select **Databse** and select **Query with
+    code**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image101.png)
-9. On the left side in the pane **KQL Databases** underneath the
-    node **WebEvents_EH** there is the automatically created
-    queryset **WebEvents_EH_queryset**. Click on this queryset and
-    replace the text in the tab **WebEvents_EH** by the contents of the
-    file createAll.kql. Then click on the Button **Run**
+>  ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image104.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image105.png)
+
+9.  On the left side in the pane **KQL Databases** underneath the
+    node **WebEvents_EH** there is the automatically created
+    queryset **WebEvents_EH_queryset**. Click on this queryset and
+    replace the text in the tab **WebEvents_EH** by the contents of the
+    file createAll.kql. Then click on the Button **Run**
 
     ```
     .execute database script <|
@@ -682,71 +841,80 @@ the data is **NOT** being copied into our KQL Database.
     | project-reorder CampaignType
     }
     ```
+> ![](./media/image106.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image102.png)
-10. The status of the execution of the commands from the file can be
+10. The status of the execution of the commands from the file  can be
     seen at the bottom of the pane. The result of each Command should
-    be **Completed**.
+    be **Completed**.
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image103.png)
-11. Click on the pencil at the tab rename the tab to **createAll**.
+> ![A screenshot of a computer Description automatically
+> generated](./media/image107.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image104.png)
+11. Click on the pencil at the tab rename the tab
+    to +++**createAll+++**.
 
-    ![](./media/img19.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image108.png)
+>
+> ![](./media/image109.png)
+>
+> **Note:** You can add additional tabs in the KQL Queryset to add new
+> queries.
 
-    > [!note]**Note:** You can add additional tabs in the KQL Queryset to add new
-    > queries.
 12. Expand all folders in the database pane on the left. All tables and
     functions that have been created by the script can be found here.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image106.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image110.png)
 
-    > [!note]**Note:** While on the KQL Database details screen you may explore
-    > additional Real-Time Intelligence Samples by clicking the drop-drop next
-    > to Get data and selecting a desired sample. These samples give you the
-    > ability to learn more.
+**Note:** While on the KQL Database details screen you may explore
+additional Real-Time Intelligence Samples by clicking the drop-drop next
+to Get data and selecting a desired sample. These samples give you the
+ability to learn more.
 
-## Task 11: Real-Time Dashboard
+## Task 11: Real-Time Dashboard  
 
 In this task, we will build a real-time dashboard to visualize the
 streaming data and set it to refresh every 30 seconds. (Optionally) A
-pre-built version of the dashboard is available to download here, which
+pre-built version of the dashboard is available to download here, which
 can be imported and configured to your KQL Database data source.
 
 - The Proctor Guide covers this process.
+- ![Real-Time Dashboard](./media/image111.png)
 
-    >! [Real-TimeDashboard](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image107.png)
+1.  Now, click on **RTI-Medallian** on the left-sided navigation pane.
 
-1. Now, click on **RTI-Medallian@lab.LabInstance.Id** on the left-sided navigation pane.
+![](./media/image112.png)
 
-     ![](./media/img20.png)
-2. To create a new realtime dashboard click on the button **+ New Item**, filter for, and select, **+++Real-Time Dashboard+++**.
+2.  To create a new realtime dashboard click on the button **+ New
+    Item** and the select **Real-Time Dashboard**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image109.png)
-3. Enter the name **+++Web Events Dashboard+++** in the field **New Real-Time Dashboard**. Then click on **Create**.
+> ![](./media/image113.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image110.png)
-4. An empty dashboard will be displayed. To add a visualisation click
-    on the button **+ Add tile**.
+3.  Enter the name +++**Web Events Dashboard+++** in the field **New
+    Real-Time Dashboard**. Then click on **Create**.
 
-    ![](./media/img21.png)
-5. Click on the Button **+ Data source** and select **Eventhouse / KQLDatabase** .
+> ![](./media/image114.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image112.png)
-6. In the Window **One Lake Data Hub** select the
-    Eventhouse **WebEvents_EH**. Then click on **Connect**.
+4.  An empty dashboard will be displayed. To add a visualisation click
+    on the button **+ Add tile**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image113.png)
-7. As name keep the given name WebEvents_EH. Set
-    the **Database** to **WebEvents_EH** and click on the
-    button **Add**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image115.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image114.png)
-8. Set Time rage parameter at the top left to **Last 7 days**. This
-    parameter is referenced by the query in the where clause by using
-    fields _startTime and _endTime.
-9. Copy the following query and click **Run**.
+5.  Click on the Button **WebEvents_EH**
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image116.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image117.png)
+
+8.  Set Time rage parameter at the top left to **Last 7 days**. This
+    parameter is referenced by the query in the where clause by using
+    fields \_startTime and \_endTime.
+
+9.  Copy the following query and click **Run**.
 
     ```
     //Clicks by hour
@@ -757,37 +925,56 @@ can be imported and configured to your KQL Database data source.
     | top 30 by date_count
     ```
 
-    > [!note]**Note**: All queries are available in this script
-    >      file [dashboard-RTA.kql](https://github.com/microsoft/FabricRTIWorkshop/blob/main/dashboards/RTA%20dashboard/dashboard-RTA.kql)
-    > is available in Labfiles folder
+Note: All queries are available in this script
+file [dashboard-RTA.kql](https://github.com/microsoft/FabricRTIWorkshop/blob/main/dashboards/RTA%20dashboard/dashboard-RTA.kql)
+is available in Labfiles folder
 
-    ![](./media/img22.png)
-10. Click on the **+ Add visual**
+![](./media/image118.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image116.png)
-11. In the **Visual formatting** tab, set Tile name to **+++Click by hour+++**, set Visual type to **Area chart**. Click on the **Apply changes**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image119.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image117.png)
-12. While editing the dashboard, click on the tab **Manage** on the top
-    left then click on the button **Parameters**.
+10. Click on the **+Add visual**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image118.png)
-13. To edit the parameter **Time range** click on the pencil icon. This
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image120.png)
+
+11. In the **Visual formatting** tab, set Tile name to +++**Click by
+    hour**+++, set Visual type to **Area chart.** Click on the **Apply
+    changes**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image121.png)
+
+12. While editing the dashboard, click on the tab **Manage** on the top
+    left then click on the button **Parameters**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image122.png)
+
+13. To edit the parameter **Time range** click on the pencil icon. This
     will enter the edit mode for this parameter.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image119.png)
-14. Select **Last 7 Days** in the combo box **Default value**. Then
-    click on **Done**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image123.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image120.png)
-15. In the parameter pane click on the button **Close**.
+14. Select **Last 7 Days** in the combo box **Default value**. Then
+    click on **Done**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image121.png)
-16. Click on the tab **Home** and then click on the button **New tile** again to proceed with the next visuals.
+> ![](./media/image124.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image122.png)
+15. In the parameter pane click on the button **Close**.
+
+> ![](./media/image125.png)
+
+16. Click on the tab **Home** and then click on the button **New
+    tile** again to proceed with the next visuals.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image126.png)
+
 17. In the query editor, **paste** the following code, then click on
-    **Run** to execute the query.
+    **Run** to execute the query.
 
     **Impressions by hour**
 
@@ -801,25 +988,36 @@ can be imported and configured to your KQL Database data source.
     | top 30 by date_count
     ```
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image123.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image127.png)
+
 18. Select **+Add visual**
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image124.png)
-19. In the **Visual formatting** tab, set Tile name to **+++Impressions by hour+++**, set Visual type to **Area chart**. Click on the
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image128.png)
+
+19. In the **Visual formatting** tab, set Tile name to +++**Impressions
+    by hour**+++, set Visual type to **Area chart.** Click on the
     **Apply changes**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image125.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image129.png)
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image126.png)
-20. While editing the dashboard, click **Home** on the top left, and
+![A screenshot of a computer screen AI-generated content may be
+incorrect.](./media/image130.png)
+
+20. While editing the dashboard, click **Home** on the top left, and
     select **New title** to proceed with the next visuals.
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image127.png)
-21. In the query editor, **paste** the following code, then click on
-    **Run** to execute the query.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image131.png)
 
-    **Impressions by location**
-    - Visual type: **Map**.
+21. In the query editor, **paste** the following code, then click on
+    **Run** to execute the query.
+
+**Impressions by location **[\#](javascript:void(0))
+
+- Visual type: **Map**.
 
     ```
     //Impressions by location
@@ -830,22 +1028,36 @@ can be imported and configured to your KQL Database data source.
     | render scatterchart with (kind = map) //, xcolumn=lon, ycolumns=lat)
     ```
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image128.png)
-22. Select **+ Add visual**
-23. In the **Visual formatting** tab, set Tile name to +++Impressions by location+++, set Visual type to **Map.** Click on the **Apply changes**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image132.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image129.png)
+22. Select **+Add visual**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image130.png)
-24. While editing the dashboard, click **Home** on the top left, and
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image133.png)
+
+23. In the **Visual formatting** tab, set Tile name to +++**Impressions
+    by location**+++, set Visual type to **Map.** Click on the **Apply
+    changes**.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image134.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image135.png)
+
+24. While editing the dashboard, click **Home** on the top left, and
     select **New title** to proceed with the next visuals.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image131.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image136.png)
+
 25. In the query editor, paste the following code, then click on Run to
     execute the query.
 
-    **Average Page Load time**
-    - Visual type: **Timechart**.
+**Average Page Load time**[\#](javascript:void(0))
+
+- Visual type: **Timechart**.
 
     ```
     //Average Page Load time
@@ -857,20 +1069,31 @@ can be imported and configured to your KQL Database data source.
     | render timechart
     ```
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image132.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image137.png)
+
 26. Select **+Add visual**
-27. In the **Visual formatting** tab, set Tile name to **+++Average Page Load time+++**, set Visual type to **Time chart.** Click on the
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image138.png)
+
+27. In the **Visual formatting** tab, set Tile name to +++**Average Page
+    Load time**+++, set Visual type to **Time chart.** Click on the
     **Apply changes**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image133.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image139.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image140.png)
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image134.png)
-28. While editing the dashboard, click **Home** on the top left, and
+28. While editing the dashboard, click **Home** on the top left, and
     select **New title** to proceed with the next visuals.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image135.png)
+> ![](./media/image141.png)
+
 29. In the query editor, **paste** the following code, then click on
-    **Run** to execute the query.
+    **Run** to execute the query.
 
     **Impressions, Clicks & CTR **
     - Visual type: **Data Value column**
@@ -889,38 +1112,53 @@ can be imported and configured to your KQL Database data source.
     | join clck on $left.dateOnly == $right.dateOnly
     | project selected_date = dateOnly , impressions = imp_count , clicks = clck_count, CTR = clck_count * 100 / imp_count
     ```
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image142.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image136.png)
-1. Select **+Add visual**
-30. Enter **+++Impressions+++** in the field **Tile name**.
-    Select **Stat** in the combobox **Visual type**. In combobox **Data** > **Value column** select **impressions (long)**. Then click on the
-    button **Apply changes**.
+30. Enter +++**Impressions**+++ in the field **Tile name**.
+    Select **Stat** in the combobox **Visual type**. In combobox **Data
+    Value column** select **impressions (long)**. Then click on the
+    button **Apply changes**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image137.png)
+![](./media/image143.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image138.png)
-31. Click the 3-dots (**...**) elipsis at the top right of the tile you just
-    created and select **Tile options** > **Duplicate** from the context menu to duplicate
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image144.png)
+
+31. Click the 3-dots (**...**) at the top right of the tile you just
+    created and select **Duplicate** from the context menu to duplicate
     it two more times.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image139.png)
-32. Click the 3-dots (**...**) elipsis on the 2nd duplicate and select **Edit** then name it **+++Clicks+++**, set the **Data value column** to **clicks(long)**, and then click on the button **Apply changes**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image145.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image140.png)
+32. Name the 2nd one Clicks, set the Data value column to **clicks
+    (long)**, then click on the button **Apply changes**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image141.png)
-33. Click the 3-dots (**...**) elipsis on the 3rd duplicate and select **Edit** then name it **+++Click Through Rate+++**, set the **Data value column**
-    to **CTR (long)**, and then click on the button **Apply changes**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image146.png)
+>
+> ![](./media/image147.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image148.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image142.png)
+33. Name the 3rd Click Through Rate, set the Data value column
+    to **CTR**, then click on the button **Apply changes**.
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image143.png)
-34. While editing the dashboard, click **Home** on the top left, and
+![](./media/image149.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image148.png)
+
+34. While editing the dashboard, click **Home** on the top left, and
     select **New title** to proceed with the next visuals.
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image144.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image150.png)
+
 35. In the query editor, **paste** the following code, then click on
-    **Run** to execute the query
+    **Run** to execute the query
 
     **Average Page Load Time Anomalies**
 
@@ -932,52 +1170,32 @@ can be imported and configured to your KQL Database data source.
 	| extend anomalies = series_decompose_anomalies(average_loadtime) 
 	| render anomalychart
     ```
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image151.png)
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image145.png)
-36. Clicking **+ Add visual**.
+36. Clicking **+ Add visual**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image146.png)
-37. In the **Visual formatting** tab, set Tile name to +++Avg Page Load Time Anomalies+++, Click on the **Apply changes**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image152.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image147.png)
+37. In the **Visual formatting** tab, set Tile name to +++Avg Page Load
+    Time Anomalies+++, Click on the **Apply changes**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image148.png)
-38. While editing the dashboard, click **Home** on the top left, and
-    select **New title** to proceed with the next visuals.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image153.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image154.png)
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image149.png)
-39. In the query editor, **paste** the following code, then click on
-    **Run** to execute the query
+## Task 12: Logo (Markdown Text Tile)  
 
-    **Strong Anomalies**
+1.  Click on the button **New text tile** in the toolbar at the top.
 
-    ```
-    //Strong Anomalies
-    SilverImpressions
-    | where eventDate between (_startTime.._endTime)
-    | make-series average_loadtime = avg(page_loading_seconds) on eventDate from _startTime to _endTime+4h step 1h
-    | extend anomalies = series_decompose_anomalies(average_loadtime,2.5)
-    | mv-expand eventDate, average_loadtime, anomalies
-    | where anomalies <> 0
-    | project-away anomalies
-    ```
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image155.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image150.png)
-1. Clicking **+ Add visual**.
-
-40. In the **Visual formatting** tab, set Tile name to +++Strong Anomalies+++, and set Visual type to **Map.** Click on the **Apply changes**.
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image151.png)
-
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image152.png)
-
-## Task 12: Logo (Markdown Text Tile)
-
-1. Click on the button **New text tile** in the toolbar at the top.
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image153.png)
-2. Paste the following code in the text area and click on the
-    button **Apply changes**
+2.  Paste the following code in the text area and click on the
+    button **Apply changes**
 
     ```
     //Logo (Markdown Text Tile)
@@ -985,46 +1203,56 @@ can be imported and configured to your KQL Database data source.
     ![AdventureWorks](https://vikasrajput.github.io/resources/PBIRptDev/AdventureWorksLogo.jpg "AdventureWorks")
     ```
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image154.png)
+![](./media/image156.png)
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image155.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image157.png)
 
-    > [!note]**Note**: The title can be resized on the dashboard canvas directly,rather than writing code.
+**Note: The title can be resized on the dashboard canvas directly,
+rather than writing code.**
 
 After you added all the visuals and moved them to thier appropiate
 places your dashboard should look similar to this.
 
-> ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image156.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image158.png)
 
-## Task 13: Auto-refresh
+## Task 13: Auto-refresh  
 
 In this task we will enable auto-refresh so the dashboard will be
 automatically updated while it is shown on screen.
 
-1. While editing the dashboard, click on the tab **Manage** and then
-    click on the button **Auto refresh**. This will open a pane on the
+1.  While editing the dashboard, click on the tab **Manage** and then
+    click on the button **Auto refresh**. This will open a pane on the
     right side of the browser.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image157.png)
-2. In the pane **Auto refresh** set it to **Enabled** and set **Default refresh rate** to **Continous**. Then click on the button **Apply**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image159.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image158.png)
-3. Click on the tab **Home** and then click on the button **Save**.
+2.  In the pane **Auto refresh** set it to **Enabled** and set **Default
+    refresh rate** to **Continous**. Then click on the button **Apply**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image159.png)
+> ![](./media/image160.png)
+
+3.  Click on the tab **Home** and then click on the button **Save**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image161.png)
 
 ## **Task 14:** create a Reflex Alert
 
 In this task we will create a Reflex Alert that will send a Teams
 Message when a value meets a certain threshold.
 
-1. While editing the dashboard, click on the three dots (**...**) of
-    the tile **Click by hour**. Select **Set alert** from the context
-    menu. This will open the pane **Set alert** at the right side in the
+1.  While editing the dashboard, click on the three dots (**...**) of
+    the tile **Click by hour**. Select **Set alert** from the context
+    menu. This will open the pane **Set alert** at the right side in the
     browser.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image160.png)
-2. In the pane **Set alert** set the values as stated in the following
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image162.png)
+
+2.  In the pane **Set alert** set the values as stated in the following
     table
 
     | Field | Value |
@@ -1035,53 +1263,64 @@ Message when a value meets a certain threshold.
     | Condition | Becomes greater than |
     | Value | 250 |
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image161.png)
-3. Select **Message me in teams** as **Action**.
+> ![A screenshot of a computer Description automatically
+> generated](./media/image163.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image162.png)
-4. In the combobox **Workspace** select the workspace. In our example
-    the workspace is named **RTI-Medallion**. If you do the Lab at
+3.  Select **Message me in teams** as **Action**.
+
+> ![](./media/image164.png)
+
+4.  In the combobox **Workspace** select the workspace. In our example
+    the workspace is named **RTI-Medallion**. If you do the Lab at
     dataMinds Connect Europe choose the workspace name that was provided
-    to you. Ensure that in the combobox **Item** the value **Create anew item** is selected. Insert My Reflex as value for the
-    field **New item name**. Then click on the button **Create**.
+    to you. Ensure that in the combobox **Item** the value **Create a
+    new item** is selected. Insert My Reflex as value for the
+    field **New item name**. Then click on the button **Create**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image163.png)
+> ![](./media/image165.png)
 
 The Reflex item will appear in your workspace and you can edit the
 Reflex trigger action. The same Reflex item can also trigger multiple
 actions.
 
-## Task 15: Stop the notebook
+## Task 13: Stop the notebook
 
 > At this point you've completed the lab, so you may stop running the
 > notebook.
 
-1. Open the notebook "Generate synthetic events" from your workspace
-    and click **Stop** on the last code cell if its still running.
+1.  Open the notebook "Generate synthetic events" from your workspace
+    and click **Stop** on the last code cell if its still running.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image164.png)
-2. You can click **Cancel All** on the top menu or click the stop
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image166.png)
+
+2.  You can click **Cancel All** on the top menu or click the stop
     red-square button to Stop session. These only appear when your
     session is active or the notebook is running.
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image165.png)
+> ![A screenshot of a computer Description automatically
+> generated](./media/image167.png)
 
-    > ! [alt text](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image166.png)
+## Task 14: Clean up resources
 
-## Task 16: Clean up resources
-
-1. Select your workspace, the **RTI-Medallian@lab.LabInstance.Id** from the left-hand
+1.  Select your workspace, the **RTI-Medallian** from the left-hand
     navigation menu. It opens the workspace item view.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image167.png)
-2. Select **Workspace settings** from the top-right corner.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image168.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image168.png)
-3. Select **General** and **Remove this workspace.**
+2.  Select the **...** option under the workspace name and
+    select **Workspace settings**.
 
-    > ! [A screenshot of a computer Description automaticallygenerated](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2004/media/image169.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image169.png)
 
-**Summary**
+3.  Select **General** and **Remove this workspace.**
+
+![A screenshot of a computer Description automatically
+generated](./media/image170.png)
+
+Summary
 
 In this use case you learn to set up your Fabric workspace and related
 components, start by creating a workspace that includes essential items
@@ -1100,4 +1339,3 @@ seconds, and customize it by adding a logo. Enable auto-refresh to keep
 the dashboard updated automatically. Finally, create a Reflex Alert to
 send notifications based on data thresholds, and finish by stopping the
 notebook and cleaning up resources.
-
