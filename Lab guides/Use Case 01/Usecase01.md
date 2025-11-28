@@ -1,9 +1,10 @@
-# Use case 01: Digital Twin Builder for Contoso Energy: Contextualizing Data and Visualizing Insights
+## Use case 01: Digital Twin Builder for Contoso Energy: Contextualizing
+Data and Visualizing Insights
 
 **Introduction**
 
 This use case guides users through the process of building a digital
-twin model using Microsoft Fabric's Real-Time Intelligence capabilities.
+twin model using Microsoft Fabric’s Real-Time Intelligence capabilities.
 Participants will learn how to set up a Microsoft Fabric workspace,
 create and manage lakehouses, ingest and transform both contextual and
 streaming data, model real-world entities using Digital Twin Builder,
@@ -27,54 +28,72 @@ experience more frequent delays.
 
 **Objectives**
 
-- To introduce users to Microsoft Fabric's Digital Twin Builder
-    (preview) within Real-Time Intelligence.
+- To introduce users to Microsoft Fabric’s Digital Twin Builder
+  (preview) within Real-Time Intelligence.
+
 - To demonstrate how to integrate static and streaming datasets using
-    Lakehouse and Eventhouse.
+  Lakehouse and Eventhouse.
+
 - To model a real-world scenario (bus and stop data) through ontology
-    creation in Digital Twin Builder.
+  creation in Digital Twin Builder.
+
 - To use KQL for querying processed data and extract actionable
-    insights.
+  insights.
+
 - To visualize time-series and entity data in a Real-Time Dashboard.
+
 - To learn best practices for entity mapping, relationship definition,
-    and data transformation.
+  and data transformation.
 
-  > [!alert]Important Note: If you encounter a "SKU is not enough" error in this usecase, please stop any currently running kernel or refresh the page, then wait for 2 minutes before trying again. This allows the system to reset and may help resolve the issue.
+## Exercise 1: Create a Microsoft Fabric workspace
 
-## Exercise 1: Create a Microsoft Fabric workspace
+### Task 1: Sign in to Power BI account and sign up for the free Microsoft Fabric trial
 
-### Task 1: Sign in to Power BI account
-
-1. Open your browser, navigate to the address bar, and type or paste
+1.  Open your browser, navigate to the address bar, and type or paste
     the following URL: +++https://app.fabric.microsoft.com/+++ then
-    press the Enter button.
+    press the Enter button.
 
-    > ! [A search engine window with a red box AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image1.png)
+> ![A search engine window with a red box AI-generated content may be
+> incorrect.](./media/image1.png)
 
-2. In the Microsoft Fabric window, enter your assigned credentials to log in.
-
-    |  |  |
+2.  In the Microsoft Fabric window, enter assigned credentials, and
+    click on the Submit button.
+       |  |  |
     | --- | --- |
     | Username | **+++@lab.CloudPortalCredential(User1).Username+++** |
     | Password | **+++@lab.CloudPortalCredential(User1).Password+++** |
 
-    > ! [A close up of a white and green object AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image2.png)
-3. In **Stay signed in?** window, click on the **Yes** button and you'll be directed to Fabric Home page.
+> ![A close up of a white and green object AI-generated content may be
+> incorrect.](./media/image2.png)
 
-    > ! [A screenshot of a computer error AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image4.png)
+3.  Then, In the Microsoft window enter the password and click on
+    the Sign in button\*\*.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image5.png)
+> ![A login screen with a red box and blue text AI-generated content may
+> be incorrect.](./media/image3.png)
+
+4.  In Stay signed in? window, click on the Yes button.
+
+> ![A screenshot of a computer error AI-generated content may be
+> incorrect.](./media/image4.png)
+
+5.  You’ll be directed to Fabric Home page.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image5.png)
 
 ### Task 2: Create a workspace
 
 Before working with data in Fabric, create a workspace with the Fabric
 trial enabled.
 
-1. In the Workspaces pane Select **+** **New Workspace**.
+1.  In the Workspaces pane Select **+** **New Workspace**. 
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image10.png)
-2. In the **Create a workspace tab**, enter the following details and
-    click on the **Apply** button.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image6.png)
+
+2.  In the **Create a workspace tab**, enter the following details and
+    click on the **Apply** button.
 
     |  |  |
     | --- | --- |
@@ -82,89 +101,103 @@ trial enabled.
     | Advanced | Under License mode, select Fabric capacity |
     | Default | storage format Small dataset storage format |
 
-    ![](./media/image11.png)
-   
-3. Wait for the deployment to complete. It takes 1-2 minutes to complete. When your new workspace opens, it should be empty.
+> ![](./media/image7.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image8.png)
 
- ![](./media/img1.png)
+3.  Wait for the deployment to complete. It takes 1-2 minutes to
+    complete. When your new workspace opens, it should be empty.
 
-### **Task 3: Enable Digital twin builder for your tenant**
-
-> [!alert]The **Digital twin builder** setting is already enabled for this lab and is not available in this environment. This task is only provided to highlight how to enable this setting in your own tenants.
-> You may safely skip to the next exercise.
-
-1. Go to **settings** option in Fabric and select **Admin portal**.
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image14.png)
-2. Enable the **Digital Twin Builder (preview)** switch and click on
-    **Apply**.
-
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image15.png)
-    > 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image16.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image9.png)
 
 ## Exercise 2: Upload contextual data
 
 ### Task 1: Create a lakehouse
 
-1. In the **Digital twin builder@lab.LabInstance.Id** workspaces pane, select **+ New item**.
+1.  In the Workspaces pane, select **+ New item**.
 
-   ![](./media/img2.png)
-2. In the **Filter by item type** search box, enter **+++Lakehouse+++**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image10.png)
+
+2.  In the **Filter by item type** search box, enter +++**Lakehouse+++**
     and select the lakehouse item.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image18.png)
-3. Enter **+++Tutorial+++** as the lakehouse name and select **Create**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image11.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image19.png)
+3.  Enter **+++Tutorial+++**as the lakehouse name and unselect the
+    lakehouses schemas. Select **Create**.
 
-    > [!note]When provisioning is complete, the lakehouse explorer page is shown.
+4.  When provisioning is complete, the lakehouse explorer page is shown.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image20.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image12.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image13.png)
 
 ### Task 2: Upload static contextual data
 
-1. In the lakehouse explorer page in Fabric, select **Get data** from
-    the menu ribbon and choose **Upload files**.
+1.  In the lakehouse explorer page in Fabric, select **Get data** from
+    the menu ribbon and choose **Upload files**.
 
-   ![](./media/img3.png)
-2. On the Upload files tab, click on the folder under the Files
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image14.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image22.png)
-3. Browse to **C:\LabFiles\LabFiles** on your VM, then
-    select **stops_data.csv** file and click on **Open** button.
+2.  On the Upload files tab, click on the folder under the Files
 
-   ![](./media/img4.png)
-4. Now select **Upload**. When the file is finished uploading, close
-    the **Upload files** pane.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image15.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image24.png)
+3.  Browse to **C:\LabFiles** on your VM, then
+    select **stops_data.csv** file and click on **Open** button.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image25.png)
-5. Click and select refresh on the **Files**. The file appear.
+![](./media/image16.png)
 
-    ![](./media/img5.png)
-6. In the **Explorer** pane on the left, select **Files**. Hover over
-    the file name and select the 3 dot elipsis (**...**) that appears. Then
-    select **Load to Tables** and **New table**.
+4.  Now select **Upload**. When the file is finished uploading, close
+    the **Upload files** pane.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image27.png)
+![](./media/image17.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image28.png)
+![](./media/image18.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image29.png)
-7. Name the table **+++stops_data+++**. Leave the other default
-    settings and select **Load**.
+5.  Click and select refresh on the **Files**. The file appear.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image30.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image19.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image31.png)
+6.  In the **Explorer** pane on the left, select **Files**. Hover over
+    the file name and select the **...** that appears. Then
+    select **Load to Tables** and **New table**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image32.png)
-8. When the table is created, review your new **stops_data** table and
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image20.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image21.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image22.png)
+
+7.  Name the table +++**stops_data+++**. Leave the other default
+    settings and select **Load**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image23.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image24.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image25.png)
+
+8.  When the table is created, review your new **stops_data** table and
     verify that it contains data.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image33.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image26.png)
 
 ## Exercise 3: Get and process streaming data
 
@@ -178,102 +211,138 @@ to be in a lakehouse.
 
 ### Task 1: Create an eventhouse
 
-1. From the **Tutorial** page, select **Digital twin builder@lab.LabInstance.Id** in the
+1.  From the **Tutorial**  page, select **Digital twin builder** in the
     left-sided navigation menu to return to the workspace item list.
-    ![](./media/img6.png)
-2. In the Workspaces pane, select **+ New item**.
 
-    ![](./media/img7.png)
-3. In the **Filter by item type** search box,
-    enter **+++Eventhouse+++** and select the Eventhouse item.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image27.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image36.png)
-4. Enter **+++Tutorial+++** as the eventhouse name. A KQL database is
-    created simultaneously with the same name and select **Create**.
+2.  In the Workspaces pane, select **+ New item**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image37.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image28.png)
 
-    > [!note] When provisioning is complete, the eventhouse **System overview** page is shown.
+3.  In the **Filter by item type** search box,
+    enter +++**Eventhouse+++** and select the Eventhouse item.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image38.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image29.png)
+
+4.  Enter **+++Tutorial+++** as the eventhouse name. A KQL database is
+    created simultaneously with the same name and select **Create**. 
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image30.png)
+
+5.  When provisioning is complete, the eventhouse **System
+    overview** page is shown.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image31.png)
 
 ### Task 2: Add Data Source to Event Stream
 
 In this task, you will create an Event Stream and add the Buses sample
 data as the source.
 
-1. From the **KQL databases** pane in the eventhouse, select the
-    new **Tutorial** database.
+1.  From the **KQL databases** pane in the eventhouse, select the
+    new **Tutorial** database.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image39.png)
-2. From the menu ribbon, select **Get data** and choose **Eventstream > New eventstream**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image32.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image40.png)
-3. Name your eventstream **+++BusEventstream+++**. When the
+2.  From the menu ribbon, select **Get data** and choose **Eventstream
+    \> New eventstream**.
+
+> ![](./media/image33.png)
+
+3.  Name your eventstream +++**BusEventstream**+++. When the
     eventstream is finished creating, it opens.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image41.png)
-4. Select **Use sample data**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image34.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image42.png)
-5. In the **Add source** page, enter +++**BusDataSource**+++ for the
-    source name. Under **Sample data**, select **Buses**.
-    Select **Add**.
+4.  Select **Use sample data**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image43.png)
-6. When the new eventstream is ready, it opens in the authoring canvas.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image35.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image44.png)
+5.  In the **Add source** page, enter +++**BusDataSource**+++ for the
+    source name. Under **Sample data**, select **Buses**.
+    Select **Add**.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image36.png)
+
+6.  When the new eventstream is ready, it opens in the authoring canvas.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image37.png)
 
 ### Task 3: Transform data
 
 In this task, you add one transformation to the incoming sample data.
-This step casts the string fields ScheduleTime and Timestamp to DateTime
-type, and renames Timestamp to ArrivalTime for clarity. Timestamp fields
+This step casts the string fields ScheduleTime and Timestamp to DateTime
+type, and renames Timestamp to ArrivalTime for clarity. Timestamp fields
 need to be in DateTime format for digital twin builder (preview) to use
 them as time series data.
 
 Follow these steps to add the data transformation.
 
-1. Select the down arrow on the **Transform events or adddestination** tile, then select the **Manage fields** predefined
-    operation. The tile is renamed to **ManageFields**.
+1.  Select the down arrow on the **Transform events or add
+    destination** tile, then select the **Manage fields** predefined
+    operation. The tile is renamed to **ManageFields**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image45.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image38.png)
 
-    ![](./media/img8.png)
-2. Select the edit icon (shaped like a pencil) on
-    the **MangeFields** tile, which opens the **Manage fields** pane.
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image39.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image47.png)
-3. Select **Add all fields**. This action ensures that all fields from
+2.  Select the edit icon (shaped like a pencil) on
+    the **MangeFields** tile, which opens the **Manage fields** pane.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image40.png)
+
+3.  Select **Add all fields**. This action ensures that all fields from
     the source data are present through the transformation.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image48.png)
-4. Select the **Timestamp** field. Toggle **Change type** to *Yes*.
-    For **Converted Type**, select **DateTime** from the dropdown list.
-    For **Name**, enter the new name of **+++ActualTime+++**. Without
-    saving, select the **ScheduleTime** field.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image41.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image49.png)
+4.  Select the **Timestamp** field. Toggle **Change type** to **Yes**.
+    For **Converted Type**, select **DateTime** from the dropdown list.
+    For **Name**, enter the new name of +++**ActualTime+++.** Without
+    saving, select the **ScheduleTime** field.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image50.png)
-5. Toggle **Change type** to *Yes*. For **Converted Type**,
-    select DateTime from the dropdown list. Leave the name as ScheduleTime
-    and select **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image42.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image51.png)
+![](./media/image43.png)
 
-6. The **Manage fields** pane closes. The **ManageFields** tile continues to display an error until you connect it to a destination.
+Toggle **Change type** to **Yes**. For **Converted Type**,
+select DateTime from the dropdown list. Leave the name as ScheduleTime
+and select **Save**.
 
-   ![](./media/img9.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image44.png)
+
+5.  The **Manage fields** pane closes. The **ManageFields** tile
+    continues to display an error until you connect it to a destination.
+
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image45.png)
 
 ### Task 4: Add destination
 
-1. From the menu ribbon, select **Add destination**, then
-    select **Eventhouse**.
+1.  From the menu ribbon, select **Add destination**, then
+    select **Eventhouse**.
 
-    ![](./media/img10.png)
-2. Enter the following information in the **Eventhouse** pane:
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image46.png)
+
+2.  Enter the following information in the **Eventhouse** pane:
 
     | Field | Value |
     | ----- | ----- |
@@ -285,77 +354,99 @@ Follow these steps to add the data transformation.
     | KQL Destination table | Create new - Enter +++bus_data_raw+++ as the table name |
     | Input data format | Json |
 
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image47.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image54.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image48.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image55.png)
+3.  Ensure that the box **Activate ingestion after adding the data
+    source** is checked.
 
-3. Ensure that the box **Activate ingestion after adding the datasource** is checked.
-4. Select **Save**.
+4.  Select **Save**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image56.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image49.png)
 
-    > ! [A screenshot of a chat AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image57.png)
-5. In the authoring canvas, select the **ManageFields** tile and drag
-    the arrow to the **TutorialDestination** tile to connect them. This
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image50.png)
+
+5.  In the authoring canvas, select the **ManageFields** tile and drag
+    the arrow to the **TutorialDestination** tile to connect them. This
     action resolves all error messages in the flow.
 
-    > ! [A screenshot of a chat AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image58.png)
-6. From the menu ribbon, select **Publish**. The eventstream now begins
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image51.png)
+
+6.  From the menu ribbon, select **Publish**. The eventstream now begins
     sending the sample streaming data to your eventhouse.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image59.png)
-    > 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image60.png)
-7. After a few minutes, the **TutorialDestination** card in the
-    eventstream view displays sample data in the **Data preview** tab.
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image52.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image53.png)
+
+7.  After a few minutes, the **TutorialDestination** card in the
+    eventstream view displays sample data in the **Data preview** tab.
     You might need to refresh the preview a few times while you wait for
     the data to arrive.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image61.png)
-8. Verify that the data table is active in your eventhouse. Go to
-    your **Tutorial - KQL Database** and refresh the view. It now contains
-    a table called **bus_data_raw** which contains data.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image54.png)
 
-    ![](./media/img11.png)
+8.  Verify that the data table is active in your eventhouse. Go to
+    your **Tutorial KQL** database and refresh the view. It now contains
+    a table called **bus_data_raw** which contains data.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image63.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image55.png)
 
-### Task 5:Transform the data using update policies
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image56.png)
+
+### Task 5: Transform the data using update policies
 
 Now that your bus streaming data is in a KQL database, you can use
-functions and a [Kusto updatepolicy](https://learn.microsoft.com/en-us/kusto/management/update-policy) to
+functions and a [Kusto update
+policy](https://learn.microsoft.com/en-us/kusto/management/update-policy) to
 further transform the data. The transformations that you perform in this
 section prepare the data for use in digital twin builder (preview), and
 include the following actions:
 
-- Break apart the JSON field Properties into separate columns for each
-    of its contained data items, BusStatus and TimeToNextStation. Digital
-    twin builder doesn't have JSON parsing capabilities, so you need to
-    separate these values before the data goes to digital twin builder.
-- Add column StopCode, which is a unique key representing each bus stop.
-    The purpose of this step is just to complete the sample data set to
-    support this tutorial scenario. Joinable entities from separate data
-    sources must contain a common column that digital twin builder can use
-    to link them together, so this step adds a simulated set of int values
-    that matches the Stop_Code field in the static bus stops data set. In
-    the real world, related data sets already contain some kind of
-    commonality.
-- Create a new table called *bus_data_processed* that contains the
-    transformed bus data.
+- Break apart the JSON field Properties into separate columns for each
+  of its contained data items, BusStatus and TimeToNextStation. Digital
+  twin builder doesn't have JSON parsing capabilities, so you need to
+  separate these values before the data goes to digital twin builder.
+
+- Add column StopCode, which is a unique key representing each bus stop.
+  The purpose of this step is just to complete the sample data set to
+  support this tutorial scenario. Joinable entities from separate data
+  sources must contain a common column that digital twin builder can use
+  to link them together, so this step adds a simulated set of int values
+  that matches the Stop_Code field in the static bus stops data set. In
+  the real world, related data sets already contain some kind of
+  commonality.
+
+- Create a new table called **bus_data_processed** that contains the
+  transformed bus data.
+
 - Enable OneLake availability for the new table, so that you can use a
-    shortcut to access the data in your *Tutorial* lakehouse.
+  shortcut to access the data in your *Tutorial* lakehouse.
 
 To run the transformation queries, follow these steps.
 
-1. Select the **Tutorial - KQL Database** inside your eventhouse. From
-    the menu ribbon, select **Query with code**, which opens the KQL
+1.  Select the **Tutorial** KQL database inside your eventhouse. From
+    the menu ribbon, select **Query with code**, which opens the KQL
     query editor.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image64.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image57.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image65.png)
-2. Copy and paste the following code into the query editor. Run each
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
+
+2.  Copy and paste the following code into the query editor. Run each
     code block in order.
 
     ```
@@ -372,16 +463,24 @@ To run the transformation queries, follow these steps.
     }
     ```
 
-   ![](./media/img12.png)
-3. Select the cell, replace the code, and click the **Run** icon
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
+
+3.  Select the cell, replace the code, and click the **Run** icon
+    KustoCopy.
 
     ```
     // Create table
     .create table bus_data_processed (ActualTime:datetime, TripId:string, BusLine:string, StationNumber:string, ScheduleTime:datetime, BusState:string, TimeToNextStation:string, StopCode:int)
     ```
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image68.png)
-4. Select the cell, replace the code, and click the **Run** icon
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image61.png)
+
+4.  Select the cell, replace the code, and click the **Run** icon
     KustoCopy.
 
     ```
@@ -397,68 +496,86 @@ To run the transformation queries, follow these steps.
             }]
         ```
     ```
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image62.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image69.png)
-5. Select the cell, replace the code, and click the **Run** icon
+9.  Select the cell, replace the code, and click the **Run** icon
 
     ```
     // Enable OneLake availability
     .alter-merge table bus_data_processed policy mirroring dataformat=parquet with (IsEnabled=true, TargetLatencyInMinutes=5)
     ```
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image70.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image63.png)
 
-    > [!note]**Tip:** You can also enable OneLake availability for the new table
-    > through the UI instead of using code. Select the table and toggle
-    > on **OneLake availability**.
+** Tip:** You can also enable OneLake availability for the new table
+through the UI instead of using code. Select the table and toggle
+on **OneLake availability**.
 
-    > ! [Screenshot of enabling OneLake availability in theUI.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image71.png)
+![Screenshot of enabling OneLake availability in the
+UI.](./media/image64.png)
 
-    > [!note]With the UI option, the default latency is 15 minutes to several hours,
-    > depending on the volume of data. To reduce the latency to five minutes,
-    > use the **.alter-merge table**
-    > command as shown in the previous code block.
-6. Go the items view of the database again, select **Tutorial** .
+With the UI option, the default latency is 15 minutes to several hours,
+depending on the volume of data. To reduce the latency to five minutes,
+use the [**.alter-merge
+table**](https://learn.microsoft.com/en-us/fabric/real-time-intelligence/event-house-onelake-availability#adaptive-behavior) command
+as shown in the previous code block.
 
-   ![](./media/img13.png)
-7. A new table is created in your database
-    called **bus_data_processed**. After a short wait, it begins to
-    populate with the processed bus data.
+10. Go the items view of the database again, select **Tutorial** .
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image73.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image65.png)
+
+3.  A new table is created in your database
+    called **bus_data_processed**. Wait for 2-3 minutes, then refresh
+    the browser page to view ingested rows in bus_data_processed
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image66.png)
 
 ### Task 6: Create lakehouse shortcut
 
 Finally, create a shortcut that exposes the processed bus data in
-the *Tutorial* lakehouse, which holds sample data for digital twin
+the *Tutorial* lakehouse, which holds sample data for digital twin
 builder (preview). This step is necessary because digital twin builder
 requires its data source to be a lakehouse.
 
-1. Go to your **Tutorial** lakehouse from the menu ribbon.
+1.  Go to your **Tutorial** lakehouse from the menu ribbon.
 
-   ![](./media/img15.png)
-2. Dropdown the **Get data** and select **New shortcut** from the top
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image67.png)
+
+2.  Dropdown the **Get data** and select **New shortcut** from the top
     navigation menu.
 
-   ![](./media/img16.png)
-3. Under **Internal sources**, select **Microsoft OneLake**. Then,
-    choose the **Tutorial - KQL Database** and click on the **Next**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image68.png)
+
+3.  Under **Internal sources**, select **Microsoft OneLake**. Then,
+    choose the **Tutorial KQL** database and click on the **Next**
     button
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image76.png)
+![](./media/image69.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image77.png)
-4. Expand the list of **Tables** and check the box next
-    to **bus_data_processed**. Select **Next**.
+![](./media/image70.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image78.png)
-5. Review your shortcut details and select **Create**.
+4.  Expand the list of **Tables** and check the box next
+    to **bus_data_processed**. Select **Next**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image79.png)
-6. The **bus_data_processed** table is now available in your lakehouse.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image71.png)
+
+5.  Review your shortcut details and select **Create**.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image72.png)
+
+6.  The **bus_data_processed** table is now available in your lakehouse.
     Verify that it contains data (this might take a few minutes).
 
-  ![](./media/img17.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image73.png)
 
 Next, you use this lakehouse data as a source to build an ontology in
 digital twin builder.
@@ -468,33 +585,39 @@ digital twin builder.
 In this part of the exercise, you build a digital twin ontology that
 models the bus and bus stop data. You create a digital twin builder
 (preview) item, and define entities for the buses and stops. Then, you
-map the data from the *Tutorial* lakehouse to the entities, and define
+map the data from the *Tutorial* lakehouse to the entities, and define
 relationships between the entities to further contextualize the data.
 
-### **Task 1: Create new digital twin builder item in Fabric**
+### ** Task 1: Create new digital twin builder item in Fabric**
 
-1. Select **Digital twin builder@lab.LabInstance.Id** from the left-sided navigation
+1.  Now, click on **Digital twin builder** on the left-sided navigation
     pane.
 
-   ![](./media/img18.png)
-2. Select **New item**.Search for the **+++Digital Twin Builder(preview)+++** item, and select it.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image74.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image82.png)
-3. Enter **+++BusModel+++** as the name for your item and
-    select **Create**.
+2.  Select **New item**.Search for the +++**Digital Twin Builder(preview**)+++ item, and select it.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image83.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image75.png)
 
-4.  Wait for your digital twin builder item to be created. Once your digital twin builder item is ready, it opens to the semantic canvas.
+3.  Enter +++**BusModel+++**as the name for your item and
+    select **Create**.
 
-     ![](./media/img19.png)
+> ![](./media/image76.png)
+
+4.  Wait for your digital twin builder item to be created. Once your
+    digital twin builder item is ready, it opens to the semantic canvas.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image77.png)
 
 In the semantic canvas, you can add entities and relationships to define
 an ontology.
 
 ### About entities and relationships
 
-In digital twin builder (preview), an *entity* is a category that
+In digital twin builder (preview), an *entity* is a category that
 defines a concept within a domain-specific ontology. The entity
 definition serves as a blueprint for individual entity instances of that
 entity, and specifies common characteristics shared across all instances
@@ -508,222 +631,320 @@ property to an entity, you must map at least one non-time series
 property before you can map time series properties. Then, link the
 non-time series and time series data together by matching a non-time
 series property from the entity with a column from the time series data.
-The values in the time series column must **exactly** match data that's
+The values in the time series column must **exactly** match data that's
 mapped to the entity property.
 
 After your entities are defined and mapped, you can
-create *relationships* between them to define how they're related to
-each other. In this tutorial, a Bus *goesTo* a Stop.
+create *relationships* between them to define how they're related to
+each other. In this tutorial, a Bus *goesTo* a Stop.
 
 ### Task 2: Add Bus entity
 
 First, create a new entity for the bus.
 
-1. In the semantic canvas of digital twin builder (preview),
-    select **Add entity**.
+1.  In the semantic canvas of digital twin builder (preview),
+    select **Add entity**.
 
-  ![](./media/img20.png)
-2. Leave the Generic system type selected, and enter **+++Bus+++** for
-    the entity name. Select **Add entity**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image78.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image86.png)
+2.  Leave the Generic system type selected, and enter +++**Bus+++** for
+    the entity name. Select **Add entity**.
 
-> [!note]The **Bus** entity is created and becomes visible on the canvas.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image79.png)
 
-> ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image87.png)
+3.  The **Bus**entity is created and becomes visible on the canvas.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image80.png)
 
 ### Task 3: Map non-timeseries bus data
 
 Next, map some non-timeseries data to the Bus entity. These fields are
 static properties that identify a bus and its visit to a certain stop.
 
-1. In the **Entity configuration** pane, switch to the **Mappings** tab
-    and select **Add data**.
+1.  In the **Entity configuration** pane, switch to the **Mappings** tab
+    and select **Add data**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image88.png)
-2. Open **Select lakehouse table** to select a data source for your
+> ![](./media/image81.png)
+
+2.  Open **Select lakehouse table** to select a data source for your
     mapping.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image89.png)
-3. Select your tutorial workspace (**Digital twin builer@lab.LabInstance.Id**), the **Tutorial** lakehouse, and the
-    **bus_data_processed** table. Optionally, wait for the data preview
-    to load. Select **Choose data source** to confirm.
+> ![](./media/image82.png)
 
-    > ! [A screenshot of a data source AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image90.png)
-4. For the **Property type**, leave the default selection
-    of **Non-timeseries properties**.
+3.  Select your tutorial workspace, the **Tutorial** lakehouse, and the
+    **bus_data_processed** table.Optionally, wait for the data preview
+    to load. Select **Choose data source** to confirm.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image91.png)
-5. Under **Unique Id**, select the **edit icon** (shaped like a pencil)
+> ![A screenshot of a data source AI-generated content may be
+> incorrect.](./media/image83.png)
+
+4.  For the **Property type**, leave the default selection
+    of **Non-timeseries properties**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image84.png)
+
+5.  Under **Unique Id**, select the **edit icon** (shaped like a pencil)
     to choose a unique ID out of one or more columns from your source
     data. Digital twin builder uses this field to uniquely identify each
-    row of ingested data. Select **TripId** as the unique ID column.
+    row of ingested data. Select **TripId **as the unique ID column.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image92.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image85.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image86.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image87.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image93.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image94.png)
-6. Under **Mapped properties**, select the **edit icon** to choose
+6.  Under **Mapped properties**, select the **edit icon** to choose
     which properties from your source data to map to the bus entity.
 
-   ![](./media/img21.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image88.png)
+>
+> The **Map properties** page lets you select a column from your source
+> data on the left side, and map it to a new property on your entity on
+> the right side. By default, selecting a column name from the source
+> data on the left side fills in the right side automatically with a
+> matching name for the entity property, but you can enter a new name
+> for the property on the right side if you want the entity property to
+> be named something different than what it's called in the source data.
 
-    > The **Map properties** page lets you select a column from your source
-    > data on the left side, and map it to a new property on your entity on
-    > the right side. By default, selecting a column name from the source
-    > data on the left side fills in the right side automatically with a
-    > matching name for the entity property, but you can enter a new name
-    > for the property on the right side if you want the entity property to
-    > be named something different than what it's called in the source data.
-7. The page loads with a DisplayName property for the entity, which is
+11. The page loads with a DisplayName property for the entity, which is
     unmapped to any column in the source data. Leave
-    the *DisplayName* property unmapped as it is, and select **Addentity property** twice to add new properties to the mapping.
+    the *DisplayName* property unmapped as it is, and select **Add
+    entity property** to add new properties to the mapping.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image96.png)
-8. Map the following entity properties:
-    - Select **TripId** from the dropdown menu in the left column, and edit
-        the box across from it in the right column to read **TripId_static**.
-        This action creates a property on the bus entity
-        named +++**TripId_static**+++, which gets its value from
-        the **TripId** property in the source data.
-    - Select **StopCode** from the dropdown menu in the left column, and
-        edit the box across from it in the right column to
-        read **StopCode_static**. This action creates a property on the bus
-        entity named **StopCode_static**, which gets its value from
-        the **StopCode** property in the source data.
-    - Check the box to acknowledge that properties can't be renamed or
-        removed, and select **Apply**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image89.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image97.png)
+Map the following entity properties:
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image98.png)
-9. Select **Save** the mapping.
+- Select **TripId** from the dropdown menu in the left column, and edit
+  the box across from it in the right column to read **TripId_static**.
+  This action creates a property on the bus entity
+  named +++**TripId_static**, which gets its value from
+  the **TripId** property in the source data.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image99.png)
-10. Switch to the **Scheduling** tab and select **Run**, to apply the
+&nbsp;
+
+- Select **StopCode** from the dropdown menu in the left column, and
+  edit the box across from it in the right column to
+  read **StopCode_static**. This action creates a property on the bus
+  entity named **StopCode_static**, which gets its value from
+  the **StopCode** property in the source data.
+
+- Check the box to acknowledge that properties can't be renamed or
+  removed, and select **Apply**.
+
+> ![](./media/image90.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image91.png)
+
+7.  Select **Save** the mapping.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image92.png)
+
+8.  Switch to the **Scheduling** tab and select **Run** to apply the
     mapping.
 
-    ![](./media/img22.png)
-11. The page confirms that the flow is queued.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image93.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image101.png)
-12. Check the status of your mapping job in the **Manageoperations** tab.
+9.  The page confirms that the flow is queued.
 
-    > [!note]Wait for the status to say **Completed** before
-    > proceeding to the next section (the operation might take several
-    > minutes to begin running from the queue, and several more minutes to
-    > complete once it starts, so you might need to refresh the content a
-    > few times).
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image94.png)
 
-    ![](./media/img24.png)
-  
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image103.png)
-    > 
-    ![](./media/img25.png)
-13. Select the **Home**
+10. Check the status of your mapping job in the **Manage
+    operations** tab. Wait for the status to say **Completed** before
+    proceeding to the next section (the operation might take several
+    minutes to begin running from the queue, and several more minutes to
+    complete once it starts, so you might need to refresh the content a
+    few times).
 
-   ![](./media/img26.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image95.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image96.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image97.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image98.png)
+
+12. Select the **Home**
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image99.png)
+
 ### Task 4: Map time series bus data
 
 Next, map some time series data to the Bus entity. These properties are
 streamed into the data source from the Eventstream sample data, and they
 contain information about the bus's location and movements.
 
-1. Go back to the **Configure** view and reselect the **Bus** entity.
-    In the **Entity configuration** pane, reopen the **Mappings** tab.
-    Select **Add data** to add a new mapping.
+1.  Go back to the **Configure** view and reselect the **Bus** entity.
+    In the **Entity configuration** pane, reopen the **Mappings** tab.
+    Select **Add data** to add a new mapping.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image106.png)
-2. Select **Select lakehouse table** in the **New mapping** tile to select a data source for your
+> ![](./media/image100.png)
+
+2.  Select  **Select lakehouse table** to select a data source for your
     mapping.
+    ![](./media/image101.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image107.png)
-3. In the Select data source tab , select **Digital twin builder**
-    workspace, the **Tutorial** lakehouse, and
-    the **bus_data_processed** table. Select **Choose data source**.
+4.  In the Select data source tab , select **Digital twin builder**
+    workspace, the **Tutorial** lakehouse, and
+    the **bus_data_processed** table. Select **Choose data source**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image108.png)
-4. This time, switch the **Property type** to **Timeseriesproperties**.
+> ![](./media/image102.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image109.png)
-5. Under **Mapped Properties**, select the **edit icon**.
+4.  This time, switch the **Property type** to **Timeseries
+    properties**.
 
-     ![](./media/img27.png)
-6. The page loads with a **Timestamp** property for the entity, which
-    is unmapped to any column in the source data. **Timestamp** requires
-    a mapping, so select **ActualTime** from the corresponding dropdown
-    menu on the left side. Then, select **Add entity property** to add
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image103.png)
+
+5.  Under **Mapped Properties**, select the **edit icon**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image104.png)
+
+6.  The page loads with a **Timestamp **property for the entity, which
+    is unmapped to any column in the source data. **Timestamp** requires
+    a mapping, so select **ActualTime** from the corresponding dropdown
+    menu on the left side. Then, select **Add entity property** to add
     new properties to the mapping.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image111.png)
-7. Map the following properties. When you select these property names
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image105.png)
+
+7.  Map the following properties. When you select these property names
     from the source columns on the left side, leave the default matching
     names that populate on the right side.
-    - **ScheduleTime**
-    - **BusLine**
-    - **StationNumber**
-    - **StopCode**
-    - **BusState**
-    - **TimeToNextStation**
-    - **TripId**
-8. Check the box to acknowledge that properties can't be renamed or
-    removed, and select **Apply**.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image112.png)
-9. Next, link your time series data to this entity. This process
+    - **ScheduleTime**
+
+    &nbsp;
+
+    - **BusLine**
+
+    &nbsp;
+
+    - **StationNumber**
+
+    &nbsp;
+
+    - **StopCode**
+
+    &nbsp;
+
+    - **BusState**
+
+    &nbsp;
+
+    - **TimeToNextStation**
+
+    &nbsp;
+
+    - **TripId**
+
+8.  Check the box to acknowledge that properties can't be renamed or
+    removed, and select **Apply**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image106.png)
+
+9.  Next, link your time series data to this entity. This process
     requires you to select an entity property and a matching column from
     your time series data table. The column selected from the time
-    series data must **exactly** match data that is mapped to the
+    series data must **exactly** match data that is mapped to the
     selected entity property. This process ensures correct
     contextualization of your entity and time series data.
-10. Under **Link with entity property**, select the **edit** icon.
 
-     ![](./media/img28.png)
-11. For **Choose entity property,** select **TripId_Static** from the
-    dropdown menu. For **Select column from timeseries data...**,
-    select **TripId**. Select **Apply**.
+10. Under **Link with entity property**, select the **edit** icon.
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image114.png)
-12. Make sure **Incremental mapping** is **enabled** and **Save** the
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image107.png)
+
+11. For **Choose entity property,** select **TripId_Static** from the
+    dropdown menu. For **Select column from timeseries data...**,
+    select **TripId**. Select **Apply**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image108.png)
+
+12. Make sure **Incremental mapping** is **enabled** and **Save** the
     mapping. Confirm when prompted.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image115.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image109.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image110.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image111.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image116.png)
+13. Switch to the **Scheduling** tab and select **Run** under the new
+    time series mapping to apply it.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image117.png)
-13. Switch to the **Scheduling** tab and select **Run** under the
-    new time series mapping, **Bus_bus_data_processed_TimeSeries**, to apply it.
+> ![](./media/image112.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image113.png)
 
-     ![](./media/img29.png)
-      ![](./media/img30.png)
-14. Check the status of your mapping job in the **Manageoperations** tab. Wait for the status to say **Completed** before
+14. Check the status of your mapping job in the **Manage
+    operations** tab. Wait for the status to say **Completed** before
     proceeding to the next task. It will take around 10-15 min to
     complete.
 
-    ![](./media/img31.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image114.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image115.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image116.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image117.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image120.png)
-15. Select **Home** to return to the previous panel.
+15. Select the **Home**
 
-  ![](./media/img32.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image118.png)
 
 ### Task 5: Add Stop entity
 
 Next, create a second entity to represent a bus stop.
 
-1. In the semantic canvas, select **Add entity**.
+1.  In the semantic canvas, select **Add entity**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image122.png)
-2. Leave the **Generic** system type selected, and
-    enter **+++Stop+++** for the entity name. Select **Add entity**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image119.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image123.png)
-3. After a few minutes, the **Stop** entity is visible on the
+2.  Leave the **Generic** system type selected, and
+    enter +++**Stop+++** for the entity name. Select **Add entity**.
+
+> ![](./media/image120.png)
+
+3.  After a few minutes, the **Stop** entity is now visible on the
     canvas.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image124.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image121.png)
 
 ### Task 6: Map non-timeseries stop data
 
@@ -733,122 +954,209 @@ stops and their locations. Later, when you link the Stop and Bus
 entities together, this data is used to enrich the bus fact data with
 dimensional data.
 
-1. In the **Entity configuration** pane, open the **Mappings** tab and
-    select **Add data**.
+1.  In the **Entity configuration** pane, open the **Mappings** tab and
+    select **Add data**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image125.png)
-2. Open **Select lakehouse table** to select a data source for your
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image122.png)
+
+2.  Open **Select lakehouse table** to select a data source for your
     mapping
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image126.png)
-3. In the Select data source tab, select your tutorial workspace (**Digital twin builder@lab.LabInstance.Id**),
-    the **Tutorial lakehouse**, and
-    the **stops_data** table.Select **Choose data source**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image123.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image127.png)
-4. For the **Property type**, leave the default selection
-    of **Non-timeseries properties**.
+3.  In the Select data source tab, select your tutorial workspace,
+    the **Tutorial lakehouse**, and
+    the **stops_data** table.Select **Choose data source**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image128.png)
-5. For the **Unique Id**, select **Stop_Code**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image124.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image129.png)
+4.  For the **Property type**, leave the default selection
+    of **Non-timeseries properties**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image130.png)
-6. For **Mapped properties**, map **Stop_Name** from the source data to
-    the DisplayName property on the right side.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image125.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image131.png)
-7. Then, add the following new properties to the mapping. When you
+5.  For the **Unique Id**, select **Stop_Code**.
+
+> ![](./media/image126.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image127.png)
+
+6.  For **Mapped properties**, map **Stop_Name** from the source data to
+    the DisplayName property on the right side.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image128.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image129.png)
+
+7.  Then, add the following new properties to the mapping. When you
     select these property names from the source columns on the left
     side, leave the default matching names that populate on the right
     side.
-    - **Stop_Code**
-    - **Road_Name**
-    - **Borough**
-    - **Borough_ID**
-    - **Suggested_Locality**
-    - **Locality_ID**
-    - **Latitude**
-    - **Longitude**
-8. Check the box to acknowledge that properties can't be renamed or
-    removed, and select **Apply**.
 
-    > ! [A screenshot of a map properties AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image132.png)
-9. **Save** the mapping.
+- **Stop_Code**
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image133.png)
-10. Switch to the **Scheduling** tab and select **Run now** to apply the
+&nbsp;
+
+- **Road_Name**
+
+&nbsp;
+
+- **Borough**
+
+&nbsp;
+
+- **Borough_ID**
+
+&nbsp;
+
+- **Suggested_Locality**
+
+&nbsp;
+
+- **Locality_ID**
+
+&nbsp;
+
+- **Latitude**
+
+&nbsp;
+
+- **Longitude**
+
+> Check the box to acknowledge that properties can't be renamed or
+> removed, and select **Apply**.
+>
+> ![A screenshot of a map properties AI-generated content may be
+> incorrect.](./media/image130.png)
+
+8.  **Save** the mapping.
+
+> ![](./media/image131.png)
+
+9.  Switch to the **Scheduling** tab and select **Run now** to apply the
     mapping.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image134.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image132.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image133.png)
 
-7. Check the status of your mapping job in the **Manageoperations** tab. Wait for the status to say **Completed** before
+10. Check the status of your mapping job in the **Manage
+    operations** tab. Wait for the status to say **Completed** before
     proceeding to the next task. It will take around 10-15 min to
     complete.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image135.png)
-8. Click on **Refresh**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image134.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image136.png)
+11.  Click on **Refresh**
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image137.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image135.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image136.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image137.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image138.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image138.png)
-9. Select the **Configure**
+12.  Select the **Home**
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image139.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image139.png)
 
 ### Task 7:Define relationship
 
-Next, create a relationship to represent that a Bus **goesTo** a Stop.
+Next, create a relationship to represent that a Bus **goesTo** a Stop.
 
-1. In the semantic canvas, highlight the **Bus** entity and
-    select **Add relationship**.
+1.  In the semantic canvas, highlight the **Bus** entity and
+    select **Add relationship**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image140.png)
-2. In the **Relationship configuration** pane, enter the following
-    information and select **Create**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image140.png)
+
+2.  In the **Relationship configuration** pane, enter the following
+    information and Select **Create**.
+
     - **First entity**: Bus
-    - **Property to join**: StopCode_static
+
+      - **Property to join**: StopCode_static
+
+    &nbsp;
+
     - **Second entity**: Stop
-    - **Property to join**: Stop_Code
-    - **Relationship name**: Enter +++**goesTo**+++
+
+      - **Property to join**: Stop_Code
+
+    &nbsp;
+
+    - **Relationship name**: Enter +++**goesTo**+++
+
+    &nbsp;
+
     - **Select relationship type**: Many Stop per Bus (1:N)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image141.png)
-3. In the **Scheduling** section that appears, select **Run**, or **Run now**, to
-    apply the relationship.
+> ![](./media/image141.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image142.png)
+3.  In the **Scheduling** section that appears, select **Run** to apply
+    the relationship.
 
-    > [!note]Now your Bus and Stop entities are visible in the canvas with a
-    > relationship between them. Together, these elements form the
-    > ontology for the usecase scenario.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image142.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image143.png)
+4.  Now your Bus and Stop entities are visible in the canvas with a
+    relationship between them. Together, these elements form the
+    ontology for the usecase scenario.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image143.png)
 
 ### Task 8: Verify mapping completion
 
 As a final step, confirm that all your data mappings ran successfully.
 Each mapping might take several minutes to run.
 
-1. From the menu ribbon, select **Manage operations**.
+1.  From the menu ribbon, select **Manage operations**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image144.png)
-2. Select the **Refresh** button
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image144.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image145.png)
-3. Wait for the status to say **Completed** before proceeding to the
+2.  Select the **Refresh** button
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image145.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image146.png)
+
+3. Wait for the status to say **Completed** before proceeding to the
     next task. It will take around 10-15 min to complete.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image146.png)
-4. View the details of the mapping operations, and confirm that they
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image147.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image148.png)
+
+4.  View the details of the mapping operations, and confirm that they
     all completed successfully.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image147.png)
-5. If any of the operations failed, check the box next to its name and
-    select **Run now** to rerun it.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image149.png)
+
+5.  If any of the operations failed, check the box next to its name and
+    select **Run** to rerun it.
 
 Wait for all mappings to complete before you move on to the next part of
 the tutorial. In the next part, you project the ontology that you mapped
@@ -863,7 +1171,7 @@ twin builder (preview) data.
 
 Data from digital twin builder mappings is stored in a new lakehouse,
 with a name that looks like your digital twin builder item name followed
-by *dtdm*. For this tutorial, it's called *BusModeldtdm*. The lakehouse
+by *dtdm*. For this tutorial, it's called *BusModeldtdm*. The lakehouse
 is located in the root folder of your workspace.
 
 In this task, you add tables from your digital twin builder data
@@ -871,63 +1179,92 @@ lakehouse as external tables in the KQL database. Later, you run sample
 notebook code to set up an Eventhouse projection that runs on and
 organizes this data.
 
-1. Now, click on **Tutorial - KQL Database** on the left-sided navigation
+1.  Now, click on **Tutorial **KQL database on the left-sided navigation
     pane
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image148.png)
-2. From the menu ribbon, select **New** \> **OneLake shortcut**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image150.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image149.png)
-3. Under **Internal sources**, select **Microsoft OneLake**. Then,
-    choose **BusModeldtdm** and select **Next**.
+2.  From the menu ribbon, select **New** \> **OneLake shortcut**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image150.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image151.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image151.png)
-4. Expand the list of **Tables** and begin selecting all tables.
+3.  Under **Internal sources**, select **Microsoft OneLake**. Then,
+    choose **BusModeldtdm**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image152.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image153.png)
+
+4.  Expand the list of **Tables** and begin selecting all tables.
     There's a limit to the number of tables that you can add to a
     shortcut at once, so stop after you **select 10 tables** and see the
     warning message. Make a note of where you stopped.
-5. Select **Next**
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image152.png)
-6. Select **Create** to create the shortcuts.
+5.  Select **Next** 
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image153.png)
-7. If you see a dialog box - **Shortcut creation completed**, then
-    click on **Close**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image154.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image154.png)
-8. Repeat the shortcut creation steps twice more, so that all tables
+6.  Select **Create** to create the shortcuts.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image155.png)
+
+7.  If you see a dialog box – **Shortcut creation completed**, then
+    click on **Close**
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image156.png)
+
+8.  Repeat the shortcut creation steps twice more, so that all tables
     are added as shortcuts.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image155.png)
+> ![](./media/image157.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image158.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image159.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image160.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image161.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image162.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image163.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image164.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image165.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image166.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image167.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image168.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image156.png)
+9.  When you're finished, you see all the external digital twin builder
+    data tables under **Shortcuts** in the KQL database.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image157.png)
+> ![](./media/image169.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image158.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image159.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image160.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image161.png)
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image162.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image163.png)
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image164.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image165.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image166.png)
-9. When you're finished, you see all the external digital twin builder
-    data tables under **Shortcuts** in the KQL database.
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image167.png)
-
-    > ! [Screenshot of the shortcuts available in the KQL database.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image168.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image170.png)
 
 ### Task 2: Prepare notebook and install dependencies
 
@@ -941,42 +1278,59 @@ data, then upload and install the required Python package.
 First, import the sample Fabric notebook. It contains code to generate
 the Eventhouse projection.
 
-1. Now, click on **Digital twin builder@lab.LabInstance.Id** workspace on the left-sided
+1.  Now, click on **Digital twin builder** workspace on the left-sided
     navigation pane
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image169.png)
-2. In the workspace, from the menu ribbon,
-    select **Import** \> **Notebook** \> **From this computer**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image171.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image170.png)
-3. Select **Upload** from the navigate to **Import** section.
+2.  In the workspace, from the menu ribbon,
+    select **Import** \> **Notebook** \> **From this computer**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image171.png)
-4. Navigate and select **DTB_Generate_Eventhouse_Projection** notebook
-    from **C:\\LabFiles** and click on the **Open** button.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image172.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image172.png)
-5. You will see a notification stating **Imported successfully.**
+3.  Select **Upload** from the navigate to **Import** section.![A
+    screenshot of a computer AI-generated content may be
+    incorrect.](./media/image173.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image173.png)
-6. Select **DTB_Generate_Eventhouse_Projection** notebook from the
+4.  Navigate and select **DTB_Generate_Eventhouse_Projection** notebook
+    from **C:\LabFiles** and click on the **Open** button.
+
+> ![](./media/image174.png)
+
+5.  You will see a notification stating **Imported successfully.**
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image175.png)
+
+6.  Select **DTB_Generate_Eventhouse_Projection** notebook from the
     workspace
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image174.png)
-7. From the **Explorer** pane of the notebook, select **Add dataitems** and select **Existing data sources**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image176.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image175.png)
-8. Select the **BusModeldtdm** lakehouse and select **Connect**.
+7.  From the **Explorer** pane of the notebook, select **Add data
+    items** and select **Existing data sources**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image176.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image177.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image177.png)
-9. In the **Explorer** pane, select the 3 dot elipsis (**...**) next to the lakehouse name,
-    and select **Set as default lakehouse**.
+8.  Select the ***BusModeldtdm*** lakehouse and select **Connect**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image178.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image178.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image179.png)
 
-> [!note]Optionally, remove the other lakehouse that was added by default to simplify the view.
+9.  In the **Explorer** pane, select **...** next to the lakehouse name,
+    and select **Set as default lakehouse**. 
+
+> ![](./media/image180.png)
+
+Optionally, remove the other lakehouse that was added by default to
+simplify the view.
 
 ### Task 3: Upload and install the Python package
 
@@ -984,40 +1338,46 @@ Next, install the Python package that the notebook needs to work with
 digital twin builder data. In this section, you upload the package to
 your lakehouse and install it in the notebook.
 
-1. In the **Explorer** pane of open notebook,
-    expand **BusModeldtdm**. Select the 3 dot elipsis (**...**) next to **Files**, and
-    select **Upload** \> **Upload files**.
+1.  In the **Explorer** pane of open notebook,
+    expand **BusModeldtdm**. Select **...** next to **Files**, and
+    select **Upload** \> **Upload files**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image179.png)
+> ![](./media/image181.png)
+
 2. On the Upload files tab, click on the folder under the Files
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image180.png)
-3. Browse to C:\\LabFiles on your VM, then select
-    dtb_samples-0.1-py3-none-any.whl file and click on Open button.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image182.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image181.png)
+3.  Browse to **C:\LabFiles** on your VM, then select
+    **dtb_samples-0.1-py3-none-any.whl** file and click on Open button.
+
+> ![](./media/image183.png)
+
 4. Click on **Upload**
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image182.png)
-5. Close the **Upload files** pane and observe the new file in
-    the **Files** pane for the lakehouse.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image184.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image183.png)
+5. Close the **Upload files** pane and observe the new file in
+    the **Files** pane for the lakehouse.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image184.png)
+> ![](./media/image185.png)
+>
+> ![](./media/image186.png)
+
 6. In the notebook, install the package by running the first code
     block.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image185.png)
-7. After less than a minute, the package is installed and the notebook
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image187.png)
+
+7.  After less than a minute, the package is installed and the notebook
     confirms the successful run status with a checkmark underneath the
     code.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image186.png)
-
-    > [!note]You may encounter an error indicating an incompatible package. This issue can be safely ignored at this time.
-    > 
-    > !IMAGE [image900.png](instructions299380/image900.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image188.png)
 
 ### Task 4: Run Eventhouse projection code
 
@@ -1026,46 +1386,54 @@ projection script. This script creates user-defined functions in
 Eventhouse that correspond to your digital twin builder entities and
 their properties.
 
-1. In the second code block, there are variables
-    for **dtb_item_name** and **kql_db_name**. Fill their values
-    with **BusModel** and **Tutorial** (case-sensitive). Run the
+1.  In the second code block, there are variables
+    for **dtb_item**\_name and **kql_db_name**. Fill their values
+    with ***BusModel* **and ***Tutorial* **(case-sensitive). Run the
     code block. The notebook confirms the successful run status with a
     checkmark underneath the code.
 
-    |  |  |
-    | --- | --- |
-    | dtb_item_name | **+++busModel+++** |
-    | kql_db_name | **+++Tutorial+++** |
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image189.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image190.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image187.png)
-
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image188.png)
-2. Scroll down to the next code block and run it. This code block
+2.  Scroll down to the next code block and run it. This code block
     completes the following operations:
-    1. Connects to your **workspace** and your **digital twin builderontology**
-    2. Sets up a **Spark reader** to pull data from the digital twin
+
+    1.  Connects to your **workspace** and your **digital twin builder
+        ontology**
+
+    2.  Sets up a **Spark reader** to pull data from the digital twin
         builder database
-    3. **Generates a script** that pushes your digital twin builder
+
+    3.  **Generates a script** that pushes your digital twin builder
         data into Eventhouse
-    4. Automatically creates several **functions** based on your
+
+    4.  Automatically creates several **functions** based on your
         digital twin builder's configuration, to make this data readily
         accessible in Eventhouse for use in KQL queries
-    5. The notebook confirms the successful run status with a checkmark
-        underneath the code, and a list of functions that were added (one
-        for each entity and property type).
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image189.png)
+3.  The notebook confirms the successful run status with a checkmark
+    underneath the code, and a list of functions that were added (one
+    for each entity and property type).
 
-    > [!note]Note: If you see a **ModuleNotFoundError**, rerun the first code block
-    > with the package installation. Then, rerun this code block.
-3. **Run** the last code block. This code runs a **Python** snippet
+> ![A screenshot of a computer program AI-generated content may be
+> incorrect.](./media/image191.png)
+
+Note: If you see a **ModuleNotFoundError**, rerun the first code block
+with the package installation. Then, rerun this code block.
+
+4.  **Run** the last code block. This code runs a **Python** snippet
     that sends your script to the Fabric REST API and executes it
     against KQL database.
-4. The notebook confirms the successful run status with a checkmark
+
+5.  The notebook confirms the successful run status with a checkmark
     underneath the code, and confirmation that it successfully created
     the Eventhouse domain projection functions.
 
-    > ! [A screenshot of a computer code AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image190.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image192.png)
 
 Now the projection functions are created in Eventhouse, one for each
 digital twin builder entity and its property types.
@@ -1075,40 +1443,50 @@ digital twin builder entity and its property types.
 Verify that the functions were created successfully in your KQL
 database.
 
-1. Go to **Tutorial - KQL Database** and refresh the view.
+1.  Go to **Tutorial KQL** database and refresh the view.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image191.png)
-2. Expand **Functions** in the Explorer pane to see a list of functions
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image193.png)
+
+2.  Expand **Functions** in the Explorer pane to see a list of functions
     created by the notebook
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image192.png)
-3. Select **Tutorial_queryset** from the Explorer pane to open the
-    query window and use the **+** above the query pane to create a new
-    query.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image194.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image193.png)
-4. Enter **+++.show functions+++** and run the cell.
+3.  Select **Tutorial_queryset** from the Explorer pane to open the
+    query window and use the **+** above the query pane to create a new
+    query.![](./media/image195.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image194.png)
-5. In the output, a list of functions within the queryset is displayed.
-    Expand the **extractBusData** function to view its detailed
-    implementation and associated information
+4.  Enter **+++show functions+++** and run the cell.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image195.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image196.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image196.png)
-6. Run the functions to see the data projections they produce.
+5.  In the output, a list of functions within the queryset is displayed.
+    Expand the **extractBusData** function to view its detailed
+    implementation and associated information![A screenshot of a
+    computer AI-generated content may be
+    incorrect.](./media/image197.png)
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image198.png)
+
+6.  Run the functions to see the data projections they produce.
     Recognize that the properties correspond to the fields that you
     mapped to the digital twin builder ontology
-7. Select the cell, replace the code with +++Bus_property()+++, and
-    click the **Run** icon
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image197.png)
-8. Rename the tab as **+++Explore functions+++**
+7.  Select the cell, replace the code with +++Bus_property()+++, and
+    click the **Run** icon ![A screenshot of a computer AI-generated
+    content may be incorrect.](./media/image199.png)
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image198.png)
+8.  Rename the tab as **+++Explore functions+++**
 
-    > ! [A screenshot of a computer AI-generated content may beincorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image199.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image200.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image201.png)
 
 Now write other KQL queries using these user-defined functions to access
 data from digital twin builder (preview) ontology. In the next tutorial
@@ -1120,16 +1498,17 @@ Dashboard.
 
 ### Task 1: Query the data using KQL
 
-1. Using the **+** above the query pane, create the following new
-    queries.
+1.  Using the **+** above the query pane, create the following new
+    queries. ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image202.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image200.png)
-2. This query calculates the delay of each bus trip, by comparing the
+2.  This query calculates the delay of each bus trip, by comparing the
     current time and the time to the next station with the scheduled
     arrival time.
-3. In the query editor, copy and paste the following code. Click on
-    the **Run** button to execute the query. After the query is
-    executed, you will see the results.
+
+3.  In the query editor, copy and paste the following code. Click on
+    the **Run** button to execute the query. After the query is
+    executed, you will see the results. 
 
     ```
     //Start with the function generated by the eventhouse projection to get your time series bus data
@@ -1156,28 +1535,35 @@ Dashboard.
         PredictedArrival,
         ScheduledArrival = ScheduleTime
     ```
+> ![](./media/image203.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image204.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image201.png)
+4.  Rename the tab as **+++Delay status+++**
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image202.png)
-4. Rename the tab as **+++Delay status+++**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image205.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image203.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image206.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image204.png)
 5. Create new tab within the queryset by clicking on
-    the **+ icon** as shown in the below image. Rename this tab
-    as **+++Delays by stop+++**.
+    the **+ icon** as shown in the below image. Rename this tab
+    as **+++Delays by stop+++**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image205.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image207.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image206.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image208.png)
 
-    > [!note] This query calculates information about delays from a bus stop
-    > perspective, including the average delay time at the stop, and how
-    > often trips to the stop are late.
-6. In the query editor, copy and paste the following code. Click on
-    the **Run** button to execute the query.
+6. This query calculates information about delays from a bus stop
+    perspective, including the average delay time at the stop, and how
+    often trips to the stop are late.
+
+7. In the query editor, copy and paste the following code. Click on
+    the **Run** button to execute the query. 
 
     ```
     // Compute delay for each event
@@ -1203,23 +1589,27 @@ Dashboard.
     | sort by AvgDelayMinutes
     ```
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image207.png)
-7. Create new tab within the queryset by clicking on
-    the **+ icon** as shown in the below image. Rename this tab
-    as **+++Delays by bus and route+++**.
+> ![](./media/image209.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image208.png)
+8. Create new tab within the queryset by clicking on
+    the ***+* icon** as shown in the below image. Rename this tab
+    as **+++Delays by bus and route+++**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image209.png)
+![](./media/image210.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image210.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image211.png)
 
-    > [!note] This query calculates information about delays from a bus route
-    > perspective, computing an average delay for each combination of bus
-    > line and stop code.
-8. In the query editor, copy and paste the following code. Click on
-    the **Run** button to execute the query. After the query is
-    executed, you will see the results.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image212.png)
+
+9. This query calculates information about delays from a bus route
+    perspective, computing an average delay for each combination of bus
+    line and stop code.
+
+10. In the query editor, copy and paste the following code. Click on
+    the **Run** button to execute the query. After the query is
+    executed, you will see the results. 
 
     ```
     bus_timeseries()
@@ -1236,24 +1626,26 @@ Dashboard.
       by BusLine, StopCode
     | sort by AvgDelayMin
     ```
-9. Run the query and see the results.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image213.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image211.png)
-10. Create new tab within the queryset by clicking on
-    the **+** icon as shown in the below image. Rename this tab
-    as **+++Estimated lateness+++**.
+16. Create new tab within the queryset by clicking on
+    the ***+* icon** as shown in the below image. Rename this tab
+    as **+++Estimated lateness+++**.
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image212.png)
+> ![](./media/image214.png)
+>
+> ![](./media/image215.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image216.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image213.png)
+17. This query predicts whether a bus will be late at the next stop,
+    based on the current time and the time to the next station.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image214.png)
-
-    > [!note]This query predicts whether a bus will be late at the next stop,
-    > based on the current time and the time to the next station.
-11. In the query editor, copy and paste the following code. Click on
-    the **Run** button to execute the query. After the query is
-    executed, you will see the results.
+18. In the query editor, copy and paste the following code. Click on
+    the **Run** button to execute the query. After the query is
+    executed, you will see the results. 
 
     ```
     bus_timeseries()
@@ -1269,9 +1661,11 @@ Dashboard.
         WillBeLate
     ```
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image215.png)
-
-    > ! [Screenshot of the Estimated lateness query results.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image216.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image217.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image218.png)
 
 ## Exercise 7: Visualize the data in a Real-Time Dashboard
 
@@ -1284,11 +1678,12 @@ Dashboard with data from the queries you created in the previous
 section, along with a few extra queries.
 
 Here's what the dashboard looks like (notice the queries from the
-previous section: *Delay status*, *Delays by stop*, *Delays by bus androute*, and *Estimated lateness*):
+previous section: *Delay status*, *Delays by stop*, *Delays by bus and
+route*, and *Estimated lateness*):
 
-! [Screenshot of the Real-Time Dashboard.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image217.png)
+![Screenshot of the Real-Time Dashboard.](./media/image219.png)
 
-### Task 1: Create a new dashboard
+### Task 1:Create a new dashboard
 
 Start by creating an empty Real-Time Dashboard in your Fabric workspace.
 
@@ -1296,115 +1691,166 @@ The Real-Time Dashboard exists within the context of a workspace. A new
 Real-Time dashboard is always associated with the workspace you're using
 when you create it.
 
-1. Now, click on **Digital twin builder@lab.LabInstance.Id** workspace on the left-sided
+1.  Now, click on **Digital twin builder** workspace on the left-sided
     navigation pane
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image218.png)
-2. Select **+ New item** and filter for, and select, the **+++Real-Time Dashboard+++** item.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image220.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image219.png)
-3. Enter a dashboard name as +++Real-Time+++ select **Create**.
+2.  Select **+ New item** and choose the **Real-Time Dashboard** item.
 
-    > ! [A screenshot of a computer dashboard AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image220.png)
-4. A new dashboard is created in workspace.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image221.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image221.png)
+3.  Enter a dashboard name as +++**Real-Time**+++ select **Create**.
+
+> ![A screenshot of a computer dashboard AI-generated content may be
+> incorrect.](./media/image222.png)
+
+4.  A new dashboard is created in workspace.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image223.png)
 
 ### Task 2: Upload template and connect data source
 
 Next, use a template file to populate your dashboard with tiles based on
 your KQL queries from earlier.
 
-1. In your Real-Time Dashboard, select the **Manage** tab and **Replacewith file**.
+1.  In your Real-Time Dashboard, select the **Manage** tab and **Replace
+    with file**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image222.png)
-2. Browse to **C:\\LabFiles** on your VM, then
-    select **DTB+RTI_dashboard.json** file and click
-    on **Open** button.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image224.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image223.png)
+2.  Browse to **C:\LabFiles** on your VM, then
+    select **DTB+RTI_dashboard.json** file and click
+    on **Open** button.
 
-    > [!note]Migration warnings are expected at this point and can safely be ignored.
-3. Open the dashboard template file that you downloaded. Continue
-    through the **migration warnings** that flag the template's
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image225.png)
+
+3.  Open the dashboard template file that you downloaded. Continue
+    through the **migration warnings** that flag the template's
     placeholder values for the database and workspace ID.
 
-    > ! [A screenshot of a computer error AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image224.png)
-4. The template file populates the dashboard with multiple tiles,
+> ![A screenshot of a computer error AI-generated content may be
+> incorrect.](./media/image226.png)
+
+4.  The template file populates the dashboard with multiple tiles,
     although the tiles can't get data because there's no connected data
     source yet.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image225.png)
-5. From the **Manage** tab, select **Data sources**. This action opens
-    the **Data sources** pane with a sample source for your data. Select
-    the **edit icon** for the **Tutorial** data source.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image227.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image226.png)
-6. In Edit data source tab, under **Database**, select the dropdown
-    arrow and **Eventhouse / KQL Database**.
+5.  From the **Manage** tab, select **Data sources**. This action opens
+    the **Data sources** pane with a sample source for your data. Select
+    the **edit icon** for the **Tutorial**data source.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image227.png)
-7. Select the **Tutorial - KQL Database** and select **Connect**.
-    Select **Apply**,
+> ![](./media/image228.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image228.png)
+6.  In Edit data source tab, under **Database**, select the dropdown
+    arrow and **Eventhouse / KQL Database**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image229.png)
-8. Close the **Data sources** pane.
+![](./media/image229.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image230.png)
-9. After a few seconds, the visuals populate with data from your
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image230.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image231.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image232.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image233.png)
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image234.png)
+
+7.  Select the **Tutorial KQL** database and select **Connect**.
+    Select **Apply**.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image235.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image236.png)
+
+8.  Close the **Data sources** pane.
+
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image237.png)
+
+9.  After a few seconds, the visuals populate with data from your
     database.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image231.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image238.png)
 
-    **Note:** The dashboard keeps the current time in UTC, so the time range
-    selector might not match your local time. If you don't see data in the
-    tiles, expand the time range.
-10. In the dashboard. Select **Explore data** icons on each tile to view
+**Note:** The dashboard keeps the current time in UTC, so the time range
+selector might not match your local time. If you don't see data in the
+tiles, expand the time range.
+
+10. In the dashboard. Select **Explore data** icons on each tile to view
     the underlying queries, experiment with changing the time range
     filters and other tile options, and try adding own new queries and
     tiles.
 
-    > ! [Screenshot of exploration options in the Real-Time Dashboard.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image232.png)
+> ![Screenshot of exploration options in the Real-Time
+> Dashboard.](./media/image239.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image233.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image240.png)
+
 11. Click on **Back**
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image234.png)
-12. In the Real-Time dashboard, on the **Home** tab, select **Save**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image241.png)
 
-    > ! [ ](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image235.png)
+12. In the Real-Time dashboard, select **Save**
+
+> ![](./media/image242.png)
 
 ### Task 3: Clean up resources
 
-1. Now, click on **Digital twin builder@lab.LabInstance.Id** workspace on the left-sided
+1.  Now, click on **Digital twin builder** workspace on the left-sided
     navigation pane
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image236.png)
-2. Select the 3 dot elipsis (**...**) option under the workspace name and
-    select **Workspace settings**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image243.png)
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image237.png)
-3. Select **General** and **Remove this workspace.**
+2.  Select the ***...*** option under the workspace name and
+    select **Workspace settings**.
 
-    > ! [A screenshot of a computer AI-generated content may be incorrect.](https://raw.githubusercontent.com/technofocus-pte/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/media/image238.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image244.png)
 
-    > **Summary**
-    > 
-    > In this use case, users set up the Digital Twin Builder environment in
-    > Microsoft Fabric to build an ontology that contextualizes real-time
-    > data streams. The scenario models bus operations, including stops and
-    > delays, using static data and live event streams. Users learn to
-    > upload contextual datasets, stream and transform real-time data, and
-    > project that data into a lakehouse. They then create and map entities
-    > such as buses and stops, define relationships between them, and
-    > project the ontology into Eventhouse. With user-defined KQL functions,
-    > participants query the dataset for delay analysis and prediction,
-    > ultimately visualizing results through a Real-Time Dashboard. The lab
-    > concludes with dashboard configuration and resource cleanup,
-    > showcasing a complete cycle from data ingestion to actionable
-    > visualization.
+3.  Select **General** and **Remove this workspace.**
 
-
-
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image245.png)
+>
+> ![A white background with black text AI-generated content may be
+> incorrect.](./media/image246.png)
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image247.png)
+>
+> **Summary**
+>
+> In this use case, users set up the Digital Twin Builder environment in
+> Microsoft Fabric to build an ontology that contextualizes real-time
+> data streams. The scenario models bus operations, including stops and
+> delays, using static data and live event streams. Users learn to
+> upload contextual datasets, stream and transform real-time data, and
+> project that data into a lakehouse. They then create and map entities
+> such as buses and stops, define relationships between them, and
+> project the ontology into Eventhouse. With user-defined KQL functions,
+> participants query the dataset for delay analysis and prediction,
+> ultimately visualizing results through a Real-Time Dashboard. The lab
+> concludes with dashboard configuration and resource cleanup,
+> showcasing a complete cycle from data ingestion to actionable
+> visualization.
