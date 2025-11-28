@@ -484,18 +484,18 @@ incorrect.](./media/image57.png)
     the update policy.
 
   
-    .alter table TransformedData policy update
-    ```
-    [
-        {
-            "IsEnabled": true,
-            "Source": "TutorialTable",
-            "Query": "TransformRawData()",
-            "IsTransactional": false,
-            "PropagateIngestionProperties": false
-        }
-    ]
-    ```
+  >  .alter table TransformedData policy update
+  > ```
+  >  [
+  >     {
+  >          "IsEnabled": true,
+  >         "Source": "TutorialTable",
+  >          "Query": "TransformRawData()",
+  >          "IsTransactional": false,
+  >         "PropagateIngestionProperties": false
+  >      }
+  > ]
+  >  ```
   
 
 ![A screenshot of a computer AI-generated content may be
@@ -1331,6 +1331,7 @@ individually, or you can delete the entire workspace.
 > ingestion, transformation, monitoring, query, visualization, anomaly
 > detection, and AI-powered insights—enabling you to create robust
 > data-in-motion solutions for real-world business scenarios.
+
 
 
 
