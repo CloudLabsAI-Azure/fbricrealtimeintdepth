@@ -21,56 +21,25 @@ complete real-time analytics solution.
 **Objective**
 
 - Create a Fabric workspace and Eventhouse.
-
 - Configure the environment to host real-time and analytical components.
-
-&nbsp;
-
 - Connect and ingest real-time bicycle rental sample data.
 
 - Build and configure an eventstream in the Real-Time hub.
-
-&nbsp;
-
 - Use event transformations (Manage Fields, timestamp enrichment, etc.).
-
 - Route transformed events to an Eventhouse and KQL database tables.
-
-&nbsp;
-
 - Create and configure real-time alerts that notify users when
   conditions are met.
-
 - Trigger notifications in Microsoft Teams.
-
-&nbsp;
-
 - Use update policies, stored functions, and target tables to automate
   ETL logic.
-
 - Validate transformations between raw and enriched datasets.
-
-&nbsp;
-
 - Query data using KQL and T-SQL.
-
 - Create time charts, materialized views, and live dashboards.
-
-&nbsp;
-
 - Detect unusual patterns in streaming data using Fabric’s anomaly
   detector.
-
 - Create anomaly-based alerts for proactive monitoring.
-
-&nbsp;
-
 - Build a map with geojson data and real-time bike location insights.
-
 - Visualize neighbourhood boundaries, stations, and dock availability.
-
-&nbsp;
-
 - Build and configure a Fabric Data Agent to answer natural-language
   questions over event data.
 
@@ -1361,3 +1330,4 @@ individually, or you can delete the entire workspace.
 > ingestion, transformation, monitoring, query, visualization, anomaly
 > detection, and AI-powered insights—enabling you to create robust
 > data-in-motion solutions for real-world business scenarios.
+
