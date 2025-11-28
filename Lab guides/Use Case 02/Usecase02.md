@@ -483,7 +483,7 @@ incorrect.](./media/image57.png)
     the following code into the query editor. Run the command to apply
     the update policy.
 
-    ```
+  
     .alter table TransformedData policy update
     ```
     [
@@ -496,7 +496,7 @@ incorrect.](./media/image57.png)
         }
     ]
     ```
-    ```
+  
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
@@ -1331,6 +1331,7 @@ individually, or you can delete the entire workspace.
 > ingestion, transformation, monitoring, query, visualization, anomaly
 > detection, and AI-powered insights—enabling you to create robust
 > data-in-motion solutions for real-world business scenarios.
+
 
 
 
