@@ -559,7 +559,7 @@ a semicolon (;) after the statement, as shown below.*
     executed, you will see the results.
 
     ```
-    stockprice
+    StockPrice
     | where timestamp > ago(75m)
     | project symbol, price, timestamp
     | partition by symbol
@@ -612,7 +612,7 @@ a semicolon (;) after the statement, as shown below.*
     executed, you will see the results.
 
     ```
-    stockprice
+    StockPrice
     | project symbol, price, timestamp
     | partition by symbol
     (
@@ -653,7 +653,7 @@ a semicolon (;) after the statement, as shown below.*
     executed, you will see the results.
 
     ```
-    stockprice
+    StockPrice
     | summarize avg(price), min(price), max(price) by bin(timestamp, 1h), symbol
     | sort by timestamp asc, symbol asc
     ```
@@ -684,7 +684,7 @@ a semicolon (;) after the statement, as shown below.*
     executed, you will see the results.
 
     ```
-    stockprice
+    StockPrice
     | where timestamp > ago(75m)
     | project symbol, price, timestamp
     | partition by symbol
@@ -3125,3 +3125,4 @@ in a single step, streamlining the process of creating predictions and
 operationalizing the model generation. Then, you’ve created a report (or
 reports) that show the current stock prices with predicted values,
 making the data available for business users.
+
