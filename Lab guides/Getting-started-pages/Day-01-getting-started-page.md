@@ -1,15 +1,14 @@
-
 # Microsoft Fabric: Real Time Analytics - Day 1
 
-### Overall Estimated Duration: 4 Hours
+#### Overall Estimated Duration: 4 Hours
 
-## Overview
+### Overview
 
 In this lab, you will get hands-on experience setting up a **Microsoft Fabric Real-Time Analytics environment** and working end to end with streaming and event-based data. You will learn how to configure your environment, ingest data through the **Real-Time hub**, transform incoming events, and publish an **event stream** for downstream analytics. The lab also covers creating **KQL queries** to explore and analyze the data, enabling you to work effectively with real-time data flows in Fabric.
 
 By completing this lab, learners will gain an understanding of how to **build real-time analytics solutions in Microsoft Fabric**, including creating **Real-Time dashboards** for visual exploration, generating **Power BI reports from KQL queries**, and setting up **alerts on event streams** to proactively monitor data changes. Learners will also understand how to connect streaming data to interactive visualizations, enabling timely insights and data-driven decision-making.
 
-## Objective
+### Objective
 
 By the end of this lab, participants will be able to:
 
@@ -23,17 +22,13 @@ By the end of this lab, participants will be able to:
 - **Create Power BI reports from KQL queries** to extend real-time analysis into interactive business reports.
 - **Set alerts on event streams** to proactively monitor data changes and respond to critical conditions.
 
-## Prerequisites
+### Prerequisites
 
 Participants should have:
 
-- Basic understanding of Power BI, data modeling concepts, and report building.
-- Familiarity with data engineering or SQL, such as querying or transforming datasets.
-- Basic knowledge of Python or Spark is helpful but not mandatory.
-- Understanding of enterprise analytics workflows (data ingestion → transformation → reporting).
-- No prior experience with Microsoft Fabric is required; this lab is beginner-friendly.
+- Basic understanding of Power BI, Fabric, data modeling concepts, and report building.
 
-## Explanation of Components
+### Explanation of Components
 
 The architecture for this lab involves the following key components:
 
@@ -50,15 +45,13 @@ The architecture for this lab involves the following key components:
 11. **Alerts on Event Streams:** Automated notifications triggered when defined conditions are met in streaming data.
 12. **Workspace Cleanup:** Ensures resources are deleted after learning activities. Helps maintain a cost-efficient environment.
 
-## Architecture
+### Architecture
 
 In this lab, you will use **Microsoft Fabric Real-Time Analytics** to build an end-to-end streaming and analytics workflow that enables real-time data ingestion, processing, analysis, visualization, and alerting. The process begins by setting up a **Fabric-enabled Power BI workspace** and creating a **KQL database** to serve as the analytical store for event and streaming data.
 
 You will ingest live data through the **Real-Time hub**, publish and manage **event streams**, and apply **event transformations** to clean, filter, and enrich data as it flows through the pipeline. The transformed events are ingested into the KQL database, where you will use **KQL Querysets** to run powerful KQL queries and explore both real-time and historical data.
 
 Finally, you will create **Fabric Real-Time dashboards** to visualize streaming insights, build **Power BI reports from KQL queries** for interactive business reporting, and configure **alerts on event streams** to proactively monitor conditions and respond to critical events—demonstrating a complete, production-ready real-time analytics architecture in Microsoft Fabric.
-
-## Architecture Diagram
 
 ## Getting Started with the Lab
  
