@@ -4,34 +4,37 @@
 
 ## Overview
 
-In this lab, you will use **Microsoft Fabric** to build multiple **end-to-end real-time and advanced analytics solutions**, combining streaming ingestion, lakehouse analytics, KQL-based exploration, machine learning, and real-time visualization. The journey begins with setting up access by signing up for the **Microsoft Fabric trial**, redeeming an **Azure Pass**, and configuring the required permissions and capacities in the Azure portal. You will deploy a **stock generator application** using Azure Container Instances and stream real-time stock data through **Azure Event Hubs** into **Microsoft Fabric Eventstream**, enabling live data ingestion and preview.
+In this lab, you will build an **end-to-end real-time analytics solution using Microsoft Fabric**, starting with environment setup, Fabric capacity creation, and deployment of a stock data generator streaming events through **Azure Event Hubs** into **Fabric Eventstream**. You will analyze streaming stock and clickstream data using **KQL databases**, apply real-time transformations, and visualize insights with **Real-Time dashboards** and **Power BI reports**.
 
-You will create and manage a **KQL database** to analyze streaming stock data using **KQL queries**, build **Real-Time dashboards**, and develop **Power BI reports** with auto-refresh for near real-time insights. In parallel, you will create a **Lakehouse** to persist streaming and curated data, execute **data engineering notebooks** to clean, aggregate, and model data, and design a **dimensional model and semantic model** to support analytics and reporting.
-
-By completing this lab, learners will gain an understanding of **data science and machine learning**, where you will import and execute notebooks to build, validate, and deploy **stock prediction models**, generate forecasts, and store predictions in the Lakehouse. You will analyze model performance, visualize predictions in Power BI, and publish reports with well-defined relationships. Finally, you will build a **web traffic analytics solution** using clickstream data, leverage **Fabric shortcuts and OneLake** for unified data access, create **real-time transformations and dashboards**, and configure **Data Activator (Reflex) alerts and actions** demonstrating a comprehensive, production-ready analytics architecture using Microsoft Fabric Real-Time Intelligence.
-
+You will also create a **Lakehouse** to store curated data, run **data engineering and data science notebooks** to build dimensional models and machine learning based stock predictions, and publish semantic models for reporting. Finally, you will leverage **OneLake, Fabric shortcuts, and Data Activator alerts** to enable unified data access, real-time monitoring, and automated actions demonstrating a complete Fabric Real-Time Intelligence workflow.
 
 ## Objective
 
 By the end of this lab, participants will be able to:
 
-- **Set up a Fabric-enabled Power BI workspace** to support real-time analytics and KQL database workloads.
+- **Deploy a real-time data source** by provisioning a stock generator application using Azure Container Instances and ARM templates.
 
-- **Create and manage a KQL database** within Microsoft Fabric to store and analyze streaming and event-based data.
+- **Ingest real-time streaming data** from Azure Event Hubs into Microsoft Fabric using Eventstream with live data preview enabled.
 
-- **Ingest data using the Real-Time hub** and **publish event streams** to enable real-time data processing.
-  
-- **Transform incoming events** to prepare data for querying and visualization.
-  
-- **Create and run KQL queries using a KQL Queryset** to explore and analyze data efficiently.
-  
-- **Manage the KQL database using control commands and policies** to configure behavior, performance, and governance.
-  
-- **Build and explore Fabric Real-Time dashboards** to visualize streaming data and gain immediate insights.
+- **Create and manage a KQL database** in Microsoft Fabric and route streaming data from Eventstream for real-time analytics.
 
-- **Create Power BI reports from KQL queries** to extend real-time analysis into interactive business reports.
-  
-- **Set alerts on event streams** to proactively monitor data changes and respond to critical conditions.
+- **Analyze streaming stock data using KQL** to identify trends, calculate price differences, and generate actionable insights.
+
+- **Build real-time dashboards and Power BI reports** with auto-refresh to visualize live stock data and support decision-making.
+
+- **Create and configure a Lakehouse (StocksLakehouse)** to persist streaming and curated data with a validated SQL endpoint.
+
+- **Process and curate data using notebooks** to clean, aggregate, and prepare datasets for analytics and data science use cases.
+
+- **Design a dimensional model and semantic model** within the Lakehouse to support reporting and advanced analytics.
+
+- **Build, evaluate, and run machine learning models** using Fabric notebooks to predict and forecast stock prices.
+
+- **Store and analyze prediction results** in the Lakehouse and visualize market trends using Power BI.
+
+- **Build a real-time web traffic analytics solution** using clickstream data, Fabric Eventhouse, OneLake shortcuts, and KQL transformations.
+
+- **Create real-time dashboards and Data Activator alerts** to monitor streaming data and trigger automated actions.
 
 ## Prerequisites
 
@@ -43,26 +46,31 @@ Participants should have:
 
 The architecture for this lab involves the following key components:
 
-1. **Fabric-enabled Power BI Workspace:** A centralized workspace that hosts and manages all Microsoft Fabric real-time analytics assets.
-2. **KQL Database:** A high-performance database optimized for storing and querying streaming and event-based data using KQL.
-3. **Real-Time Hub:** The entry point in Fabric for discovering, connecting, and ingesting real-time data sources.
-4. **Event Stream:** A pipeline that routes real-time data from sources to destinations with optional transformations.
-5. **Event Transformation:** A process to filter, enrich, and reshape streaming data before analysis or storage.
-6. **KQL Queryset:** An interactive environment for writing and executing KQL queries against a KQL database.
-7. **Control Commands and Policies:** Administrative configurations used to manage ingestion, retention, security, and performance of a KQL database.
-8. **Fabric Real-Time Dashboard:** A live dashboard that visualizes streaming data for instant insights and monitoring.
-9. **Visual Exploration in Real-Time Dashboards:** Interactive analysis of live data through filters, visuals, and real-time updates.
-10. **Power BI Report from KQL Query:** A Power BI report built on KQL queries to extend real-time insights into rich analytics.
-11. **Alerts on Event Streams:** Automated notifications triggered when defined conditions are met in streaming data.
-12. **Workspace Cleanup:** Ensures resources are deleted after learning activities. Helps maintain a cost-efficient environment.
+- **Microsoft Fabric Trial, Azure Pass, Capacity, and Workspace:** Enable access, compute resources, and a centralized environment for building all Fabric analytics assets.
+
+- **Azure Container Instance & Event Hubs:** Generate and ingest real-time stock and clickstream data into the analytics pipeline.
+
+- **Microsoft Fabric Eventstream & Eventhouse:** Ingest, transform, and route streaming data using KQL-powered real-time processing.
+
+- **KQL Database & KQL Queryset:** Store streaming data and analyze it using high-performance KQL queries.
+
+- **Lakehouse & OneLake (with Fabric Shortcuts):** Persist raw, curated, and prediction data with unified access across Fabric without data movement.
+
+- **Fabric Notebooks (Data Engineering & Data Science):** Clean, aggregate data and build, train, and run machine learning models.
+
+- **Dimensional & Semantic Models:** Structure data into business-friendly models for reporting and analytics.
+
+- **Power BI Reports & Real-Time Dashboards:** Visualize real-time and historical insights with interactive dashboards and reports.
+
+- **Data Activator (Reflex):** Monitor streaming data and trigger alerts or automated actions based on defined conditions.
+
+- **Workspace Cleanup:** Ensures resources are deleted after learning activities. Helps maintain a cost-efficient environment.
 
 ## Architecture
 
-In this lab, you will use **Microsoft Fabric Real-Time Analytics** to build an end-to-end streaming and analytics workflow that enables real-time data ingestion, processing, analysis, visualization, and alerting. The process begins by setting up a **Fabric-enabled Power BI workspace** and creating a **KQL database** to serve as the analytical store for event and streaming data.
+The architecture is built on **Microsoft Fabric** to deliver an end-to-end real-time and advanced analytics solution. Real-time data is generated by a stock generator application running on **Azure Container Instances** and ingested through **Azure Event Hubs**. This streaming data is consumed by **Fabric Eventstream and Eventhouse**, where real-time transformations are applied using **KQL**, and the processed events are routed to a **KQL Database** for high-performance, low-latency analytics.
 
-You will ingest live data through the **Real-Time hub**, publish and manage **event streams**, and apply **event transformations** to clean, filter, and enrich data as it flows through the pipeline. The transformed events are ingested into the KQL database, where you will use **KQL Querysets** to run powerful KQL queries and explore both real-time and historical data.
-
-Finally, you will create **Fabric Real-Time dashboards** to visualize streaming insights, build **Power BI reports from KQL queries** for interactive business reporting, and configure **alerts on event streams** to proactively monitor conditions and respond to critical events—demonstrating a complete, production-ready real-time analytics architecture in Microsoft Fabric.
+In parallel, data is persisted in a **Lakehouse on OneLake** for long-term storage, curation, and machine learning workloads. **Fabric notebooks** are used for data engineering, dimensional modeling, and building predictive models, with results exposed through **semantic models**. Insights are delivered via **Power BI reports and Real-Time dashboards**, while **Data Activator (Reflex)** continuously monitors streaming data to trigger alerts and automated actions, completing a unified, scalable real-time intelligence architecture.
 
 ## Getting Started with the Lab
  
