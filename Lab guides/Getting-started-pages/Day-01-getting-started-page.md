@@ -121,7 +121,7 @@ To adjust the zoom level for the environment page, click the **A↕ : 100%** ico
  
    - **Password:** <inject key="AzureAdUserPassword"></inject>
  
-        ![](../Use%20Case%2001/media/Intro-07.png)
+        ![](../Use%20Case%2001/media/temp-pass.jpg)
 
 5. First-time users are often prompted to Stay Signed In. If you see any such pop-up, click on **No**.
    
