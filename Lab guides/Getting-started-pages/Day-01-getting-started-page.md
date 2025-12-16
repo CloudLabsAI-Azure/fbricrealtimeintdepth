@@ -127,13 +127,9 @@ To adjust the zoom level for the environment page, click the **A↕ : 100%** ico
    
     ![](../Use%20Case%2001/media/Intro-08.png)
 
-6. On Microsoft Fabric (Free) license assignment dialog appears, click **OK** to proceed.
+6. You will be navigated to the **Microsoft Fabric page**.
 
-    ![01](./media/Intro-09.png)
-
-7. You will be navigated to the **Microsoft Fabric page**.
-
-    ![01](./media/Intro-10.png)
+     ![](../Use%20Case%2001/media/image10-1.png)
 
 ## Support Contact
 
