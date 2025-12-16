@@ -69,7 +69,7 @@ Once the environment is provisioned, a virtual machine (LabVM) and lab guide wil
  
 Once you're ready to dive in, your virtual machine and **Guide** will be right at your fingertips within your web browser.
  
-   ![](../Use%20Case%2001/media/Intro-00.png)
+   ![](../Use%20Case%2001/media/fabric-main.png)
 
 ### Virtual Machine & Lab Guide
  
@@ -97,7 +97,7 @@ Feel free to start, stop, or restart your virtual machine as needed from the **R
 
 To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
 
-   ![](../Use%20Case%2001/media/Intro-04.png)
+   ![](../Use%20Case%2001/media/zoom.jpg)
  
 ## Let's Get Started with Microsoft Portal
  
