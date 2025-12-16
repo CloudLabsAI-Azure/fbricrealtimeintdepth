@@ -59,14 +59,11 @@ KQL queries.
 
 ## Task 1: Sign in to Power BI account and sign up for the free 
 
-1.  Open your browser, navigate to the address bar, and type or paste
-    the following URL: !!https://app.fabric.microsoft.com/!! then
-    press the **Enter** button.
+1.  Open your browser, navigate to the address bar, and type or paste the following URL: !!https://app.fabric.microsoft.com/!! then press the **Enter** button.
 
-      ![](./media/image6.png)
+    ![](./media/image6.png)
 
-2.  In the **Microsoft Fabric** window, enter your given credentials,
-    and click on the **Submit** button.
+2. In the **Microsoft Fabric** window, enter your given credentials, and click on the **Submit** button.
 
      ![](./media/image7.png)
 

@@ -60,10 +60,12 @@ reports.
     |Advanced|	Under License mode, select Trial|
     |Default |storage format	Small dataset storage format|
 
-
     ![](./media/image4.png)
+
     ![](./media/image5.png)
+
     ![](./media/image6.png)
+    
     ![](./media/image7.png)
 
 ## Task 3: Create an eventhouse
