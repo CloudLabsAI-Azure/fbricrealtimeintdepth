@@ -1,34 +1,42 @@
 # Microsoft Fabric: Real Time Analytics - Day 1
 
-#### Overall Estimated Duration: 4 Hours
+### Overall Estimated Duration: 4 Hours
 
-### Overview
+## Overview
 
-In this lab, you will get hands-on experience setting up a **Microsoft Fabric Real-Time Analytics environment** and working end to end with streaming and event-based data. You will learn how to configure your environment, ingest data through the **Real-Time hub**, transform incoming events, and publish an **event stream** for downstream analytics. The lab also covers creating **KQL queries** to explore and analyze the data, enabling you to work effectively with real-time data flows in Fabric.
+In this lab, you will get hands-on experience setting up a Microsoft Fabric Real-Time Analytics environmentand working end to end with streaming and event-based data. You will learn how to configure your environment, ingest data through the Real-Time hub, transform incoming events, and publish an event stream for downstream analytics. The lab also covers creating KQL queries to explore and analyze the data, enabling you to work effectively with real-time data flows in Fabric.
 
-By completing this lab, learners will gain an understanding of how to **build real-time analytics solutions in Microsoft Fabric**, including creating **Real-Time dashboards** for visual exploration, generating **Power BI reports from KQL queries**, and setting up **alerts on event streams** to proactively monitor data changes. Learners will also understand how to connect streaming data to interactive visualizations, enabling timely insights and data-driven decision-making.
+By completing this lab, learners will gain an understanding of how to build real-time analytics solutions in Microsoft Fabric, including creating Real-Time dashboards for visual exploration, generating **Power BI reports from KQL queries, and setting up alerts on event streams to proactively monitor data changes. Learners will also understand how to connect streaming data to interactive visualizations, enabling timely insights and data-driven decision-making.
 
-### Objective
+## Objective
 
 By the end of this lab, participants will be able to:
 
 - **Set up a Fabric-enabled Power BI workspace** to support real-time analytics and KQL database workloads.
+
 - **Create and manage a KQL database** within Microsoft Fabric to store and analyze streaming and event-based data.
+
 - **Ingest data using the Real-Time hub** and **publish event streams** to enable real-time data processing.
+  
 - **Transform incoming events** to prepare data for querying and visualization.
+  
 - **Create and run KQL queries using a KQL Queryset** to explore and analyze data efficiently.
+  
 - **Manage the KQL database using control commands and policies** to configure behavior, performance, and governance.
+  
 - **Build and explore Fabric Real-Time dashboards** to visualize streaming data and gain immediate insights.
+
 - **Create Power BI reports from KQL queries** to extend real-time analysis into interactive business reports.
+  
 - **Set alerts on event streams** to proactively monitor data changes and respond to critical conditions.
 
-### Prerequisites
+## Prerequisites
 
 Participants should have:
 
 - Basic understanding of Power BI, Fabric, data modeling concepts, and report building.
 
-### Explanation of Components
+## Explanation of Components
 
 The architecture for this lab involves the following key components:
 
@@ -45,7 +53,7 @@ The architecture for this lab involves the following key components:
 11. **Alerts on Event Streams:** Automated notifications triggered when defined conditions are met in streaming data.
 12. **Workspace Cleanup:** Ensures resources are deleted after learning activities. Helps maintain a cost-efficient environment.
 
-### Architecture
+## Architecture
 
 In this lab, you will use **Microsoft Fabric Real-Time Analytics** to build an end-to-end streaming and analytics workflow that enables real-time data ingestion, processing, analysis, visualization, and alerting. The process begins by setting up a **Fabric-enabled Power BI workspace** and creating a **KQL database** to serve as the analytical store for event and streaming data.
 
@@ -97,10 +105,10 @@ To adjust the zoom level for the environment page, click the **A↕ : 100%** ico
  
     ![01](./media/Intro-05.png)
  
-2.  In a new tab, navigate to the **Power BI** portal by copying and pasting the following URL into the address bar:
+2.  In a new tab, navigate to the **Microsoft Fabric** portal by copying and pasting the following URL into the address bar:
 
       ```
-      https://app.powerbi.com/
+      https://app.fabric.microsoft.com
       ```
 
 3. On the **Enter your email, we'll check if you need to create a new account** tab, you will see the login screen, in that enter the following email/username, and click on **Submit**.
