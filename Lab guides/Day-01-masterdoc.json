@@ -1,0 +1,21 @@
+[
+  {
+    "Name": "Real-Time Intelligence",
+    "Language": "English",
+    "BaseURL": "",
+    "Files": [
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Getting-started-pages/Day-01-getting-started-page.md",
+        "Order": 1
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2001/UseCase01.md",
+        "Order": 2
+      },
+      {
+        "RawFilePath": "https://raw.githubusercontent.com/CloudLabsAI-Azure/fbricrealtimeintdepth/refs/heads/RTI-Cloudslice/Lab%20guides/Use%20Case%2002/UseCase02.md",
+        "Order": 3
+      }  
+    ]
+  }
+]
